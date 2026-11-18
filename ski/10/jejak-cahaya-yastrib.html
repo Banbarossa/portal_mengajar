@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Flip Book SKI Kelas 10 - Strategi Dakwah Periode Madinah</title>
+    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS hasil build (terpusat) -->
+    <link rel="stylesheet" href="../../assets/css/output.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden antialiased flipbook-bg-alt">
+
+    <!-- Header bersama untuk semua halaman -->
+    <div data-site-header data-base="../../" data-active="modul-ajar"></div>
+
+    <!-- Toolbar khusus halaman modul -->
+    <div class="z-30 bg-emeraldMid text-white shadow-md px-3 sm:px-6 py-2 flex items-center justify-between gap-2 border-b border-goldBright/40">
+        <div class="flex items-center gap-2.5 min-w-0">
+            <span class="w-8 h-8 rounded-lg bg-goldWarm flex items-center justify-center text-emeraldDark shadow-inner text-sm shrink-0">
+                <span data-icon="book-open"></span>
+            </span>
+            <div class="min-w-0">
+                <h1 class="font-bold text-xs sm:text-sm md:text-base tracking-wide leading-tight truncate">SKI &bull; KELAS X</h1>
+                <p class="text-[10px] sm:text-xs text-emerald-100/80 hidden sm:block truncate">Strategi Dakwah Rasulullah SAW Periode Madinah</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+            <button onclick="toggleModal('tocModal')" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-800 hover:bg-emerald-700 text-xs sm:text-sm font-semibold transition border border-emerald-600 cursor-pointer" title="Daftar Isi">
+                <span data-icon="list-ul" class="text-goldBright"></span><span class="hidden md:inline">Daftar Isi</span>
+            </button>
+            <a href="../../index.html#modul-ajar" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs sm:text-sm font-semibold transition border border-white/20 cursor-pointer" title="Kembali ke portal">
+                <span data-icon="house"></span><span class="hidden md:inline">Portal</span>
+            </a>
+            <button onclick="toggleFullScreen()" class="w-8 h-8 rounded-lg bg-emerald-800 hover:bg-emerald-700 flex items-center justify-center transition border border-emerald-600 cursor-pointer" title="Layar Penuh">
+                <span data-icon="expand"></span>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- MAIN BOOK VIEWPORT -->
+    <main class="flex-1 flex items-center justify-center p-2 sm:p-4 md:p-6 relative">
+        <!-- Container Buku -->
+        <div id="bookContainer" class="w-full max-w-6xl bg-creamPaper rounded-2xl shadow-2xl border border-amber-900/15 overflow-hidden flex flex-col lg:flex-row min-h-[540px] sm:min-h-[580px] lg:h-[620px] relative transition-all duration-300">
+            
+            <!-- Halaman Kiri (atau Halaman Tunggal di Mobile) -->
+            <div id="leftPageSlot" class="w-full lg:w-1/2 h-full paper-texture book-spine-left p-5 sm:p-7 md:p-8 overflow-y-auto page-scroll flex flex-col justify-between relative">
+                <!-- Konten dirender dinamis lewat JS -->
+            </div>
+
+            <!-- Garis Tengah Lipatan Buku (Desktop Only) -->
+            <div class="hidden lg:block w-1 bg-gradient-to-r from-stone-300 via-stone-100 to-stone-300 z-10"></div>
+
+            <!-- Halaman Kanan (Desktop Only) -->
+            <div id="rightPageSlot" class="hidden lg:flex w-1/2 h-full paper-texture book-spine-right p-7 md:p-8 overflow-y-auto page-scroll flex-col justify-between relative">
+                <!-- Konten dirender dinamis lewat JS -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- BOTTOM NAVIGATION BAR -->
+    <footer class="bg-white/95 backdrop-blur border-t border-stone-200 px-4 py-2.5 z-30 shadow-inner">
+        <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            
+            <!-- Tombol Sebelumnya -->
+            <button id="prevBtn" onclick="prevPage()" class="px-3.5 py-2 rounded-xl bg-emeraldLight text-emeraldDeep hover:bg-emerald-100 disabled:opacity-40 disabled:pointer-events-none font-semibold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer">
+                <span data-icon="chevron-left" class="inline-flex items-center justify-center shrink-0 "></span>
+                <span>Sebelumnya</span>
+            </button>
+
+            <!-- Indikator Halaman & Progress -->
+            <div class="flex flex-col items-center flex-1 max-w-xs sm:max-w-md mx-2">
+                <div class="flex items-center gap-2 text-xs sm:text-sm font-bold text-emeraldDeep mb-1">
+                    <span id="pageIndicatorText">Halaman 1 dari 10</span>
+                </div>
+                <div class="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-emeraldDeep to-goldWarm h-full rounded-full transition-all duration-300" style="width: 10%;"></div>
+                </div>
+            </div>
+
+            <!-- Tombol Selanjutnya -->
+            <button id="nextBtn" onclick="nextPage()" class="px-3.5 py-2 rounded-xl bg-emeraldDeep text-white hover:bg-emeraldMid disabled:opacity-40 disabled:pointer-events-none font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm transition cursor-pointer">
+                <span>Selanjutnya</span>
+                <span data-icon="chevron-right" class="inline-flex items-center justify-center shrink-0 "></span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- MODAL DAFTAR ISI (TABLE OF CONTENTS) -->
+    <div id="tocModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-creamPaper rounded-2xl max-w-lg w-full p-6 shadow-2xl border-2 border-goldWarm animate-page">
+            <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-4">
+                <h2 class="text-lg font-bold text-emeraldDeep flex items-center gap-2">
+                    <span data-icon="compass" class="inline-flex items-center justify-center shrink-0 text-goldWarm"></span> Daftar Isi Modul
+                </h2>
+                <button onclick="toggleModal('tocModal')" class="w-8 h-8 rounded-full bg-stone-200 hover:bg-stone-300 flex items-center justify-center text-slate-700 cursor-pointer">
+                    <span data-icon="xmark" class="inline-flex items-center justify-center shrink-0 "></span>
+                </button>
+            </div>
+            <div id="tocList" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-80 overflow-y-auto pr-1">
+                <!-- Daftar halaman diisi otomatis oleh JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PANDUAN EMBED GOOGLE SITES -->
+    <div id="embedModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border-2 border-emeraldDeep animate-page">
+            <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-4">
+                <h2 class="text-lg font-bold text-emeraldDeep flex items-center gap-2">
+                    <span data-icon="google" class="inline-flex items-center justify-center shrink-0 text-goldWarm"></span> Cara Embed ke Google Sites
+                </h2>
+                <button onclick="toggleModal('embedModal')" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-slate-700 cursor-pointer">
+                    <span data-icon="xmark" class="inline-flex items-center justify-center shrink-0 "></span>
+                </button>
+            </div>
+            <div class="space-y-3 text-sm text-slate-600 leading-relaxed">
+                <p>Anda dapat menyematkan modul <em>Flip Book</em> interaktif ini langsung ke dalam halaman <strong>Google Sites</strong> Anda dengan dua cara mudah:</p>
+                
+                <div class="bg-emeraldLight/70 p-3.5 rounded-xl border border-emerald-200">
+                    <h3 class="font-bold text-emeraldDeep mb-1">Cara 1: Menyematkan Kode HTML Langsung (Paling Praktis)</h3>
+                    <ol class="list-decimal list-inside space-y-1 text-xs sm:text-sm">
+                        <li>Buka editor <strong>Google Sites</strong> Anda.</li>
+                        <li>Pada panel kanan, klik menu <strong>Sisipkan (Insert)</strong> &rarr; pilih <strong>Sematkan (Embed)</strong>.</li>
+                        <li>Pilih tab <strong>Sematkan Kode (Embed Code)</strong>.</li>
+                        <li>Salin seluruh kode HTML file ini, tempelkan ke kotak tersebut, lalu klik <strong>Berikutnya &rarr; Sisipkan</strong>.</li>
+                        <li>Tarik sudut bingkai di Google Sites agar lebarnya penuh (<em>full-width</em>).</li>
+                    </ol>
+                </div>
+
+                <div class="bg-amber-50 p-3.5 rounded-xl border border-amber-200">
+                    <h3 class="font-bold text-amber-800 mb-1">Cara 2: Menggunakan Tautan Hosting (GitHub Pages / Netlify / Drive)</h3>
+                    <p class="text-xs sm:text-sm">Jika file ini sudah diunggah secara online, cukup pilih tab <strong>Dengan URL (By URL)</strong> di menu Sematkan Google Sites dan tempelkan tautannya.</p>
+                </div>
+
+                <!-- Kotak salin cepat snippet iframe contoh -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Contoh Kode Iframe (Jika sudah di-hosting):</label>
+                    <div class="flex gap-2">
+                        <input id="iframeSnippet" type="text" readonly value='<iframe src="URL_MODUL_ANDA.html" width="100%" height="680px" frameborder="0" allowfullscreen></iframe>' class="w-full text-xs bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 font-mono text-slate-700">
+                        <button onclick="copySnippet()" class="px-3 py-2 bg-emeraldDeep hover:bg-emeraldMid text-white text-xs font-semibold rounded-lg shrink-0 cursor-pointer">
+                            Salin
+                        </button>
+                    </div>
+                    <p id="copyFeedback" class="text-xs text-emerald-700 font-semibold mt-1 hidden"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 "></span> Kode berhasil disalin ke clipboard!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script src="../../assets/js/data.js"></script>
+    <script src="../../assets/js/icons.js"></script>
+    <script src="../../assets/js/components.js"></script>
+
+    <script>
+        // ==========================================
+        // DATA KONTEN MODUL (10 HALAMAN INTERAKTIF)
+        // ==========================================
+        const pagesData = [
+            // HALAMAN 1: SAMPUL
+            {
+                id: 1,
+                title: "Sampul Modul",
+                render: () => `
+                    <div class="h-full flex flex-col justify-between bg-gradient-to-br from-emeraldDeep via-emerald-800 to-teal-900 text-white rounded-xl p-6 sm:p-8 relative overflow-hidden islamic-pattern shadow-inner">
+                        <!-- Dekorasi Cahaya Atas -->
+                        <div class="absolute -top-16 -right-16 w-48 h-48 bg-goldBright/20 rounded-full blur-2xl"></div>
+                        <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-emerald-400/20 rounded-full blur-2xl"></div>
+
+                        <!-- Header Badge -->
+                        <div class="relative z-10 flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-white/15 backdrop-blur-xs border border-white/25 text-xs font-semibold tracking-wider uppercase text-amber-200">
+                                Kurikulum Merdeka • Fase E
+                            </span>
+                            <span class="font-serif text-xl text-amber-300">السيرة النبوية</span>
+                        </div>
+
+                        <!-- Judul Utama -->
+                        <div class="relative z-10 my-auto py-4 text-center sm:text-left">
+                            <p class="text-amber-300 font-semibold text-xs sm:text-sm uppercase tracking-widest mb-2">
+                                Modul Ajar Interaktif SKI Kelas X
+                            </p>
+                            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight mb-3 text-white">
+                                Jejak Cahaya di <span class="text-goldBright">Yatsrib</span>
+                            </h1>
+                            <p class="text-sm sm:text-base text-emerald-100 font-medium leading-relaxed mb-6">
+                                Strategi Dakwah Rasulullah SAW Periode Madinah: Membangun Peradaban, Persaudaraan, dan Toleransi.
+                            </p>
+
+                            <!-- Ilustrasi Vektor SVG Siluet Masjid Nabawi -->
+                            <div class="w-full max-w-xs mx-auto sm:mx-0 mb-6 bg-white/10 backdrop-blur-xs rounded-2xl p-4 border border-white/15">
+                                <svg viewBox="0 0 320 110" class="w-full h-auto drop-shadow">
+                                    <!-- Bulan Sabit -->
+                                    <path d="M275 18 A12 12 0 1 0 288 32 A10 10 0 1 1 275 18 Z" fill="#f59e0b"/>
+                                    <!-- Menara Kiri -->
+                                    <rect x="35" y="30" width="10" height="65" fill="#fde68a"/>
+                                    <polygon points="33,30 47,30 40,14" fill="#f59e0b"/>
+                                    <!-- Menara Kanan -->
+                                    <rect x="275" y="35" width="10" height="60" fill="#fde68a"/>
+                                    <polygon points="273,35 287,35 280,20" fill="#f59e0b"/>
+                                    <!-- Kubah Hijau Utama -->
+                                    <path d="M125 65 C125 32, 195 32, 195 65 Z" fill="#10b981"/>
+                                    <rect x="158" y="25" width="4" height="10" fill="#f59e0b"/>
+                                    <!-- Kubah Pendamping -->
+                                    <path d="M75 72 C75 50, 115 50, 115 72 Z" fill="#fbbf24"/>
+                                    <path d="M205 72 C205 50, 245 50, 245 72 Z" fill="#fbbf24"/>
+                                    <!-- Bangunan Utama -->
+                                    <rect x="55" y="65" width="210" height="30" rx="3" fill="#fef3c7"/>
+                                    <!-- Lengkungan Pintu -->
+                                    <path d="M100 95 V78 A8 8 0 0 1 116 78 V95 Z" fill="#065f46"/>
+                                    <path d="M150 95 V75 A10 10 0 0 1 170 75 V95 Z" fill="#065f46"/>
+                                    <path d="M204 95 V78 A8 8 0 0 1 220 78 V95 Z" fill="#065f46"/>
+                                    <!-- Garis Tanah -->
+                                    <rect x="15" y="95" width="290" height="4" rx="2" fill="#f59e0b"/>
+                                </svg>
+                            </div>
+
+                            <button onclick="nextPage()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-goldBright hover:bg-amber-400 text-emerald-950 font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2 cursor-pointer">
+                                <span>Mulai Belajar Sekarang</span>
+                                <span data-icon="arrow-right" class="inline-flex items-center justify-center shrink-0 "></span>
+                            </button>
+                        </div>
+
+                        <!-- Footer Sampul -->
+                        <div class="relative z-10 pt-3 border-t border-white/15 flex justify-between items-center text-[11px] text-emerald-200">
+                            <span>Madrasah Aliyah / SMA Islam</span>
+                            <span>Halaman 1 / 10</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 2: PETA KONSEP & TUJUAN PEMBELAJARAN
+            {
+                id: 2,
+                title: "Peta Konsep & Tujuan",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-goldWarm/40 pb-2 mb-4">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldWarm">Halaman 02 • Orientasi</span>
+                                <span class="text-xs font-semibold text-emeraldDeep bg-emeraldLight px-2.5 py-0.5 rounded-full">Capaian Pembelajaran</span>
+                            </div>
+
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-emeraldDeep mb-3">Tujuan Pembelajaran</h2>
+                            <div class="bg-emeraldLight/80 border-l-4 border-emeraldDeep p-3.5 rounded-r-xl mb-5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                                Peserta didik mampu <strong>menganalisis substansi dan strategi dakwah Rasulullah SAW periode Madinah</strong>, mengevaluasi nilai-nilai toleransi dalam Piagam Madinah, serta meneladaninya dalam kehidupan berbangsa yang majemuk.
+                            </div>
+
+                            <h3 class="text-sm sm:text-base font-bold text-slate-800 mb-2 flex items-center gap-2">
+                                <span data-icon="diagram-project" class="inline-flex items-center justify-center shrink-0 text-goldWarm"></span> Peta Konsep Interaktif
+                                <span class="text-[11px] font-normal text-slate-500">(Klik tahap untuk ringkasan)</span>
+                            </h3>
+
+                            <!-- Diagram Alur Interaktif -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                                <button onclick="showConceptDetail(0)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                    <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
+                                    <span class="text-xs font-bold text-emeraldDeep">Kondisi Yatsrib Pra-Islam</span>
+                                </button>
+                                <button onclick="showConceptDetail(1)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                    <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
+                                    <span class="text-xs font-bold text-emeraldDeep">Peristiwa Hijrah (622 M)</span>
+                                </button>
+                                <button onclick="showConceptDetail(2)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                    <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
+                                    <span class="text-xs font-bold text-emeraldDeep">3 Pilar Masyarakat Madani</span>
+                                </button>
+                                <button onclick="showConceptDetail(3)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                    <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs font-bold flex items-center justify-center shrink-0">4</span>
+                                    <span class="text-xs font-bold text-emeraldDeep">Strategi Pertahanan</span>
+                                </button>
+                                <button onclick="showConceptDetail(4)" class="concept-btn sm:col-span-2 text-left p-2.5 rounded-xl border border-amber-300 bg-amber-50/70 hover:bg-amber-100 transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                    <span class="w-6 h-6 rounded-full bg-goldWarm text-white text-xs font-bold flex items-center justify-center shrink-0">5</span>
+                                    <span class="text-xs font-bold text-amber-900">Puncak Kemenangan: Fathu Makkah (8 H)</span>
+                                </button>
+                            </div>
+
+                            <!-- Kotak Output Detail Peta Konsep -->
+                            <div id="conceptOutput" class="bg-white border border-stone-200 rounded-xl p-3.5 text-xs sm:text-sm text-slate-700 shadow-inner min-h-[78px]">
+                                <p class="text-emeraldDeep font-bold mb-1"><span data-icon="circle-info" class="inline-flex items-center justify-center shrink-0 text-goldWarm mr-1"></span> 1. Kondisi Yatsrib Pra-Islam</p>
+                                <p>Yatsrib dihuni suku Arab (Aus & Khazraj) yang sering berkonflik serta kabilah Yahudi. Mereka merindukan sosok pemimpin yang adil dan pemersatu.</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-stone-200 flex justify-between items-center text-xs text-slate-400">
+                            <span>SKI Kelas X • Bab Madinah</span>
+                            <span class="font-bold text-emeraldDeep">2</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 3: APERSEPSI / PEMANTIK
+            {
+                id: 3,
+                title: "Apersepsi: Mengapa Madinah?",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-goldWarm/40 pb-2 mb-4">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldWarm">Halaman 03 • Apersepsi</span>
+                                <span class="text-xs font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full">Pemantik Diskusi</span>
+                            </div>
+
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-emeraldDeep mb-2">Mengapa Harus Yatsrib?</h2>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                                Sebelum bernama <em>Madinatun Nabi</em> (Kota Nabi), kota ini bernama <strong>Yatsrib</strong>. Berbeda dengan Makkah yang didominasi satu suku besar (Quraisy), Yatsrib adalah kota agraris yang majemuk namun rawan konflik horizontal.
+                            </p>
+
+                            <!-- Kartu Komposisi Penduduk -->
+                            <div class="grid grid-cols-2 gap-2.5 mb-4">
+                                <div class="bg-white p-3 rounded-xl border border-stone-200 shadow-2xs">
+                                    <div class="text-emeraldDeep font-bold text-xs sm:text-sm mb-1"><span data-icon="users" class="inline-flex items-center justify-center shrink-0 text-goldWarm mr-1"></span> Suku Arab</div>
+                                    <p class="text-xs text-slate-600"><strong>Suku Aus & Khazraj</strong>: Dua suku besar asal Yaman yang terlibat perang saudara (Perang Bu'ats) selama puluhan tahun.</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-xl border border-stone-200 shadow-2xs">
+                                    <div class="text-emeraldDeep font-bold text-xs sm:text-sm mb-1"><span data-icon="landmark" class="inline-flex items-center justify-center shrink-0 text-goldWarm mr-1"></span> Kabilah Yahudi</div>
+                                    <p class="text-xs text-slate-600"><strong>Bani Qainuqa, Bani Nadhir, & Bani Quraizhah</strong>: Menguasai sektor ekonomi, perdagangan, dan pertanian.</p>
+                                </div>
+                            </div>
+
+                            <!-- Mini Polling Interaktif -->
+                            <div class="bg-emeraldDeep text-white rounded-xl p-4 shadow">
+                                <p class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-1"><span data-icon="hand-pointer" class="inline-flex items-center justify-center shrink-0 mr-1"></span> Refleksi Cepat Siswa</p>
+                                <p class="text-xs sm:text-sm font-medium mb-3">Jika kamu menjadi pemimpin yang baru tiba di kota yang warganya terpecah belah, langkah pertama apa yang paling prioritas dilakukan?</p>
+                                
+                                <div class="space-y-2" id="pollOptions">
+                                    <button onclick="answerPoll('A')" class="w-full text-left text-xs p-2.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition cursor-pointer">
+                                        A. Membentuk pasukan militer yang kuat untuk menakut-nakuti lawan.
+                                    </button>
+                                    <button onclick="answerPoll('B')" class="w-full text-left text-xs p-2.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition cursor-pointer">
+                                        B. Mendamaikan kelompok yang bertikai & membuat aturan bersama yang adil.
+                                    </button>
+                                    <button onclick="answerPoll('C')" class="w-full text-left text-xs p-2.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition cursor-pointer">
+                                        C. Hanya mengurus kelompok pendatang saja agar tetap aman.
+                                    </button>
+                                </div>
+                                <div id="pollFeedback" class="mt-3 text-xs bg-amber-400/20 border border-amber-300/40 text-amber-100 p-2.5 rounded-lg hidden"></div>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-stone-200 flex justify-between items-center text-xs text-slate-400">
+                            <span>SKI Kelas X • Bab Madinah</span>
+                            <span class="font-bold text-emeraldDeep">3</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 4: RUTE HIJRAH INTERAKTIF
+            {
+                id: 4,
+                title: "Rute Hijrah Interaktif",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-goldWarm/40 pb-2 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldWarm">Halaman 04 • Materi 1</span>
+                                <span class="text-xs font-semibold text-emeraldDeep bg-emeraldLight px-2.5 py-0.5 rounded-full">Peta Perjalanan</span>
+                            </div>
+
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-emeraldDeep mb-1">Strategi Perjalanan Hijrah</h2>
+                            <p class="text-xs text-slate-600 mb-3">Hijrah pada tahun 622 M bukan pelarian, melainkan strategi terencana. Klik setiap titik lokasi di bawah untuk melihat peran tokoh di baliknya:</p>
+
+                            <!-- Visual Jalur / Peta Interaktif -->
+                            <div class="bg-amber-50/80 border border-amber-200 rounded-2xl p-3.5 mb-3 relative">
+                                <div class="flex items-center justify-between relative">
+                                    <!-- Garis penghubung -->
+                                    <div class="absolute top-5 left-6 right-6 h-1 bg-gradient-to-r from-emeraldDeep via-goldWarm to-emeraldMid z-0 rounded"></div>
+
+                                    <!-- Titik 1 -->
+                                    <button onclick="selectHijrahPoint(0)" class="hijrah-pin relative z-10 flex flex-col items-center group cursor-pointer">
+                                        <div id="pin-0" class="w-10 h-10 rounded-full bg-goldWarm text-white flex items-center justify-center shadow-md ring-4 ring-amber-200 transition">
+                                            <span data-icon="house" class="inline-flex items-center justify-center shrink-0 "></span>
+                                        </div>
+                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-2xs">1. Rumah Nabi</span>
+                                    </button>
+
+                                    <!-- Titik 2 -->
+                                    <button onclick="selectHijrahPoint(1)" class="hijrah-pin relative z-10 flex flex-col items-center group cursor-pointer">
+                                        <div id="pin-1" class="w-10 h-10 rounded-full bg-emeraldDeep text-white flex items-center justify-center shadow-md transition">
+                                            <span data-icon="mountain" class="inline-flex items-center justify-center shrink-0 "></span>
+                                        </div>
+                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-2xs">2. Gua Tsur</span>
+                                    </button>
+
+                                    <!-- Titik 3 -->
+                                    <button onclick="selectHijrahPoint(2)" class="hijrah-pin relative z-10 flex flex-col items-center group cursor-pointer">
+                                        <div id="pin-2" class="w-10 h-10 rounded-full bg-emeraldDeep text-white flex items-center justify-center shadow-md transition">
+                                            <span data-icon="mosque" class="inline-flex items-center justify-center shrink-0 "></span>
+                                        </div>
+                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-2xs">3. Quba</span>
+                                    </button>
+
+                                    <!-- Titik 4 -->
+                                    <button onclick="selectHijrahPoint(3)" class="hijrah-pin relative z-10 flex flex-col items-center group cursor-pointer">
+                                        <div id="pin-3" class="w-10 h-10 rounded-full bg-emeraldDeep text-white flex items-center justify-center shadow-md transition">
+                                            <span data-icon="star-and-crescent" class="inline-flex items-center justify-center shrink-0 "></span>
+                                        </div>
+                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-2xs">4. Madinah</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Kartu Detail Lokasi -->
+                            <div id="hijrahDetailCard" class="bg-white border-2 border-emeraldDeep/20 rounded-xl p-4 shadow-sm">
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <h3 class="font-bold text-emeraldDeep text-sm sm:text-base">1. Pengepungan Rumah Nabi (Makkah)</h3>
+                                    <span class="text-[11px] font-semibold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Titik Awal</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-2">
+                                    Pemuda pilihan dari setiap kabilah Quraisy mengepung rumah Rasulullah SAW untuk membunuh beliau. Rasulullah menugaskan <strong>Ali bin Abi Thalib</strong> tidur di ranjang beliau mengenakan selimut Hadrami untuk mengecoh musuh serta mengembalikan barang titipan warga Makkah.
+                                </p>
+                                <div class="text-xs bg-emeraldLight text-emeraldDeep p-2 rounded-lg font-medium">
+                                    <span data-icon="user-shield" class="inline-flex items-center justify-center shrink-0 mr-1"></span> <strong>Tokoh Kunci:</strong> Ali bin Abi Thalib & Abu Bakar Ash-Shiddiq.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-stone-200 flex justify-between items-center text-xs text-slate-400">
+                            <span>SKI Kelas X • Bab Madinah</span>
+                            <span class="font-bold text-emeraldDeep">4</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 5: 3 PILAR MASYARAKAT MADANI
+            {
+                id: 5,
+                title: "3 Pilar Masyarakat Madani",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-goldWarm/40 pb-2 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldWarm">Halaman 05 • Materi 2</span>
+                                <span class="text-xs font-semibold text-emeraldDeep bg-emeraldLight px-2.5 py-0.5 rounded-full">Fondasi Peradaban</span>
+                            </div>
+
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-emeraldDeep mb-1">3 Pilar Membangun Madinah</h2>
+                            <p class="text-xs text-slate-600 mb-3">Setibanya di Madinah, Rasulullah SAW meletakkan tiga fondasi utama untuk membangun masyarakat madani. Pilih tab di bawah ini:</p>
+
+                            <!-- Tab Navigasi 3 Pilar -->
+                            <div class="grid grid-cols-3 gap-1.5 bg-stone-200/80 p-1 rounded-xl mb-3">
+                                <button onclick="switchPillar(0)" id="pillar-tab-0" class="py-2 px-2 rounded-lg text-xs font-bold bg-emeraldDeep text-white shadow transition cursor-pointer">
+                                    1. Masjid Nabawi
+                                </button>
+                                <button onclick="switchPillar(1)" id="pillar-tab-1" class="py-2 px-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-white/60 transition cursor-pointer">
+                                    2. Persaudaraan
+                                </button>
+                                <button onclick="switchPillar(2)" id="pillar-tab-2" class="py-2 px-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-white/60 transition cursor-pointer">
+                                    3. Piagam Madinah
+                                </button>
+                            </div>
+
+                            <!-- Konten Tab Pilar -->
+                            <div id="pillarContent" class="bg-white border border-emerald-200 rounded-2xl p-4 shadow-sm">
+                                <div class="flex items-center gap-3 mb-2.5">
+                                    <div class="w-10 h-10 rounded-xl bg-emeraldLight text-emeraldDeep flex items-center justify-center text-lg shrink-0">
+                                        <span data-icon="mosque" class="inline-flex items-center justify-center shrink-0 "></span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-emeraldDeep text-sm sm:text-base">Membangun Masjid Nabawi</h3>
+                                        <p class="text-[11px] text-goldWarm font-semibold">Pusat Ibadah & Aktivitas Umat</p>
+                                    </div>
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                                    Masjid pada masa Rasulullah SAW tidak hanya berfungsi sebagai tempat salat berjamaah, tetapi menjadi pusat peradaban:
+                                </p>
+                                <ul class="space-y-1.5 text-xs text-slate-700">
+                                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span><strong>Pusat Pendidikan:</strong> Teras masjid (<em>Ash-Shuffah</em>) menjadi tempat belajar para sahabat fakir miskin.</span></li>
+                                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span><strong>Pusat Pemerintahan:</strong> Tempat bermusyawarah, menyusun strategi, dan menerima delegasi asing.</span></li>
+                                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span><strong>Pusat Sosial:</strong> Tempat menampung musafir dan menyalurkan bantuan sosial.</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-stone-200 flex justify-between items-center text-xs text-slate-400">
+                            <span>SKI Kelas X • Bab Madinah</span>
+                            <span class="font-bold text-emeraldDeep">5</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 6: PIAGAM MADINAH & TOLERANSI
+            {
+                id: 6,
+                title: "Piagam Madinah & Toleransi",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-goldWarm/40 pb-2 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldWarm">Halaman 06 • Pendalaman</span>
+                                <span class="text-xs font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full">Konstitusi Pertama</span>
+                            </div>
+
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-emeraldDeep mb-2">Piagam Madinah (Shahifah)</h2>
+
+                            <!-- Kutipan Hikmah -->
+                            <blockquote class="bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-goldWarm p-3 rounded-r-xl mb-3 italic text-xs sm:text-sm text-amber-950">
+                                "Kaum Yahudi Bani Auf adalah satu umat bersama kaum mukminin. Bagi kaum Yahudi agama mereka, dan bagi kaum muslimin agama mereka."
+                                <span class="block not-italic font-bold text-[11px] text-goldWarm mt-1">— Pasal 25 Piagam Madinah</span>
+                            </blockquote>
+
+                            <div class="space-y-2 mb-3">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-emeraldDeep">Nilai Utama Piagam Madinah:</h3>
+                                <div class="grid grid-cols-1 gap-1.5 text-xs">
+                                    <div class="bg-white p-2.5 rounded-lg border border-stone-200 flex items-center gap-2.5">
+                                        <span class="px-2 py-0.5 rounded bg-emeraldLight text-emeraldDeep font-bold">1</span>
+                                        <span><strong>Kebebasan Beragama:</strong> Menjamin hak beribadah setiap warga tanpa paksaan.</span>
+                                    </div>
+                                    <div class="bg-white p-2.5 rounded-lg border border-stone-200 flex items-center gap-2.5">
+                                        <span class="px-2 py-0.5 rounded bg-emeraldLight text-emeraldDeep font-bold">2</span>
+                                        <span><strong>Bela Negara Bersama:</strong> Seluruh warga wajib mempertahankan Madinah dari serangan luar.</span>
+                                    </div>
+                                    <div class="bg-white p-2.5 rounded-lg border border-stone-200 flex items-center gap-2.5">
+                                        <span class="px-2 py-0.5 rounded bg-emeraldLight text-emeraldDeep font-bold">3</span>
+                                        <span><strong>Supremasi Hukum:</strong> Rasulullah SAW menjadi hakim tertinggi yang adil jika terjadi sengketa.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Studi Kasus Mini -->
+                            <div class="bg-emeraldLight/70 border border-emerald-200 rounded-xl p-3 text-xs">
+                                <p class="font-bold text-emeraldDeep mb-1"><span data-icon="school" class="inline-flex items-center justify-center shrink-0 text-goldWarm mr-1"></span> Relevansi di Sekolah:</p>
+                                <p class="text-slate-700">Semangat Piagam Madinah selaras dengan <strong>Bhineka Tunggal Ika</strong>—menghormati perbedaan latar belakang suku/agama di kelas serta menolak perundungan (<em>bullying</em>).</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-stone-200 flex justify-between items-center text-xs text-slate-400">
+                            <span>SKI Kelas X • Bab Madinah</span>
+                            <span class="font-bold text-emeraldDeep">6</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 7: STRATEGI PERTAHANAN & PERANG
+            {
+                id: 7,
+                title: "Strategi Pertahanan & Perang",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-goldWarm/40 pb-2 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldWarm">Halaman 07 • Materi 3</span>
+                                <span class="text-xs font-semibold text-emeraldDeep bg-emeraldLight px-2.5 py-0.5 rounded-full">Diplomasi & Pertahanan</span>
+                            </div>
+
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-emeraldDeep mb-1">Strategi Pertahanan Madinah</h2>
+                            <p class="text-xs text-slate-600 mb-3">Peperangan dalam Islam bersifat <strong>defensif</strong> (mempertahankan diri dari agresi). Gunakan filter di bawah untuk membandingkan tiga perang besar:</p>
+
+                            <!-- Filter Perang -->
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                <button onclick="filterWar('all')" id="war-btn-all" class="war-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-emeraldDeep text-white cursor-pointer">Semua (3)</button>
+                                <button onclick="filterWar('badar')" id="war-btn-badar" class="war-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-stone-200 text-slate-700 hover:bg-stone-300 cursor-pointer">Badar (2 H)</button>
+                                <button onclick="filterWar('uhud')" id="war-btn-uhud" class="war-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-stone-200 text-slate-700 hover:bg-stone-300 cursor-pointer">Uhud (3 H)</button>
+                                <button onclick="filterWar('khandaq')" id="war-btn-khandaq" class="war-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-stone-200 text-slate-700 hover:bg-stone-300 cursor-pointer">Khandaq (5 H)</button>
+                            </div>
+
+                            <!-- Tabel / Kartu Perbandingan Perang -->
+                            <div id="warTableContainer" class="space-y-2.5">
+                                <!-- Badar -->
+                                <div class="war-row bg-white border border-stone-200 rounded-xl p-3 shadow-2xs" data-war="badar">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-bold text-emeraldDeep text-xs sm:text-sm">1. Perang Badar Kubra</span>
+                                        <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">17 Ramadan 2 H</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mb-1"><strong>Sebab:</strong> Upaya Quraisy memusnahkan umat Islam yang baru tumbuh (313 muslim vs 1.000 Quraisy).</p>
+                                    <p class="text-xs text-amber-900 bg-amber-50 px-2 py-1 rounded"><strong>Strategi & Hikmah:</strong> Menguasai sumber mata air Badar atas usul Hubab bin Mundzir; kemenangan diraih lewat kedisiplinan.</p>
+                                </div>
+
+                                <!-- Uhud -->
+                                <div class="war-row bg-white border border-stone-200 rounded-xl p-3 shadow-2xs" data-war="uhud">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-bold text-emeraldDeep text-xs sm:text-sm">2. Perang Uhud</span>
+                                        <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">Syawal 3 H</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mb-1"><strong>Sebab:</strong> Balas dendam kaum Quraisy atas kekalahan memalukan di Perang Badar.</p>
+                                    <p class="text-xs text-amber-900 bg-amber-50 px-2 py-1 rounded"><strong>Strategi & Hikmah:</strong> Pasukan pemanah di Bukit Rumat meninggalkan pos karena tergiur ghanimah—pelajaran mahal tentang ketaatan pada pemimpin.</p>
+                                </div>
+
+                                <!-- Khandaq -->
+                                <div class="war-row bg-white border border-stone-200 rounded-xl p-3 shadow-2xs" data-war="khandaq">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-bold text-emeraldDeep text-xs sm:text-sm">3. Perang Khandaq (Ahzab)</span>
+                                        <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Syawal 5 H</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mb-1"><strong>Sebab:</strong> Pengepungan Madinah oleh 10.000 pasukan koalisi (Ahzab) Quraisy & sekutunya.</p>
+                                    <p class="text-xs text-amber-900 bg-amber-50 px-2 py-1 rounded"><strong>Strategi & Hikmah:</strong> Ide brilian <strong>Salman Al-Farisi</strong> menggali parit besar di utara Madinah sehingga kavaleri musuh gagal menembus kota.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-stone-200 flex justify-between items-center text-xs text-slate-400">
+                            <span>SKI Kelas X • Bab Madinah</span>
+                            <span class="font-bold text-emeraldDeep">7</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 8: FATHU MAKKAH (8 H)
+            {
+                id: 8,
+                title: "Fathu Makkah (8 H)",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-goldWarm/40 pb-2 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldWarm">Halaman 08 • Materi 4</span>
+                                <span class="text-xs font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full">Puncak Kemenangan</span>
+                            </div>
+
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-emeraldDeep mb-2">Fathu Makkah (8 H / 630 M)</h2>
+                            <p class="text-xs sm:text-sm text-slate-600 mb-3 leading-relaxed">
+                                Pembebasan Kota Makkah merupakan puncak keberhasilan diplomasi damai Rasulullah SAW tanpa pertumpahan darah.
+                            </p>
+
+                            <!-- Timeline Vertikal -->
+                            <div class="relative pl-6 border-l-2 border-emeraldDeep space-y-3 mb-4">
+                                <div class="relative">
+                                    <span class="w-3 h-3 rounded-full bg-goldWarm absolute -left-[31px] top-1 ring-4 ring-creamPaper"></span>
+                                    <h4 class="text-xs sm:text-sm font-bold text-emeraldDeep">1. Pelanggaran Perjanjian Hudaibiyah</h4>
+                                    <p class="text-xs text-slate-600">Kaum Quraisy membantu Bani Bakr menyerang Bani Khuza'ah (sekutu umat Islam), membatalkan gencatan senjata.</p>
+                                </div>
+                                <div class="relative">
+                                    <span class="w-3 h-3 rounded-full bg-goldWarm absolute -left-[31px] top-1 ring-4 ring-creamPaper"></span>
+                                    <h4 class="text-xs sm:text-sm font-bold text-emeraldDeep">2. Mobilisasi 10.000 Pasukan</h4>
+                                    <p class="text-xs text-slate-600">Rasulullah SAW bergerak secara rahasia dari Madinah dan menyalakan 10.000 obor di bukit sekitar Makkah untuk melemahkan mental lawan tanpa perang.</p>
+                                </div>
+                                <div class="relative">
+                                    <span class="w-3 h-3 rounded-full bg-emeraldDeep absolute -left-[31px] top-1 ring-4 ring-creamPaper"></span>
+                                    <h4 class="text-xs sm:text-sm font-bold text-emeraldDeep">3. Amnesti Umum (Pemaafan Massal)</h4>
+                                    <p class="text-xs text-slate-600">Memasuki Makkah dengan menundukkan kepala penuh tawadhu, beliau membersihkan 360 berhala di sekitar Ka'bah dan memberi pengampunan umum.</p>
+                                </div>
+                            </div>
+
+                            <!-- Kotak Pesan Amnesti -->
+                            <div class="bg-emeraldDeep text-white p-3.5 rounded-xl text-center shadow">
+                                <p class="font-serif text-lg sm:text-xl text-amber-300 mb-1">اِذْهَبُوْا فَأَنْتُمُ الطُّلَقَاءُ</p>
+                                <p class="text-xs font-semibold">"Pergilah kalian, sesungguhnya kalian semua bebas!"</p>
+                                <p class="text-[11px] text-emerald-200 mt-1">Akhlak pemaaf Rasulullah SAW membuat penduduk Makkah berbondong-bondong masuk Islam.</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-stone-200 flex justify-between items-center text-xs text-slate-400">
+                            <span>SKI Kelas X • Bab Madinah</span>
+                            <span class="font-bold text-emeraldDeep">8</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 9: KUIS EVALUASI INTERAKTIF
+            {
+                id: 9,
+                title: "Kuis Evaluasi Interaktif",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-goldWarm/40 pb-2 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldWarm">Halaman 09 • Evaluasi</span>
+                                <span id="quizScoreBadge" class="text-xs font-bold text-emeraldDeep bg-emeraldLight px-2.5 py-0.5 rounded-full">Skor: 0 / 100</span>
+                            </div>
+
+                            <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDeep mb-1">Uji Pemahaman Mandiri</h2>
+                            <p class="text-xs text-slate-600 mb-3">Jawablah 5 soal berikut untuk mengukur pemahamanmu terhadap materi periode Madinah:</p>
+
+                            <!-- Container Soal Kuis -->
+                            <div id="quizContainer" class="space-y-3 max-h-[380px] overflow-y-auto pr-1 page-scroll">
+                                <!-- Dirender via JS -->
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-stone-200 flex justify-between items-center text-xs text-slate-400">
+                            <span>SKI Kelas X • Bab Madinah</span>
+                            <span class="font-bold text-emeraldDeep">9</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 10: LKPD / PROYEK MINI & PENUTUP
+            {
+                id: 10,
+                title: "LKPD Proyek & Penutup",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between border-b-2 border-goldWarm/40 pb-2 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-goldWarm">Halaman 10 • LKPD & Penutup</span>
+                                <span class="text-xs font-semibold text-emeraldDeep bg-emeraldLight px-2.5 py-0.5 rounded-full">Tugas Proyek</span>
+                            </div>
+
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-emeraldDeep mb-1">Proyek Mini Kelompok (LKPD)</h2>
+                            <p class="text-xs text-slate-600 mb-3">Bentuklah kelompok (4–5 siswa) dan pilih <strong>salah satu</strong> proyek kreatif berikut:</p>
+
+                            <!-- 2 Pilihan Proyek -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3">
+                                <div class="bg-white border-2 border-emerald-200 rounded-xl p-3 shadow-2xs">
+                                    <div class="flex items-center gap-2 text-emeraldDeep font-bold text-xs sm:text-sm mb-1">
+                                        <span data-icon="palette" class="inline-flex items-center justify-center shrink-0 text-goldWarm"></span> Opsi A: Infografis Digital
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Buat poster infografis (via Canva) tentang <strong>"Relevansi Piagam Madinah dengan Kebinekaan Indonesia"</strong>.
+                                    </p>
+                                </div>
+                                <div class="bg-white border-2 border-amber-200 rounded-xl p-3 shadow-2xs">
+                                    <div class="flex items-center gap-2 text-amber-800 font-bold text-xs sm:text-sm mb-1">
+                                        <span data-icon="microphone-lines" class="inline-flex items-center justify-center shrink-0 text-emeraldDeep"></span> Opsi B: Mini Podcast
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Rekam diskusi santai berdurasi 3–5 menit mengenai <strong>"Strategi Kepemimpinan Rasulullah di Madinah"</strong>.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Rubrik Penilaian Ringkas -->
+                            <div class="bg-stone-100 rounded-xl p-3 mb-4 border border-stone-200">
+                                <h3 class="text-xs font-bold text-slate-800 mb-1.5"><span data-icon="clipboard-check" class="inline-flex items-center justify-center shrink-0 text-emeraldDeep mr-1"></span> Rubrik Penilaian Singkat:</h3>
+                                <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
+                                    <div class="bg-white p-2 rounded-lg shadow-2xs">
+                                        <span class="block font-extrabold text-emeraldDeep text-sm">40%</span>
+                                        <span class="text-slate-600">Akurasi Data Sejarah</span>
+                                    </div>
+                                    <div class="bg-white p-2 rounded-lg shadow-2xs">
+                                        <span class="block font-extrabold text-goldWarm text-sm">30%</span>
+                                        <span class="text-slate-600">Kreativitas Penyajian</span>
+                                    </div>
+                                    <div class="bg-white p-2 rounded-lg shadow-2xs">
+                                        <span class="block font-extrabold text-emeraldDeep text-sm">30%</span>
+                                        <span class="text-slate-600">Relevansi Nilai Moral</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Penutup & Tombol Ulangi -->
+                            <div class="bg-gradient-to-r from-emeraldDeep to-emerald-800 text-white rounded-xl p-3.5 flex flex-col sm:flex-row items-center justify-between gap-3">
+                                <div class="text-center sm:text-left">
+                                    <p class="font-bold text-xs sm:text-sm text-amber-300">Alhamdulillah, Modul Selesai!</p>
+                                    <p class="text-[11px] text-emerald-100">Semoga nilai keteladanan Rasulullah SAW menginspirasi langkahmu.</p>
+                                </div>
+                                <button onclick="goToPage(0)" class="px-4 py-2 rounded-lg bg-goldBright hover:bg-amber-400 text-emerald-950 font-bold text-xs shrink-0 transition cursor-pointer">
+                                    <span data-icon="rotate-left" class="inline-flex items-center justify-center shrink-0 mr-1"></span> Ulangi dari Awal
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-stone-200 flex justify-between items-center text-xs text-slate-400">
+                            <span>SKI Kelas X • Bab Madinah</span>
+                            <span class="font-bold text-emeraldDeep">10</span>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // ==========================================
+        // DATA INTERAKTIF PENDUKUNG HALAMAN
+        // ==========================================
+        const conceptDetails = [
+            { title: "1. Kondisi Yatsrib Pra-Islam", desc: "Yatsrib dihuni suku Arab (Aus & Khazraj) yang sering berkonflik serta kabilah Yahudi. Mereka merindukan sosok pemimpin yang adil dan pemersatu." },
+            { title: "2. Peristiwa Hijrah (622 M)", desc: "Perpindahan strategis umat Islam dari Makkah ke Madinah dengan perencanaan matang, melibatkan peran pemuda, perempuan, dan penunjuk jalan." },
+            { title: "3. 3 Pilar Masyarakat Madani", desc: "Membangun Masjid Nabawi sebagai pusat aktivitas, mempersaudarakan Muhajirin-Anshar, dan menyusun Piagam Madinah." },
+            { title: "4. Strategi Pertahanan", desc: "Menghadapi agresi Quraisy melalui kesiapsiagaan militer defensif (Badar, Uhud, Khandaq) serta diplomasi cerdas (Perjanjian Hudaibiyah)." },
+            { title: "5. Puncak Kemenangan: Fathu Makkah (8 H)", desc: "Pembebasan Kota Makkah secara damai dengan 10.000 pasukan dan pemberian amnesti umum kepada penduduk Makkah." }
+        ];
+
+        const hijrahPoints = [
+            {
+                title: "1. Pengepungan Rumah Nabi (Makkah)",
+                badge: "Titik Awal",
+                desc: "Pemuda pilihan dari setiap kabilah Quraisy mengepung rumah Rasulullah SAW untuk membunuh beliau. Rasulullah menugaskan <strong>Ali bin Abi Thalib</strong> tidur di ranjang beliau mengenakan selimut Hadrami untuk mengecoh musuh serta mengembalikan barang titipan warga Makkah.",
+                tokoh: "Ali bin Abi Thalib & Abu Bakar Ash-Shiddiq"
+            },
+            {
+                title: "2. Persembunyian di Gua Tsur (3 Hari)",
+                badge: "Strategi Rahasia",
+                desc: "Rasulullah SAW dan Abu Bakar berjalan ke arah selatan (berlawanan dari arah Madinah) menuju Gua Tsur. <strong>Abdullah bin Abu Bakar</strong> bertugas memantau berita Quraisy, sementara <strong>Asma binti Abu Bakar</strong> mengantar logistik makanan setiap malam.",
+                tokoh: "Abdullah & Asma binti Abu Bakar, Amir bin Fuhairah"
+            },
+            {
+                title: "3. Singgah di Quba (Masjid Pertama)",
+                badge: "Fondasi Awal",
+                desc: "Dipandu penunjuk jalan profesional <strong>Abdullah bin Uraiqith</strong> lewat jalur pesisir, beliau tiba di Quba pada 8 Rabiul Awal. Di sini Rasulullah mendirikan <strong>Masjid Quba</strong>, masjid pertama yang dibangun atas dasar takwa.",
+                tokoh: "Abdullah bin Uraiqith & Kultsum bin Hadm"
+            },
+            {
+                title: "4. Tiba di Madinah (12 Rabiul Awal)",
+                badge: "Tujuan Akhir",
+                desc: "Penduduk Yatsrib menyambut kedatangan Rasulullah SAW dengan penuh sukacita sambil melantunkan syair <em>Thala'al Badru 'Alayna</em>. Nama kota Yatsrib resmi diubah menjadi <strong>Madinatun Nabi</strong>.",
+                tokoh: "Kaum Anshar (Suku Aus & Khazraj) & Abu Ayyub Al-Anshari"
+            }
+        ];
+
+        const pillarDetails = [
+            `
+                <div class="flex items-center gap-3 mb-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-emeraldLight text-emeraldDeep flex items-center justify-center text-lg shrink-0"><span data-icon="mosque" class="inline-flex items-center justify-center shrink-0 "></span></div>
+                    <div>
+                        <h3 class="font-bold text-emeraldDeep text-sm sm:text-base">Membangun Masjid Nabawi</h3>
+                        <p class="text-[11px] text-goldWarm font-semibold">Pusat Ibadah & Aktivitas Umat</p>
+                    </div>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">Masjid pada masa Rasulullah SAW tidak hanya berfungsi sebagai tempat salat berjamaah, tetapi menjadi pusat peradaban:</p>
+                <ul class="space-y-1.5 text-xs text-slate-700">
+                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span><strong>Pusat Pendidikan:</strong> Teras masjid (<em>Ash-Shuffah</em>) menjadi tempat belajar para sahabat fakir miskin.</span></li>
+                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span><strong>Pusat Pemerintahan:</strong> Tempat bermusyawarah, menyusun strategi, dan menerima delegasi asing.</span></li>
+                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span><strong>Pusat Sosial:</strong> Tempat menampung musafir dan menyalurkan bantuan sosial.</span></li>
+                </ul>
+            `,
+            `
+                <div class="flex items-center gap-3 mb-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-goldWarm flex items-center justify-center text-lg shrink-0"><span data-icon="handshake-angle" class="inline-flex items-center justify-center shrink-0 "></span></div>
+                    <div>
+                        <h3 class="font-bold text-emeraldDeep text-sm sm:text-base">Mempersaudarakan Muhajirin & Anshar</h3>
+                        <p class="text-[11px] text-goldWarm font-semibold">Solidaritas Sosial & Ekonomi</p>
+                    </div>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">Kaum Muhajirin datang ke Madinah tanpa membawa harta benda. Rasulullah SAW mempersaudarakan mereka atas dasar iman (<em>Ukhuwah Islamiyah</em>), melampaui ikatan suku:</p>
+                <ul class="space-y-1.5 text-xs text-slate-700">
+                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span><strong>Contoh Nyata:</strong> Sa'ad bin Rabi' (Anshar) menawarkan separuh hartanya kepada Abdurrahman bin Auf (Muhajirin), namun Abdurrahman memilih ditunjukkan jalan ke pasar untuk berdagang secara mandiri.</span></li>
+                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span><strong>Dampak:</strong> Menghapus fanatisme kesukuan Jahiliah dan memulihkan ekonomi pendatang.</span></li>
+                </ul>
+            `,
+            `
+                <div class="flex items-center gap-3 mb-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-emeraldLight text-emeraldDeep flex items-center justify-center text-lg shrink-0"><span data-icon="scroll" class="inline-flex items-center justify-center shrink-0 "></span></div>
+                    <div>
+                        <h3 class="font-bold text-emeraldDeep text-sm sm:text-base">Merumuskan Piagam Madinah</h3>
+                        <p class="text-[11px] text-goldWarm font-semibold">Konstitusi Tertulis Pertama di Dunia</p>
+                    </div>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">Untuk menyatukan penduduk Madinah yang majemuk (Muslim, Yahudi, dan penyembah berhala), disusunlah perjanjian tertulis berisi <strong>47 pasal</strong>:</p>
+                <ul class="space-y-1.5 text-xs text-slate-700">
+                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span>Mengakui seluruh penduduk Madinah sebagai satu kesatuan warga negara (<em>Ummah Wahidah</em>).</span></li>
+                    <li class="flex items-start gap-2"><span data-icon="check-circle" class="inline-flex items-center justify-center shrink-0 text-emeraldMid mt-0.5"></span> <span>Menjamin hak asasi, perlindungan keamanan, serta kebebasan menjalankan keyakinan masing-masing.</span></li>
+                </ul>
+            `
+        ];
+
+        const quizQuestions = [
+            {
+                q: "1. Sebelum kedatangan Rasulullah SAW, dua suku Arab besar di Yatsrib yang sering terlibat konflik berkepanjangan adalah...",
+                options: ["Quraisy dan Tsaqif", "Aus dan Khazraj", "Bani Nadhir dan Bani Qainuqa", "Ghassan dan Kindah"],
+                answer: 1,
+                explanation: "Suku Aus dan Khazraj adalah dua suku Arab utama di Yatsrib yang sering bertikai sebelum dipersatukan oleh Islam menjadi kaum Anshar."
+            },
+            {
+                q: "2. Siapakah sahabat yang mengusulkan strategi penggalian parit di bagian utara Madinah saat Perang Khandaq?",
+                options: ["Khalid bin Walid", "Salman Al-Farisi", "Hubab bin Mundzir", "Umar bin Khattab"],
+                answer: 1,
+                explanation: "Salman Al-Farisi mengusulkan strategi menggali parit (khandaq) yang diadaptasi dari taktik pertahanan Persia."
+            },
+            {
+                q: "3. Apa fungsi teras Masjid Nabawi yang dikenal dengan sebutan 'Ash-Shuffah' pada masa Rasulullah SAW?",
+                options: ["Tempat menyimpan senjata perang", "Tempat tinggal & belajar bagi sahabat fakir miskin", "Pasar tempat transaksi perdagangan", "Kandang unta para musafir"],
+                answer: 1,
+                explanation: "Ash-Shuffah adalah bagian serambi Masjid Nabawi yang difungsikan sebagai pusat pendidikan dan tempat tinggal sahabat Muhajirin yang tidak memiliki kerabat di Madinah."
+            },
+            {
+                q: "4. Salah satu nilai utama yang terkandung dalam Piagam Madinah (Shahifah Madinah) adalah...",
+                options: ["Mewajibkan seluruh penduduk memeluk Islam", "Mengusir seluruh kabilah Yahudi dari Madinah", "Kebebasan beragama & kewajiban bersama membela Madinah", "Memberikan hak istimewa hanya bagi kaum Muhajirin"],
+                answer: 2,
+                explanation: "Piagam Madinah menjamin kebebasan beragama bagi kaum Muslim maupun Yahudi serta mewajibkan semua warga mempertahankan Madinah dari serangan luar."
+            },
+            {
+                q: "5. Sikap Rasulullah SAW terhadap penduduk Makkah saat peristiwa Fathu Makkah (8 H) adalah...",
+                options: ["Menawan seluruh pemimpin Quraisy", "Memberikan amnesti umum (pengampunan massal)", "Menghukum warga Makkah yang dulu memusuhi Islam", "Mewajibkan pajak tinggi kepada penduduk Makkah"],
+                answer: 1,
+                explanation: "Rasulullah SAW memberikan amnesti umum dengan sabda beliau: 'Idzhabu fa antumut thulaqa' (Pergilah kalian, kalian semua bebas)."
+            }
+        ];
+
+        // ==========================================
+        // STATE MANAGEMENT & RENDER ENGINE
+        // ==========================================
+        let currentIndex = 0; // Index halaman kiri (atau tunggal di mobile)
+        let userAnswers = {}; // Menyimpan jawaban kuis user
+
+        function isDesktopSpread() {
+            return window.innerWidth >= 1024;
+        }
+
+        function renderBook() {
+            const leftSlot = document.getElementById('leftPageSlot');
+            const rightSlot = document.getElementById('rightPageSlot');
+            const totalPages = pagesData.length;
+            const desktop = isDesktopSpread();
+
+            // Pastikan currentIndex genap saat mode 2 halaman (0, 2, 4, 6, 8)
+            if (desktop && currentIndex % 2 !== 0) {
+                currentIndex = currentIndex - 1;
+            }
+
+            // Render Halaman Kiri / Tunggal
+            leftSlot.innerHTML = pagesData[currentIndex].render();
+            leftSlot.classList.remove('animate-page');
+            void leftSlot.offsetWidth; // Trigger reflow untuk animasi
+            leftSlot.classList.add('animate-page');
+            leftSlot.scrollTop = 0;
+
+            // Render Halaman Kanan jika Desktop
+            if (desktop) {
+                if (currentIndex + 1 < totalPages) {
+                    rightSlot.innerHTML = pagesData[currentIndex + 1].render();
+                    rightSlot.classList.remove('animate-page');
+                    void rightSlot.offsetWidth;
+                    rightSlot.classList.add('animate-page');
+                    rightSlot.scrollTop = 0;
+                } else {
+                    rightSlot.innerHTML = `<div class="h-full flex items-center justify-center text-stone-400 italic">Akhir Modul</div>`;
+                }
+            }
+
+            // Jika halaman 9 (index 8) tampil, render soal kuis
+            if (currentIndex === 8 || (desktop && currentIndex + 1 === 8)) {
+                renderQuiz();
+            }
+
+            updateNavigationUI();
+        }
+
+        function updateNavigationUI() {
+            const totalPages = pagesData.length;
+            const desktop = isDesktopSpread();
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicator = document.getElementById('pageIndicatorText');
+            const progressBar = document.getElementById('progressBar');
+
+            prevBtn.disabled = currentIndex === 0;
+
+            if (desktop) {
+                const rightNum = Math.min(currentIndex + 2, totalPages);
+                indicator.textContent = `Halaman ${currentIndex + 1}–${rightNum} dari ${totalPages}`;
+                nextBtn.disabled = currentIndex + 2 >= totalPages;
+                const progress = (rightNum / totalPages) * 100;
+                progressBar.style.width = `${progress}%`;
+            } else {
+                indicator.textContent = `Halaman ${currentIndex + 1} dari ${totalPages}`;
+                nextBtn.disabled = currentIndex + 1 >= totalPages;
+                const progress = ((currentIndex + 1) / totalPages) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+        }
+
+        function nextPage() {
+            const step = isDesktopSpread() ? 2 : 1;
+            if (currentIndex + step < pagesData.length) {
+                currentIndex += step;
+                renderBook();
+            }
+        }
+
+        function prevPage() {
+            const step = isDesktopSpread() ? 2 : 1;
+            if (currentIndex - step >= 0) {
+                currentIndex -= step;
+                renderBook();
+            }
+        }
+
+        function goToPage(index) {
+            currentIndex = index;
+            renderBook();
+            const toc = document.getElementById('tocModal');
+            if (!toc.classList.contains('hidden')) {
+                toggleModal('tocModal');
+            }
+        }
+
+        // ==========================================
+        // INTERAKSI KONTEN PER HALAMAN
+        // ==========================================
+        function showConceptDetail(idx) {
+            const output = document.getElementById('conceptOutput');
+            const item = conceptDetails[idx];
+            if (output && item) {
+                output.innerHTML = `
+                    <p class="text-emeraldDeep font-bold mb-1"><span data-icon="circle-info" class="inline-flex items-center justify-center shrink-0 text-goldWarm mr-1"></span> ${item.title}</p>
+                    <p>${item.desc}</p>
+                `;
+            }
+        }
+
+        function answerPoll(choice) {
+            const feedback = document.getElementById('pollFeedback');
+            if (!feedback) return;
+            feedback.classList.remove('hidden');
+            if (choice === 'B') {
+                feedback.innerHTML = `<strong>Tepat Sekali!</strong> Itulah yang dilakukan Rasulullah SAW. Beliau merangkul semua elemen masyarakat melalui persaudaraan dan Piagam Madinah.`;
+            } else if (choice === 'A') {
+                feedback.innerHTML = `<strong>Kurang Tepat.</strong> Pendekatan kekerasan justru memicu perang saudara berkepanjangan. Rasulullah mengutamakan rekonsiliasi dan keadilan.`;
+            } else {
+                feedback.innerHTML = `<strong>Kurang Tepat.</strong> Sikap eksklusif akan memperlebar jurang perpecahan antara pendatang (Muhajirin) dan penduduk asli (Anshar).`;
+            }
+        }
+
+        function selectHijrahPoint(idx) {
+            const data = hijrahPoints[idx];
+            const card = document.getElementById('hijrahDetailCard');
+            if (!data || !card) return;
+
+            // Update styling pin
+            for (let i = 0; i < 4; i++) {
+                const pin = document.getElementById(`pin-${i}`);
+                if (pin) {
+                    if (i === idx) {
+                        pin.className = "w-10 h-10 rounded-full bg-goldWarm text-white flex items-center justify-center shadow-md ring-4 ring-amber-200 transition";
+                    } else {
+                        pin.className = "w-10 h-10 rounded-full bg-emeraldDeep text-white flex items-center justify-center shadow-md transition";
+                    }
+                }
+            }
+
+            card.innerHTML = `
+                <div class="flex items-center justify-between mb-1.5">
+                    <h3 class="font-bold text-emeraldDeep text-sm sm:text-base">${data.title}</h3>
+                    <span class="text-[11px] font-semibold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">${data.badge}</span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-2">${data.desc}</p>
+                <div class="text-xs bg-emeraldLight text-emeraldDeep p-2 rounded-lg font-medium">
+                    <span data-icon="user-shield" class="inline-flex items-center justify-center shrink-0 mr-1"></span> <strong>Tokoh Kunci:</strong> ${data.tokoh}.
+                </div>
+            `;
+        }
+
+        function switchPillar(idx) {
+            const content = document.getElementById('pillarContent');
+            if (!content) return;
+            content.innerHTML = pillarDetails[idx];
+
+            for (let i = 0; i < 3; i++) {
+                const tab = document.getElementById(`pillar-tab-${i}`);
+                if (tab) {
+                    if (i === idx) {
+                        tab.className = "py-2 px-2 rounded-lg text-xs font-bold bg-emeraldDeep text-white shadow transition cursor-pointer";
+                    } else {
+                        tab.className = "py-2 px-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-white/60 transition cursor-pointer";
+                    }
+                }
+            }
+        }
+
+        function filterWar(warType) {
+            const rows = document.querySelectorAll('.war-row');
+            const btns = document.querySelectorAll('.war-filter-btn');
+
+            btns.forEach(btn => {
+                btn.className = "war-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-stone-200 text-slate-700 hover:bg-stone-300 cursor-pointer";
+            });
+            const activeBtn = document.getElementById(`war-btn-${warType}`);
+            if (activeBtn) {
+                activeBtn.className = "war-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-emeraldDeep text-white cursor-pointer";
+            }
+
+            rows.forEach(row => {
+                if (warType === 'all' || row.getAttribute('data-war') === warType) {
+                    row.style.display = 'block';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // ==========================================
+        // LOGIKA KUIS EVALUASI (HALAMAN 9)
+        // ==========================================
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            if (!container) return;
+
+            let html = '';
+            quizQuestions.forEach((item, qIdx) => {
+                const answered = userAnswers[qIdx] !== undefined;
+                html += `
+                    <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs">
+                        <p class="text-xs font-bold text-slate-800 mb-2">${item.q}</p>
+                        <div class="space-y-1.5">
+                            ${item.options.map((opt, oIdx) => {
+                                let btnStyle = "bg-stone-50 hover:bg-emeraldLight border-stone-200 text-slate-700";
+                                if (answered) {
+                                    if (oIdx === item.answer) {
+                                        btnStyle = "bg-emerald-100 border-emerald-500 text-emerald-900 font-bold";
+                                    } else if (userAnswers[qIdx] === oIdx) {
+                                        btnStyle = "bg-red-100 border-red-400 text-red-900";
+                                    } else {
+                                        btnStyle = "bg-stone-50 border-stone-200 text-slate-400";
+                                    }
+                                }
+                                return `
+                                    <button onclick="selectQuizOption(${qIdx}, ${oIdx})" class="w-full text-left text-xs px-3 py-2 rounded-lg border transition flex items-center justify-between cursor-pointer ${btnStyle}">
+                                        <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
+                                        ${answered && oIdx === item.answer ? '<span data-icon="circle-check" class="inline-flex items-center justify-center shrink-0 text-emerald-600"></span>' : ''}
+                                        ${answered && userAnswers[qIdx] === oIdx && oIdx !== item.answer ? '<span data-icon="circle-xmark" class="inline-flex items-center justify-center shrink-0 text-red-500"></span>' : ''}
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                        ${answered ? `
+                            <div class="mt-2 text-[11px] p-2 rounded-lg ${userAnswers[qIdx] === item.answer ? 'bg-emeraldLight text-emeraldDeep' : 'bg-amber-50 text-amber-900'}">
+                                <strong>${userAnswers[qIdx] === item.answer ? 'Benar!' : 'Penjelasan:'}</strong> ${item.explanation}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            updateQuizScore();
+        }
+
+        function selectQuizOption(qIdx, oIdx) {
+            userAnswers[qIdx] = oIdx;
+            renderQuiz();
+        }
+
+        function updateQuizScore() {
+            const badge = document.getElementById('quizScoreBadge');
+            if (!badge) return;
+            let correct = 0;
+            quizQuestions.forEach((item, idx) => {
+                if (userAnswers[idx] === item.answer) correct++;
+            });
+            const score = correct * 20;
+            badge.textContent = `Skor: ${score} / 100`;
+        }
+
+        // ==========================================
+        // MODAL, DAFTAR ISI, KEYBOARD & SWIPE
+        // ==========================================
+        function buildTOC() {
+            const tocList = document.getElementById('tocList');
+            tocList.innerHTML = pagesData.map((p, idx) => `
+                <button onclick="goToPage(${idx})" class="text-left p-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 flex items-center gap-2.5 transition cursor-pointer">
+                    <span class="w-6 h-6 rounded-lg bg-emeraldDeep text-white text-xs font-bold flex items-center justify-center shrink-0">${p.id}</span>
+                    <span class="text-xs font-semibold text-slate-800 truncate">${p.title}</span>
+                </button>
+            `).join('');
+        }
+
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function copySnippet() {
+            const input = document.getElementById('iframeSnippet');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            const fb = document.getElementById('copyFeedback');
+            fb.classList.remove('hidden');
+            setTimeout(() => fb.classList.add('hidden'), 3000);
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Navigasi Keyboard (Panah Kiri / Kanan)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowLeft') prevPage();
+        });
+
+        // Navigasi Swipe Sentuh untuk Layar Mobile / Tablet
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const bookEl = document.getElementById('bookContainer');
+
+        bookEl.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        bookEl.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 55) {
+                if (diff > 0) nextPage();
+                else prevPage();
+            }
+        }, { passive: true });
+
+        // Responsif saat ukuran layar diubah
+        window.addEventListener('resize', () => {
+            renderBook();
+        });
+
+        // Inisialisasi saat halaman dimuat
+        window.onload = function () {
+            buildTOC();
+            renderBook();
+        };
+    </script>
+</body>
+</html>

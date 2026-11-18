@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal Inovasi Mengajar MAS IMAM SYAFI'I — akses modul ajar interaktif kelas 10 (SKI, TIK, KKA).">
+    <title>Inovasi Mengajar | MAS IMAM SYAFI'I</title>
+
+    <!-- Font (tetap dari Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS hasil build (terpusat, tanpa CDN dan tanpa gaya inline) -->
+    <link rel="stylesheet" href="assets/css/output.css">
+</head>
+
+<body class="portal-bg min-h-screen flex flex-col antialiased">
+
+    <!-- Header bersama (diisi assets/js/components.js) -->
+    <div data-site-header data-base="" data-active="beranda"></div>
+
+    <main class="flex-1">
+
+        <!-- ==================== HERO + IDENTITAS GURU ==================== -->
+        <section id="beranda" class="relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-96 h-96 hero-glow rounded-full pointer-events-none"></div>
+            <div class="absolute -bottom-32 -left-28 w-80 h-80 hero-glow rounded-full pointer-events-none"></div>
+
+            <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <div class="animate-fade-up">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emeraldLight border border-emerald-200 text-emeraldDeep text-[11px] font-extrabold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-emeraldAccent animate-pulse"></span>
+                        Inovasi Mengajar &middot; Kurikulum Merdeka
+                    </span>
+
+                    <h1 class="mt-5 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.15] tracking-tight text-emeraldDark">
+                        Materi ajar yang <span class="text-goldWarm">mudah diakses</span>, kapan saja.
+                    </h1>
+
+                    <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
+                        Selamat datang di portal belajar <strong id="heroSekolah" class="text-emeraldDeep">MAS IMAM SYAFI'I</strong>.
+                        Pilih kelas dan mata pelajaran, lalu buka modul ajar interaktif yang sudah disiapkan untuk peserta didik.
+                    </p>
+
+                    <div class="mt-7 flex flex-wrap items-center gap-3">
+                        <a href="#modul-ajar" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white font-bold text-sm shadow-lg transition">
+                            Jelajahi Modul Ajar
+                            <span data-icon="arrow-right"></span>
+                        </a>
+                        <a href="#informasi-sekolah" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white hover:bg-emeraldLight text-emeraldDark font-bold text-sm border border-creamBorder shadow-sm transition">
+                            Informasi Sekolah
+                        </a>
+                    </div>
+
+                    <div class="mt-9 grid grid-cols-3 gap-3 max-w-md">
+                        <div class="bg-white/80 rounded-2xl border border-creamBorder px-3 py-3 text-center shadow-sm">
+                            <p id="statKelas" class="text-xl sm:text-2xl font-extrabold text-emeraldDark">1</p>
+                            <p class="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wide mt-0.5">Kelas</p>
+                        </div>
+                        <div class="bg-white/80 rounded-2xl border border-creamBorder px-3 py-3 text-center shadow-sm">
+                            <p id="statMapel" class="text-xl sm:text-2xl font-extrabold text-emeraldDark">3</p>
+                            <p class="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wide mt-0.5">Mapel</p>
+                        </div>
+                        <div class="bg-white/80 rounded-2xl border border-creamBorder px-3 py-3 text-center shadow-sm">
+                            <p id="statModul" class="text-xl sm:text-2xl font-extrabold text-emeraldDark">2</p>
+                            <p class="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wide mt-0.5">Modul Aktif</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu identitas guru + tempat foto -->
+                <div class="animate-fade-up" style="animation-delay: .12s">
+                    <div class="relative bg-creamPaper rounded-3xl border-2 border-creamBorder shadow-2xl overflow-hidden">
+                        <div class="h-1.5 bg-gradient-to-r from-emeraldDark via-emeraldAccent to-goldBright"></div>
+                        <div class="p-6 sm:p-7">
+                            <div class="flex items-center gap-4">
+                                <div class="relative shrink-0">
+                                    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-4 border-white shadow-lg bg-emeraldLight flex items-center justify-center">
+                                        <img id="fotoGuru" src="assets/Khairuddin.jpeg" alt="Foto guru Khairuddin, S.Pd.I" class="w-full h-full foto-guru" onerror="tampilkanInisialFoto(this)">
+                                        <span id="fallbackFoto" class="hidden font-extrabold text-3xl text-emeraldMid">K</span>
+                                    </div>
+                                    <span class="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-goldBright border-2 border-creamPaper flex items-center justify-center shadow text-emeraldDark">
+                                        <span data-icon="check-circle" class="text-xs"></span>
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-extrabold uppercase tracking-[0.16em] text-goldWarm">Identitas Guru</p>
+                                    <h2 id="namaGuru" class="text-xl sm:text-2xl font-extrabold text-emeraldDark leading-tight mt-1">Khairuddin, S.Pd.I</h2>
+                                    <p id="peranGuru" class="text-xs sm:text-sm text-slate-500 font-semibold mt-0.5">Guru Pengampu &middot; Kelas 10</p>
+                                </div>
+                            </div>
+
+                            <div class="gold-divider my-5"></div>
+
+                            <p class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">Mata pelajaran yang diampu</p>
+                            <div id="chipsMapelGuru" class="flex flex-wrap gap-2"></div>
+
+                            <div class="mt-5 bg-emeraldLight/80 border border-emerald-200 rounded-2xl p-4">
+                                <p class="font-serif text-goldWarm text-lg leading-none mb-1">“</p>
+                                <p id="sambutanGuru" class="text-xs sm:text-sm text-slate-600 italic leading-relaxed">
+                                    Belajar bukan sekadar membaca, melainkan memahami dan mengamalkan. Selamat belajar, sahabat siswa!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-2.5 text-right">
+                        Foto guru: ganti path <code class="font-mono">foto</code> pada <code class="font-mono">assets/js/data.js</code>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== INFORMASI SEKOLAH ==================== -->
+        <section id="informasi-sekolah" class="py-12 sm:py-14 bg-white/85 border-y border-creamBorder shadow-inner">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                    <div>
+                        <p class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-goldWarm">Informasi Sekolah</p>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-emeraldDark mt-1">Tentang lingkungan belajar kami</h2>
+                        <div class="gold-divider w-24 mt-3"></div>
+                    </div>
+                </div>
+
+                <div class="mt-7 grid lg:grid-cols-3 gap-4">
+                    <div class="lg:col-span-2 bg-creamPaper rounded-3xl border-2 border-creamBorder p-6 sm:p-7 shadow-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-emeraldDark text-goldBright flex items-center justify-center shrink-0 shadow text-xl">
+                                <span data-icon="landmark"></span>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400">Nama Sekolah</p>
+                                <h3 id="sekolahNama" class="text-xl sm:text-2xl font-extrabold text-emeraldDark uppercase leading-tight">MAS IMAM SYAFI'I</h3>
+                            </div>
+                        </div>
+
+                        <div class="gold-divider my-6"></div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="bg-white border border-creamBorder rounded-2xl p-4">
+                                <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400">Jenjang</p>
+                                <p id="sekolahJenjang" class="font-bold text-sm text-slate-800 mt-1">Madrasah Aliyah Swasta (MAS)</p>
+                            </div>
+                            <div class="bg-white border border-creamBorder rounded-2xl p-4">
+                                <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400">Kelas yang dilayani</p>
+                                <p id="sekolahKelas" class="font-bold text-sm text-slate-800 mt-1">Kelas 10</p>
+                            </div>
+                            <div class="bg-white border border-creamBorder rounded-2xl p-4 sm:col-span-2">
+                                <p class="text-[10px] font-bold uppercase tracking-wide text-slate-400">Alamat / Lokasi</p>
+                                <p id="sekolahAlamat" class="font-bold text-sm text-slate-800 mt-1">Isi alamat sekolah pada assets/js/data.js.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-emeraldDark text-white rounded-3xl p-6 sm:p-7 shadow-lg flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-48 h-48 text-goldBright/10 pointer-events-none">
+                            <span data-icon="compass" class="w-48 h-48"></span>
+                        </div>
+                        <div class="relative">
+                            <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-amber-200">Layanan Belajar</p>
+                            <h3 class="text-lg font-extrabold mt-1">Modul ajar interaktif</h3>
+                            <p class="text-xs text-emerald-100/80 mt-2 leading-relaxed">Materi tersusun per mata pelajaran dan dapat dibuka langsung melalui kode materi.</p>
+                        </div>
+                        <div class="relative mt-6 space-y-2" id="ringkasanMapel"></div>
+                        <a href="#modul-ajar" class="relative mt-6 inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-goldWarm hover:bg-amber-600 text-emeraldDark font-extrabold text-xs transition">
+                            Lihat Daftar Modul
+                            <span data-icon="arrow-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MODUL AJAR ==================== -->
+        <section id="modul-ajar" class="py-12 sm:py-16">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                    <div>
+                        <p class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-goldWarm">Modul Ajar</p>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-emeraldDark mt-1">Pilih materi belajarmu</h2>
+                        <div class="gold-divider w-24 mt-3"></div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-500">Saring berdasarkan <strong>kelas</strong> dan <strong>mata pelajaran</strong>, lalu klik kode materi untuk membuka modul.</p>
+                </div>
+
+                <div class="mt-7 bg-white rounded-2xl border border-creamBorder shadow-sm p-4 sm:p-5">
+                    <div class="grid sm:grid-cols-3 gap-3">
+                        <div>
+                            <label for="filterKelas" class="block text-[11px] font-extrabold uppercase tracking-wide text-slate-500 mb-1.5">Kelas</label>
+                            <select id="filterKelas" onchange="renderModul()" class="w-full px-3 py-2.5 rounded-xl border border-stone-200 bg-emeraldLight/50 text-sm font-bold text-emeraldDark focus:ring-2 focus:ring-emeraldMid focus:outline-none cursor-pointer"></select>
+                        </div>
+                        <div>
+                            <label for="filterMapel" class="block text-[11px] font-extrabold uppercase tracking-wide text-slate-500 mb-1.5">Mata Pelajaran</label>
+                            <select id="filterMapel" onchange="renderModul()" class="w-full px-3 py-2.5 rounded-xl border border-stone-200 bg-emeraldLight/50 text-sm font-bold text-emeraldDark focus:ring-2 focus:ring-emeraldMid focus:outline-none cursor-pointer"></select>
+                        </div>
+                        <div>
+                            <label for="cariModul" class="block text-[11px] font-extrabold uppercase tracking-wide text-slate-500 mb-1.5">Cari judul / kode</label>
+                            <input id="cariModul" type="search" oninput="renderModul()" placeholder="Contoh: Khulafaur, SKI-10-01" class="w-full px-3 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none">
+                        </div>
+                    </div>
+                    <div class="mt-3 flex items-center justify-between gap-3 border-t border-stone-100 pt-3">
+                        <p class="text-xs text-slate-500">Ditemukan <strong id="jumlahModul" class="text-emeraldDark">0</strong> modul</p>
+                        <button onclick="resetFilter()" class="text-xs font-bold text-goldWarm hover:text-amber-700 transition">Atur ulang filter</button>
+                    </div>
+                </div>
+
+                <div id="daftarModul" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+                <div id="modulKosong" class="hidden mt-6 bg-white rounded-2xl border-2 border-dashed border-creamBorder p-10 text-center">
+                    <span data-icon="circle-info" class="text-4xl text-slate-300"></span>
+                    <p class="font-bold text-slate-600 mt-3">Belum ada modul yang cocok.</p>
+                    <p class="text-xs text-slate-400 mt-1">Coba ubah filter atau kata kunci pencarian.</p>
+                </div>
+
+                <p class="text-[11px] text-slate-400 mt-6">
+                    Modul berstatus <strong>segera hadir</strong> bisa diisi dengan menambah objek baru ke array <code class="font-mono">DAFTAR_MODUL</code> di <code class="font-mono">assets/js/data.js</code>.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer bersama (diisi assets/js/components.js) -->
+    <div data-site-footer data-base=""></div>
+
+    <div id="toastSalin" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2.5 rounded-xl bg-emeraldDark text-white text-xs font-bold shadow-xl border border-goldBright">
+        Kode materi berhasil disalin!
+    </div>
+
+    <!-- Modular JS: data → ikon → komponen → logika halaman -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/icons.js"></script>
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

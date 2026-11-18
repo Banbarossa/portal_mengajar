@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seri 2: Modul Ajar Flip Book SKI Kelas 10 - Khulafaur Rasyidin</title>
+    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS hasil build (terpusat) -->
+    <link rel="stylesheet" href="../../assets/css/output.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden antialiased flipbook-bg">
+
+    <!-- Header bersama untuk semua halaman -->
+    <div data-site-header data-base="../../" data-active="modul-ajar"></div>
+
+    <!-- Toolbar khusus halaman modul -->
+    <div class="z-30 bg-emeraldMid text-white shadow-md px-3 sm:px-6 py-2 flex items-center justify-between gap-2 border-b border-goldBright/40">
+        <div class="flex items-center gap-2.5 min-w-0">
+            <span class="w-8 h-8 rounded-lg bg-goldWarm flex items-center justify-center text-emeraldDark shadow-inner text-sm shrink-0">
+                <span data-icon="book-open"></span>
+            </span>
+            <div class="min-w-0">
+                <h1 class="font-bold text-xs sm:text-sm md:text-base tracking-wide leading-tight truncate">SKI &bull; KELAS X</h1>
+                <p class="text-[10px] sm:text-xs text-emerald-100/80 hidden sm:block truncate">Estafet Kepemimpinan Umat: Peradaban Islam Masa Khulafaur Rasyidin</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+            <button onclick="toggleModal('tocModal')" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-800 hover:bg-emerald-700 text-xs sm:text-sm font-semibold transition border border-emerald-600 cursor-pointer" title="Daftar Isi">
+                <span data-icon="list-ul" class="text-goldBright"></span><span class="hidden md:inline">Daftar Isi</span>
+            </button>
+            <a href="../../index.html#modul-ajar" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs sm:text-sm font-semibold transition border border-white/20 cursor-pointer" title="Kembali ke portal">
+                <span data-icon="house"></span><span class="hidden md:inline">Portal</span>
+            </a>
+            <button onclick="toggleFullScreen()" class="w-8 h-8 rounded-lg bg-emerald-800 hover:bg-emerald-700 flex items-center justify-center transition border border-emerald-600 cursor-pointer" title="Layar Penuh">
+                <span data-icon="expand"></span>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- MAIN FLIPBOOK STAGE -->
+    <main class="flex-1 flex items-center justify-center p-2 sm:p-4 md:p-5 relative">
+        <!-- Bingkai Buku -->
+        <div id="bookStage" class="w-full max-w-6xl bg-creamPaper rounded-2xl shadow-2xl border-2 border-creamBorder overflow-hidden flex flex-col lg:flex-row min-h-[550px] sm:min-h-[590px] lg:h-[630px] relative">
+            
+            <!-- Slot Halaman Kiri / Tunggal Mobile -->
+            <div id="leftPage" class="w-full lg:w-1/2 h-full paper-sheet spread-left p-5 sm:p-7 overflow-y-auto thin-scroll flex flex-col justify-between relative">
+                <!-- Diisi oleh JS -->
+            </div>
+
+            <!-- Tulang Punggung Buku Tengah (Desktop) -->
+            <div class="hidden lg:block w-1.5 bg-gradient-to-r from-stone-300 via-amber-100 to-stone-300 z-10"></div>
+
+            <!-- Slot Halaman Kanan (Desktop) -->
+            <div id="rightPage" class="hidden lg:flex w-1/2 h-full paper-sheet spread-right p-7 overflow-y-auto thin-scroll flex-col justify-between relative">
+                <!-- Diisi oleh JS -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- BOTTOM CONTROLLER BAR -->
+    <footer class="bg-white/95 backdrop-blur border-t border-stone-200 px-4 py-2.5 z-30">
+        <div class="max-w-5xl mx-auto flex items-center justify-between gap-3">
+            
+            <!-- Tombol Previous -->
+            <button id="btnPrev" onclick="prevPage()" class="px-3.5 py-2 rounded-xl bg-emeraldLight text-emeraldDark hover:bg-emerald-100 disabled:opacity-40 disabled:pointer-events-none font-bold text-xs sm:text-sm flex items-center gap-1.5 transition cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span>Sebelumnya</span>
+            </button>
+
+            <!-- Progress & Page Info -->
+            <div class="flex flex-col items-center flex-1 max-w-xs sm:max-w-md">
+                <div class="flex items-center gap-2 text-xs sm:text-sm font-extrabold text-emeraldDark mb-1">
+                    <span id="pageLabel">Halaman 1 dari 10</span>
+                </div>
+                <div class="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
+                    <div id="progressFill" class="bg-gradient-to-r from-emeraldDark via-emeraldAccent to-goldBright h-full rounded-full transition-all duration-300" style="width: 10%;"></div>
+                </div>
+            </div>
+
+            <!-- Tombol Next -->
+            <button id="btnNext" onclick="nextPage()" class="px-3.5 py-2 rounded-xl bg-emeraldDark text-white hover:bg-emeraldMid disabled:opacity-40 disabled:pointer-events-none font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow transition cursor-pointer">
+                <span>Selanjutnya</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+
+        </div>
+    </footer>
+
+    <!-- MODAL DAFTAR ISI (JUMP TO PAGE) -->
+    <div id="tocModal" class="fixed inset-0 bg-slate-900/65 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-creamPaper rounded-2xl max-w-lg w-full p-6 shadow-2xl border-2 border-goldWarm flip-enter">
+            <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-4">
+                <h2 class="text-base sm:text-lg font-extrabold text-emeraldDark">Daftar Isi Modul • Seri 2</h2>
+                <button onclick="toggleModal('tocModal')" class="w-8 h-8 rounded-full bg-stone-200 hover:bg-stone-300 flex items-center justify-center text-slate-700 font-bold cursor-pointer">&times;</button>
+            </div>
+            <div id="tocGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-80 overflow-y-auto pr-1 thin-scroll">
+                <!-- Diisi otomatis via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EMBED GOOGLE SITES -->
+    <div id="embedModal" class="fixed inset-0 bg-slate-900/65 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border-2 border-emeraldDark flip-enter">
+            <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-4">
+                <h2 class="text-base sm:text-lg font-extrabold text-emeraldDark">Panduan Embed ke Google Sites</h2>
+                <button onclick="toggleModal('embedModal')" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-slate-700 font-bold cursor-pointer">&times;</button>
+            </div>
+            <div class="space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <div class="bg-emeraldLight p-3.5 rounded-xl border border-emerald-200">
+                    <p class="font-bold text-emeraldDark mb-1">Langkah Menyematkan Langsung di Google Sites:</p>
+                    <ol class="list-decimal list-inside space-y-1">
+                        <li>Buka halaman <strong>Google Sites</strong> Anda.</li>
+                        <li>Pilih menu <strong>Sisipkan (Insert)</strong> &rarr; klik <strong>Sematkan (Embed)</strong>.</li>
+                        <li>Klik tab <strong>Sematkan Kode (Embed Code)</strong>, lalu tempelkan seluruh kode HTML file ini.</li>
+                        <li>Klik <strong>Berikutnya &rarr; Sisipkan</strong>, lalu tarik sudut bingkai agar melebar penuh.</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Atau gunakan kode Iframe ini jika file sudah di-hosting online:</label>
+                    <div class="flex gap-2">
+                        <input id="embedCodeBox" type="text" readonly value='<iframe src="URL_MODUL_SERI_2.html" width="100%" height="680px" frameborder="0" allowfullscreen></iframe>' class="w-full text-xs bg-slate-100 border border-slate-300 rounded-xl px-3 py-2 font-mono text-slate-800">
+                        <button onclick="copyEmbedCode()" class="px-4 py-2 bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-bold rounded-xl shrink-0 cursor-pointer">
+                            Salin Kode
+                        </button>
+                    </div>
+                    <p id="copyToast" class="text-xs text-emerald-700 font-bold mt-1.5 hidden">Berhasil disalin ke clipboard!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT ENGINE & CONTENT -->
+    <script src="../../assets/js/data.js"></script>
+    <script src="../../assets/js/icons.js"></script>
+    <script src="../../assets/js/components.js"></script>
+
+    <script>
+        // ==========================================
+        // DATA 10 HALAMAN MODUL SERI 2
+        // ==========================================
+        const modulePages = [
+            // HALAMAN 1: SAMPUL
+            {
+                num: 1,
+                title: "Sampul Modul Seri 2",
+                render: () => `
+                    <div class="h-full rounded-xl bg-gradient-to-br from-emeraldDark via-emeraldDeep to-emerald-950 text-white p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shadow-inner">
+                        <!-- Ornamen Latar Geometris SVG -->
+                        <svg class="absolute -right-14 -top-14 w-64 h-64 text-goldBright/15 pointer-events-none" viewBox="0 0 200 200" fill="none">
+                            <polygon points="100,10 125,75 190,100 125,125 100,190 75,125 10,100 75,75" stroke="currentColor" stroke-width="2"/>
+                            <polygon points="100,25 153,47 175,100 153,153 100,175 47,153 25,100 47,47" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="100" cy="100" r="45" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/>
+                        </svg>
+
+                        <!-- Badge Atas -->
+                        <div class="relative z-10 flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full bg-goldWarm/25 border border-goldBright/50 text-amber-200 text-xs font-bold tracking-wide">
+                                SERI 2 • MODUL INTERAKTIF SKI
+                            </span>
+                            <span class="font-serif text-xl text-goldBright">الخلفاء الراشدون</span>
+                        </div>
+
+                        <!-- Judul & Ilustrasi -->
+                        <div class="relative z-10 my-auto py-3">
+                            <p class="text-xs font-bold uppercase tracking-widest text-emerald-300 mb-1.5">Kelas X • Fase E • Kurikulum Merdeka</p>
+                            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight tracking-tight mb-3">
+                                ESTAFET KEPEMIMPINAN UMAT
+                            </h1>
+                            <div class="w-16 h-1 bg-goldBright rounded-full mb-3"></div>
+                            <p class="text-sm sm:text-base text-emerald-100 leading-relaxed mb-5">
+                                Peradaban Islam Masa <strong>Khulafaur Rasyidin</strong>: Transformasi Negara, Kodifikasi Ilmu, dan Perluasan Wilayah.
+                            </p>
+
+                            <!-- Kartu 4 Medali Khalifah (Visual Hero) -->
+                            <div class="grid grid-cols-4 gap-2 bg-white/10 backdrop-blur-xs p-3 rounded-2xl border border-white/15 mb-6">
+                                <div class="text-center">
+                                    <div class="w-9 h-9 mx-auto rounded-full bg-goldBright text-emeraldDark font-extrabold text-xs flex items-center justify-center shadow mb-1">01</div>
+                                    <p class="text-[11px] font-bold text-amber-200 leading-tight">Abu Bakar</p>
+                                    <p class="text-[9px] text-emerald-200">11–13 H</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-9 h-9 mx-auto rounded-full bg-emeraldAccent text-emeraldDark font-extrabold text-xs flex items-center justify-center shadow mb-1">02</div>
+                                    <p class="text-[11px] font-bold text-amber-200 leading-tight">Umar</p>
+                                    <p class="text-[9px] text-emerald-200">13–23 H</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-9 h-9 mx-auto rounded-full bg-goldBright text-emeraldDark font-extrabold text-xs flex items-center justify-center shadow mb-1">03</div>
+                                    <p class="text-[11px] font-bold text-amber-200 leading-tight">Utsman</p>
+                                    <p class="text-[9px] text-emerald-200">23–35 H</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-9 h-9 mx-auto rounded-full bg-emeraldAccent text-emeraldDark font-extrabold text-xs flex items-center justify-center shadow mb-1">04</div>
+                                    <p class="text-[11px] font-bold text-amber-200 leading-tight">Ali</p>
+                                    <p class="text-[9px] text-emerald-200">35–40 H</p>
+                                </div>
+                            </div>
+
+                            <button onclick="nextPage()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-goldBright to-goldWarm hover:from-amber-400 hover:to-amber-600 text-emeraldDark font-extrabold text-sm shadow-lg transition flex items-center justify-center gap-2 cursor-pointer">
+                                <span>Buka Halaman Belajar</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                            </button>
+                        </div>
+
+                        <!-- Footer Sampul -->
+                        <div class="relative z-10 pt-2.5 border-t border-white/15 flex justify-between text-[11px] text-emerald-200">
+                            <span>Periode 632 – 661 M (29 Tahun Kepemimpinan)</span>
+                            <span>Halaman 1 / 10</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 2: PETA KONSEP & CAPAIAN PEMBELAJARAN
+            {
+                num: 2,
+                title: "Peta Konsep & Capaian Belajar",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Halaman 02 • Peta Navigasi</span>
+                                <span class="text-[11px] font-bold bg-emeraldLight text-emeraldDark px-2.5 py-0.5 rounded-full">Capaian Pembelajaran</span>
+                            </div>
+                            <div class="gold-divider mb-3"></div>
+
+                            <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark mb-2">Capaian Pembelajaran (Fase E)</h2>
+                            <p class="text-xs sm:text-sm bg-emeraldLight/90 border-l-4 border-emeraldDark p-3 rounded-r-xl text-slate-700 leading-relaxed mb-4">
+                                Peserta didik mampu <strong>menganalisis proses pemilihan Khulafaur Rasyidin</strong>, mengevaluasi kebijakan strategis serta kemajuan peradaban Islam di bidang administrasi, ilmu pengetahuan, dan perluasan wilayah, serta meneladani karakter kepemimpinannya.
+                            </p>
+
+                            <h3 class="text-xs sm:text-sm font-extrabold text-slate-800 mb-2">Alur Estafet Peradaban (Klik tahap untuk ringkasan):</h3>
+
+                            <!-- Jalur Estafet Interaktif -->
+                            <div class="space-y-2 mb-3">
+                                <button onclick="showFlowStep(0)" class="w-full text-left p-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 flex items-center justify-between transition shadow-2xs cursor-pointer">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="px-2 py-0.5 rounded bg-emeraldDark text-white text-[11px] font-bold">Tahap 1</span>
+                                        <span class="text-xs font-bold text-slate-800">Musyawarah Saqifah Bani Sa'idah</span>
+                                    </div>
+                                    <span class="text-[11px] text-goldWarm font-bold">11 H &rarr;</span>
+                                </button>
+                                <button onclick="showFlowStep(1)" class="w-full text-left p-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 flex items-center justify-between transition shadow-2xs cursor-pointer">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="px-2 py-0.5 rounded bg-emeraldMid text-white text-[11px] font-bold">Tahap 2</span>
+                                        <span class="text-xs font-bold text-slate-800">Konsolidasi Internal & Kodifikasi Mushaf</span>
+                                    </div>
+                                    <span class="text-[11px] text-goldWarm font-bold">11–13 H &rarr;</span>
+                                </button>
+                                <button onclick="showFlowStep(2)" class="w-full text-left p-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 flex items-center justify-between transition shadow-2xs cursor-pointer">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="px-2 py-0.5 rounded bg-goldWarm text-white text-[11px] font-bold">Tahap 3</span>
+                                        <span class="text-xs font-bold text-slate-800">Reformasi Birokrasi & Ekspansi Lintas Benua</span>
+                                    </div>
+                                    <span class="text-[11px] text-goldWarm font-bold">13–35 H &rarr;</span>
+                                </button>
+                                <button onclick="showFlowStep(3)" class="w-full text-left p-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 flex items-center justify-between transition shadow-2xs cursor-pointer">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="px-2 py-0.5 rounded bg-emeraldDark text-white text-[11px] font-bold">Tahap 4</span>
+                                        <span class="text-xs font-bold text-slate-800">Reformasi Tata Kelola & Ilmu Nahwu</span>
+                                    </div>
+                                    <span class="text-[11px] text-goldWarm font-bold">35–40 H &rarr;</span>
+                                </button>
+                            </div>
+
+                            <!-- Kotak Penjelasan Tahap -->
+                            <div id="flowDetailBox" class="bg-amber-50/90 border border-amber-300 rounded-xl p-3 text-xs text-slate-700">
+                                <p class="font-bold text-amber-900 mb-0.5">Tahap 1: Musyawarah Saqifah Bani Sa'idah (11 H)</p>
+                                <p>Proses demokrasi awal umat Islam dalam menentukan pengganti Rasulullah SAW sebagai kepala negara demi mencegah perpecahan kaum Muhajirin dan Anshar.</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-2.5 border-t border-stone-200 flex justify-between text-xs text-slate-400">
+                            <span>SKI Kelas X • Khulafaur Rasyidin</span>
+                            <span class="font-extrabold text-emeraldDark">2</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 3: APERSEPSI - DILEMA PASCA WAFATNYA RASULULLAH
+            {
+                num: 3,
+                title: "Apersepsi: Dilema Saqifah",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Halaman 03 • Apersepsi</span>
+                                <span class="text-[11px] font-bold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full">Simulasi Keputusan</span>
+                            </div>
+                            <div class="gold-divider mb-3"></div>
+
+                            <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark mb-2">Dilema Pasca Wafatnya Rasulullah SAW</h2>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+                                Senin, 12 Rabiul Awal 11 H (632 M), Rasulullah SAW wafat tanpa meninggalkan wasiat tertulis tentang siapa penerus kepemimpinan negara. Tiga krisis besar langsung mengancam:
+                            </p>
+
+                            <!-- 3 Krisis -->
+                            <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+                                <div class="bg-white p-2.5 rounded-xl border border-stone-200 shadow-2xs">
+                                    <span class="inline-block px-2 py-0.5 rounded bg-red-100 text-red-800 font-extrabold text-[10px] mb-1">Krisis 1</span>
+                                    <p class="text-xs font-bold text-slate-800">Kekosongan Pemimpin</p>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Perbedaan calon antara Anshar & Muhajirin.</p>
+                                </div>
+                                <div class="bg-white p-2.5 rounded-xl border border-stone-200 shadow-2xs">
+                                    <span class="inline-block px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-extrabold text-[10px] mb-1">Krisis 2</span>
+                                    <p class="text-xs font-bold text-slate-800">Nabi Palsu & Murtad</p>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Munculnya Musailamah Al-Kadzab dkk.</p>
+                                </div>
+                                <div class="bg-white p-2.5 rounded-xl border border-stone-200 shadow-2xs">
+                                    <span class="inline-block px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-extrabold text-[10px] mb-1">Krisis 3</span>
+                                    <p class="text-xs font-bold text-slate-800">Pembangkang Zakat</p>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Kabilah menolak membayar zakat ke Madinah.</p>
+                                </div>
+                            </div>
+
+                            <!-- Simulasi Keputusan Saqifah -->
+                            <div class="bg-emeraldDark text-white rounded-2xl p-4 shadow-md">
+                                <p class="text-[11px] font-bold uppercase tracking-wider text-goldBright mb-1">Simulasi Ruang Sidang Saqifah Bani Sa'idah</p>
+                                <p class="text-xs sm:text-sm font-semibold mb-3">
+                                    Jika kamu berada di Balai Saqifah Bani Sa'idah saat itu, kriteria pemimpin seperti apa yang paling mendesak untuk menyelamatkan umat?
+                                </p>
+                                <div class="space-y-2">
+                                    <button onclick="simDecision('A')" class="w-full text-left text-xs p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 transition cursor-pointer">
+                                        <strong>Opsi A:</strong> Pemimpin dengan legitimasi senioritas sahabat terdekat Nabi, berwibawa, dan diterima semua suku.
+                                    </button>
+                                    <button onclick="simDecision('B')" class="w-full text-left text-xs p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 transition cursor-pointer">
+                                        <strong>Opsi B:</strong> Membagi wilayah Islam menjadi dua negara: satu untuk Anshar, satu untuk Muhajirin.
+                                    </button>
+                                    <button onclick="simDecision('C')" class="w-full text-left text-xs p-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 transition cursor-pointer">
+                                        <strong>Opsi C:</strong> Menunda pemilihan selama setahun sambil membiarkan kabilah mengatur diri sendiri.
+                                    </button>
+                                </div>
+                                <div id="simResult" class="mt-3 p-2.5 rounded-xl bg-goldWarm/25 border border-goldBright/40 text-xs text-amber-100 hidden"></div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2.5 border-t border-stone-200 flex justify-between text-xs text-slate-400">
+                            <span>SKI Kelas X • Khulafaur Rasyidin</span>
+                            <span class="font-extrabold text-emeraldDark">3</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 4: KHALIFAH 1 - ABU BAKAR ASH-SHIDDIQ
+            {
+                num: 4,
+                title: "Khalifah 1: Abu Bakar Ash-Shiddiq",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Halaman 04 • Khalifah Pertama</span>
+                                <span class="text-[11px] font-bold bg-emeraldLight text-emeraldDark px-2.5 py-0.5 rounded-full">11 – 13 H (632–634 M)</span>
+                            </div>
+                            <div class="gold-divider mb-3"></div>
+
+                            <!-- Kartu Biografi Profil Tokoh -->
+                            <div class="bg-gradient-to-r from-emeraldDark to-emeraldMid text-white rounded-2xl p-4 mb-3 shadow flex items-center gap-3.5">
+                                <div class="w-14 h-14 rounded-2xl bg-goldBright text-emeraldDark font-serif font-bold text-2xl flex items-center justify-center shrink-0 shadow-inner">
+                                    أبو بكر
+                                </div>
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-widest text-amber-300 font-bold">Penyelamat Eksistensi Islam</span>
+                                    <h2 class="text-lg sm:text-xl font-extrabold leading-tight">Abu Bakar Ash-Shiddiq r.a.</h2>
+                                    <p class="text-xs text-emerald-100 mt-0.5">Nama Asli: Abdullah bin Abi Quhafah • Gelar: <em>Ash-Shiddiq</em> & <em>Al-'Atiq</em></p>
+                                </div>
+                            </div>
+
+                            <!-- Fokus Kebijakan Utama -->
+                            <div class="space-y-2.5">
+                                <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark">1. Perang Riddah (Penumpasan Kemurtadan)</h3>
+                                        <span class="text-[10px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Tegas & Prinsipil</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Membentuk 11 brigade pasukan (dipimpin antara lain oleh <strong>Khalid bin Walid</strong>) untuk menumpas nabi palsu (Musailamah Al-Kadzab, Thulaihah, Sajah, Aswad Al-Ansi) serta kelompok yang enggan membayar zakat.
+                                    </p>
+                                </div>
+
+                                <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark">2. Awal Kodifikasi (Penghimpunan) Al-Qur'an</h3>
+                                        <span class="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Warisan Abadi</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Gugurnya 70 penghafal Al-Qur'an (<em>Huffazh</em>) dalam Perang Yamamah mendorong <strong>Umar bin Khattab</strong> mengusulkan pengumpulan mushaf. Abu Bakar menunjuk <strong>Zaid bin Tsabit</strong> sebagai ketua tim penulis wahyu.
+                                    </p>
+                                </div>
+
+                                <div class="bg-amber-50 border border-amber-200 rounded-xl p-2.5 text-xs text-amber-950">
+                                    <strong>Pidato Pelantikan Ikonik:</strong> <em>"Jika aku berbuat baik, bantulah aku; jika aku menyimpang, luruskanlah aku."</em> — Tonggak kontrol publik atas pemimpin.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2.5 border-t border-stone-200 flex justify-between text-xs text-slate-400">
+                            <span>SKI Kelas X • Khulafaur Rasyidin</span>
+                            <span class="font-extrabold text-emeraldDark">4</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 5: KHALIFAH 2 - UMAR BIN KHATTAB (THE GREAT REFORMER)
+            {
+                num: 5,
+                title: "Khalifah 2: Umar bin Khattab",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Halaman 05 • Khalifah Kedua</span>
+                                <span class="text-[11px] font-bold bg-emeraldLight text-emeraldDark px-2.5 py-0.5 rounded-full">13 – 23 H (634–644 M)</span>
+                            </div>
+                            <div class="gold-divider mb-3"></div>
+
+                            <!-- Kartu Profil -->
+                            <div class="bg-gradient-to-r from-emeraldDark to-teal-800 text-white rounded-2xl p-3.5 mb-3 shadow flex items-center gap-3.5">
+                                <div class="w-13 h-13 w-12 h-12 rounded-2xl bg-goldBright text-emeraldDark font-serif font-bold text-2xl flex items-center justify-center shrink-0">
+                                    عمر
+                                </div>
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-widest text-amber-300 font-bold">The Great Reformer • Al-Faruq</span>
+                                    <h2 class="text-lg sm:text-xl font-extrabold leading-tight">Umar bin Khattab r.a.</h2>
+                                    <p class="text-[11px] text-emerald-100">Pemimpin pertama bergelar <em>Amirul Mukminin</em></p>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-slate-600 mb-2">Klik 4 ikon inovasi administrasi negara & ekspansi di bawah ini:</p>
+
+                            <!-- Galeri 4 Tombol Reformasi -->
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mb-2.5">
+                                <button onclick="selectUmarReform(0)" id="umar-btn-0" class="p-2 rounded-xl bg-emeraldDark text-white text-xs font-bold text-center shadow transition cursor-pointer">
+                                    Kalender Hijriah
+                                </button>
+                                <button onclick="selectUmarReform(1)" id="umar-btn-1" class="p-2 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 text-slate-700 text-xs font-bold text-center transition cursor-pointer">
+                                    Baitul Mal
+                                </button>
+                                <button onclick="selectUmarReform(2)" id="umar-btn-2" class="p-2 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 text-slate-700 text-xs font-bold text-center transition cursor-pointer">
+                                    Provinsi & Diwan
+                                </button>
+                                <button onclick="selectUmarReform(3)" id="umar-btn-3" class="p-2 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 text-slate-700 text-xs font-bold text-center transition cursor-pointer">
+                                    Ekspansi Wilayah
+                                </button>
+                            </div>
+
+                            <!-- Kotak Output Inovasi Umar -->
+                            <div id="umarReformBox" class="bg-white border-2 border-emeraldMid/25 rounded-xl p-3.5 shadow-2xs mb-2.5">
+                                <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark mb-1">1. Penetapan Kalender Hijriah</h3>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Atas usul Ali bin Abi Thalib, Umar bin Khattab menetapkan tahun peristiwa <strong>Hijrah Rasulullah SAW (622 M)</strong> sebagai tahun pertama penanggalan Islam untuk menertibkan arsip surat-menyurat negara.
+                                </p>
+                            </div>
+
+                            <!-- Infografis Statistik Perluasan Wilayah -->
+                            <div class="bg-emeraldLight/80 border border-emerald-200 rounded-xl p-2.5">
+                                <p class="text-[11px] font-extrabold text-emeraldDark uppercase mb-1.5">Statistik Perluasan Wilayah (Futuhah Islamiyah):</p>
+                                <div class="grid grid-cols-3 gap-2 text-center">
+                                    <div class="bg-white rounded-lg p-1.5 border border-emerald-100">
+                                        <span class="block text-xs font-extrabold text-goldWarm">Syam & Palestina</span>
+                                        <span class="text-[10px] text-slate-500">Perang Yarmuk (636 M)</span>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-1.5 border border-emerald-100">
+                                        <span class="block text-xs font-extrabold text-emeraldDark">Persia & Irak</span>
+                                        <span class="text-[10px] text-slate-500">Perang Qadisiyah (636 M)</span>
+                                    </div>
+                                    <div class="bg-white rounded-lg p-1.5 border border-emerald-100">
+                                        <span class="block text-xs font-extrabold text-goldWarm">Mesir (Afrika)</span>
+                                        <span class="text-[10px] text-slate-500">Amr bin Ash (641 M)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2.5 border-t border-stone-200 flex justify-between text-xs text-slate-400">
+                            <span>SKI Kelas X • Khulafaur Rasyidin</span>
+                            <span class="font-extrabold text-emeraldDark">5</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 6: KHALIFAH 3 - UTSMAN BIN AFFAN
+            {
+                num: 6,
+                title: "Khalifah 3: Utsman bin Affan",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Halaman 06 • Khalifah Ketiga</span>
+                                <span class="text-[11px] font-bold bg-emeraldLight text-emeraldDark px-2.5 py-0.5 rounded-full">23 – 35 H (644–656 M)</span>
+                            </div>
+                            <div class="gold-divider mb-3"></div>
+
+                            <!-- Kartu Profil -->
+                            <div class="bg-gradient-to-r from-amber-700 via-goldWarm to-emeraldDark text-white rounded-2xl p-4 mb-3 shadow flex items-center gap-3.5">
+                                <div class="w-13 h-13 w-12 h-12 rounded-2xl bg-white text-emeraldDark font-serif font-bold text-2xl flex items-center justify-center shrink-0">
+                                    عثمان
+                                </div>
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-widest text-amber-200 font-bold">Dzun Nurain • Dermawan & Visioner</span>
+                                    <h2 class="text-lg sm:text-xl font-extrabold leading-tight">Utsman bin Affan r.a.</h2>
+                                    <p class="text-[11px] text-amber-100">Terpilih melalui tim formatur (<em>Ahlul Halli wal Aqdi</em>) beranggotakan 6 sahabat</p>
+                                </div>
+                            </div>
+
+                            <!-- 3 Kebijakan Strategis -->
+                            <div class="space-y-2.5">
+                                <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs">
+                                    <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark mb-1">1. Standarisasi Mushaf Utsmani (Kodifikasi II)</h3>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Meluasnya wilayah Islam memicu perbedaan dialek (<em>qira'at</em>) bacaan Al-Qur'an. Atas saran <strong>Hudzaifah bin Yaman</strong>, Utsman membentuk panitia yang dipimpin <strong>Zaid bin Tsabit</strong> untuk menyalin mushaf standar dialek Quraisy (<em>Mushaf Al-Imam</em>) dan mengirimkannya ke kota-kota besar Islam.
+                                    </p>
+                                </div>
+
+                                <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs">
+                                    <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark mb-1">2. Pembentukan Armada Angkatan Laut Pertama</h3>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Menyetujui usulan Gubernur Syam (<strong>Muawiyah bin Abi Sufyan</strong>) untuk membangun armada maritim Islam pertama guna melindungi pesisir Laut Tengah dari serangan angkatan laut Bizantium dan membebaskan Pulau Siprus.
+                                    </p>
+                                </div>
+
+                                <div class="bg-emeraldLight/70 border border-emerald-200 rounded-xl p-2.5 flex items-center justify-between text-xs">
+                                    <div>
+                                        <span class="font-extrabold text-emeraldDark block">3. Renovasi & Perluasan Masjidil Haram & Nabawi</span>
+                                        <span class="text-slate-600">Memperindah arsitektur masjid untuk menampung lonjakan jemaah haji dari berbagai penjuru dunia.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2.5 border-t border-stone-200 flex justify-between text-xs text-slate-400">
+                            <span>SKI Kelas X • Khulafaur Rasyidin</span>
+                            <span class="font-extrabold text-emeraldDark">6</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 7: KHALIFAH 4 - ALI BIN ABI THALIB
+            {
+                num: 7,
+                title: "Khalifah 4: Ali bin Abi Thalib",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Halaman 07 • Khalifah Keempat</span>
+                                <span class="text-[11px] font-bold bg-emeraldLight text-emeraldDark px-2.5 py-0.5 rounded-full">35 – 40 H (656–661 M)</span>
+                            </div>
+                            <div class="gold-divider mb-3"></div>
+
+                            <!-- Kartu Profil -->
+                            <div class="bg-gradient-to-r from-emeraldDark to-emerald-900 text-white rounded-2xl p-4 mb-3 shadow flex items-center gap-3.5">
+                                <div class="w-12 h-12 rounded-2xl bg-goldBright text-emeraldDark font-serif font-bold text-2xl flex items-center justify-center shrink-0">
+                                    علي
+                                </div>
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-widest text-amber-300 font-bold">Babul Ilmi (Gerbang Ilmu) • Bani Hasyim</span>
+                                    <h2 class="text-lg sm:text-xl font-extrabold leading-tight">Ali bin Abi Thalib r.a.</h2>
+                                    <p class="text-[11px] text-emerald-100">Memindahkan pusat pemerintahan dari Madinah ke <strong>Kufah (Irak)</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2.5">
+                                <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs">
+                                    <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark mb-1">1. Pembenahan Tata Kelola Pejabat & Baitul Mal</h3>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Mengganti gubernur yang dinilai kurang cakap untuk memberantas nepotisme serta menarik kembali tanah milik negara yang dibagikan secara tidak sah ke kas Baitul Mal.
+                                    </p>
+                                </div>
+
+                                <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs">
+                                    <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark mb-1">2. Pengembangan Ilmu Nahwu (Tata Bahasa Arab)</h3>
+                                    <p class="text-xs text-slate-600 leading-relaxed">
+                                        Banyaknya pemeluk Islam non-Arab (<em>Mawali</em>) menimbulkan kesalahan bacaan Al-Qur'an. Ali menugaskan <strong>Abu Aswad Ad-Du'ali</strong> menyusun kaidah dasar ilmu <em>Nahwu</em> serta pemberian tanda titik huruf hijaiyah.
+                                    </p>
+                                </div>
+
+                                <div class="bg-amber-50 border border-amber-200 rounded-xl p-2.5 text-xs">
+                                    <span class="font-extrabold text-amber-900 block mb-0.5">3. Dinamika Ujian Internal (Fitnah Kubra):</span>
+                                    <p class="text-slate-700">Masa kepemimpinan Ali diuji konflik internal: <strong>Perang Jamal</strong> (36 H) dan <strong>Perang Shiffin</strong> (37 H) yang berujung peristiwa <em>Tahkim</em> (Arbitrase).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2.5 border-t border-stone-200 flex justify-between text-xs text-slate-400">
+                            <span>SKI Kelas X • Khulafaur Rasyidin</span>
+                            <span class="font-extrabold text-emeraldDark">7</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 8: TABEL PERBANDINGAN PRESTASI & KEBIJAKAN (FILTER INTERAKTIF)
+            {
+                num: 8,
+                title: "Perbandingan Prestasi 4 Khalifah",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Halaman 08 • Sintesis Materi</span>
+                                <span class="text-[11px] font-bold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full">Filter Kategori</span>
+                            </div>
+                            <div class="gold-divider mb-3"></div>
+
+                            <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark mb-1">Matriks Perbandingan Prestasi</h2>
+                            <p class="text-xs text-slate-600 mb-2.5">Pilih kategori di bawah untuk membandingkan kontribusi keempat Khulafaur Rasyidin secara cepat:</p>
+
+                            <!-- Tombol Filter Kategori -->
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                <button onclick="setCompareCategory('politik')" id="cat-politik" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-emeraldDark text-white shadow cursor-pointer">
+                                    Politik & Administrasi
+                                </button>
+                                <button onclick="setCompareCategory('ilmu')" id="cat-ilmu" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-stone-200 text-slate-700 hover:bg-stone-300 cursor-pointer">
+                                    Keagamaan & Keilmuan
+                                </button>
+                                <button onclick="setCompareCategory('ekonomi')" id="cat-ekonomi" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-stone-200 text-slate-700 hover:bg-stone-300 cursor-pointer">
+                                    Ekonomi & Militer
+                                </button>
+                            </div>
+
+                            <!-- Grid 4 Khalifah Dinamis -->
+                            <div id="compareGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                <!-- Dirender via JS -->
+                            </div>
+                        </div>
+
+                        <div class="pt-2.5 border-t border-stone-200 flex justify-between text-xs text-slate-400">
+                            <span>SKI Kelas X • Khulafaur Rasyidin</span>
+                            <span class="font-extrabold text-emeraldDark">8</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 9: KUIS INTERAKTIF 5 SOAL
+            {
+                num: 9,
+                title: "Kuis Evaluasi Interaktif",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Halaman 09 • Evaluasi</span>
+                                <span id="scoreDisplay" class="text-xs font-extrabold bg-emeraldDark text-goldBright px-3 py-0.5 rounded-full">Skor: 0 / 100</span>
+                            </div>
+                            <div class="gold-divider mb-2.5"></div>
+
+                            <h2 class="text-base sm:text-lg font-extrabold text-emeraldDark mb-1">Uji Kompetensi Khulafaur Rasyidin</h2>
+                            <p class="text-[11px] text-slate-600 mb-2.5">Klik pilihan jawaban untuk melihat kunci pembahasan & skor otomatis:</p>
+
+                            <!-- List Soal -->
+                            <div id="quizBox" class="space-y-2.5 max-h-[395px] overflow-y-auto pr-1 thin-scroll">
+                                <!-- Diisi JS -->
+                            </div>
+                        </div>
+
+                        <div class="pt-2.5 border-t border-stone-200 flex justify-between text-xs text-slate-400">
+                            <span>SKI Kelas X • Khulafaur Rasyidin</span>
+                            <span class="font-extrabold text-emeraldDark">9</span>
+                        </div>
+                    </div>
+                `
+            },
+
+            // HALAMAN 10: LKPD PROYEK & REFLEKSI KEPEMIMPINAN
+            {
+                num: 10,
+                title: "LKPD Proyek & Refleksi",
+                render: () => `
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Halaman 10 • Proyek & Penutup</span>
+                                <span class="text-[11px] font-bold bg-emeraldLight text-emeraldDark px-2.5 py-0.5 rounded-full">LKPD Kreatif</span>
+                            </div>
+                            <div class="gold-divider mb-3"></div>
+
+                            <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark mb-1">LKPD: Infografis Gaya Kepemimpinan</h2>
+                            <p class="text-xs text-slate-600 mb-2.5">
+                                Buatlah <strong>"Infografis Profil Gaya Kepemimpinan Khulafaur Rasyidin"</strong> dan hubungkan dengan tantangan kepemimpinan <strong>OSIS / organisasi siswa</strong> di sekolahmu!
+                            </p>
+
+                            <!-- Panduan Komponen Infografis -->
+                            <div class="bg-white border border-stone-200 rounded-xl p-3 mb-3 shadow-2xs">
+                                <h3 class="text-xs font-extrabold text-emeraldDark mb-1.5">Komponen Wajib dalam Infografis:</h3>
+                                <ul class="text-xs text-slate-700 space-y-1">
+                                    <li><strong>1. Karakter Utama:</strong> Tegas (Abu Bakar), Inovatif (Umar), Dermawan (Utsman), Cerdas/Adil (Ali).</li>
+                                    <li><strong>2. Studi Kasus Sekolah:</strong> Bagaimana meneladani sikap musyawarah & amanah dalam program kerja OSIS/MPK.</li>
+                                    <li><strong>3. Kutipan Inspiratif:</strong> Cantumkan 1 kutipan hikmah dari salah satu Khulafaur Rasyidin.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Rubrik Penilaian -->
+                            <div class="grid grid-cols-3 gap-2 text-center mb-3">
+                                <div class="bg-emeraldLight border border-emerald-200 p-2 rounded-xl">
+                                    <span class="block font-extrabold text-emeraldDark text-sm">40%</span>
+                                    <span class="text-[10px] font-semibold text-slate-700">Ketepatan Fakta Sejarah</span>
+                                </div>
+                                <div class="bg-amber-50 border border-amber-200 p-2 rounded-xl">
+                                    <span class="block font-extrabold text-goldWarm text-sm">35%</span>
+                                    <span class="text-[10px] font-semibold text-slate-700">Relevansi Konteks Siswa</span>
+                                </div>
+                                <div class="bg-emeraldLight border border-emerald-200 p-2 rounded-xl">
+                                    <span class="block font-extrabold text-emeraldDark text-sm">25%</span>
+                                    <span class="text-[10px] font-semibold text-slate-700">Desain & Tata Letak</span>
+                                </div>
+                            </div>
+
+                            <!-- Aksi Cepat Guru & Siswa -->
+                            <div class="bg-emeraldDark text-white rounded-xl p-3 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+                                <div class="text-center sm:text-left">
+                                    <p class="text-xs font-extrabold text-goldBright">Siap Digunakan di Kelas & Google Sites</p>
+                                    <p class="text-[10px] text-emerald-200">Bagikan modul Seri 2 ini kepada siswa melalui portal pembelajaran.</p>
+                                </div>
+                                <div class="flex gap-2 shrink-0">
+                                    <button onclick="toggleModal('embedModal')" class="px-3 py-1.5 rounded-lg bg-goldWarm hover:bg-amber-600 text-white font-bold text-xs cursor-pointer">
+                                        Salin Kode Embed
+                                    </button>
+                                    <button onclick="jumpToPage(0)" class="px-3 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white font-bold text-xs cursor-pointer">
+                                        Awal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2.5 border-t border-stone-200 flex justify-between text-xs text-slate-400">
+                            <span>SKI Kelas X • Khulafaur Rasyidin</span>
+                            <span class="font-extrabold text-emeraldDark">10</span>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // ==========================================
+        // DATA INTERAKTIF PENDUKUNG
+        // ==========================================
+        const flowStepsData = [
+            { title: "Tahap 1: Musyawarah Saqifah Bani Sa'idah (11 H)", text: "Proses demokrasi awal umat Islam dalam menentukan pengganti Rasulullah SAW sebagai kepala negara demi mencegah perpecahan kaum Muhajirin dan Anshar." },
+            { title: "Tahap 2: Konsolidasi Internal & Kodifikasi Mushaf (11–13 H)", text: "Abu Bakar Ash-Shiddiq menstabilkan negara melalui Perang Riddah dan memulai penghimpunan ayat Al-Qur'an dalam satu mushaf." },
+            { title: "Tahap 3: Reformasi Birokrasi & Ekspansi Lintas Benua (13–35 H)", text: "Umar bin Khattab membangun sistem administrasi modern (Diwan, Baitul Mal, Kalender Hijriah), dilanjutkan Utsman bin Affan dengan standarisasi mushaf & armada laut." },
+            { title: "Tahap 4: Reformasi Tata Kelola & Ilmu Nahwu (35–40 H)", text: "Ali bin Abi Thalib membenahi integritas pejabat negara, memindahkan ibu kota ke Kufah, serta merintis ilmu tata bahasa Arab (Nahwu)." }
+        ];
+
+        const umarReforms = [
+            { title: "1. Penetapan Kalender Hijriah", desc: "Atas usul Ali bin Abi Thalib, Umar bin Khattab menetapkan tahun peristiwa <strong>Hijrah Rasulullah SAW (622 M)</strong> sebagai tahun pertama penanggalan Islam untuk menertibkan arsip surat-menyurat negara." },
+            { title: "2. Pelembagaan Baitul Mal", desc: "Mengelola kas keuangan negara secara transparan dari sumber zakat, ghanimah, kharaj, dan jizyah untuk kesejahteraan rakyat, santunan fakir miskin, serta infrastruktur publik." },
+            { title: "3. Pembagian Provinsi & Sistem Diwan", desc: "Membagi wilayah kekuasaan menjadi 8 provinsi utama (Makkah, Madinah, Syam, Jazirah, Bashrah, Kufah, Mesir, Palestina) lengkap dengan gubernur, hakim independen (<em>Qadhi</em>), dan jawatan militer (<em>Diwan Al-Jund</em>)." },
+            { title: "4. Perluasan Wilayah ke Persia & Romawi", desc: "Berhasil meruntuhkan hegemoni Imperium Persia Sasaniyah dan merebut wilayah Syam, Palestina, serta Mesir dari Kekaisaran Romawi Timur (Bizantium) dengan menjamin kebebasan beragama penduduk lokal." }
+        ];
+
+        const compareMatrixData = {
+            politik: [
+                { name: "1. Abu Bakar Ash-Shiddiq", badge: "11–13 H", text: "Menjaga keutuhan negara dari separatisme (Perang Riddah) dan meletakkan dasar musyawarah pemerintahan." },
+                { name: "2. Umar bin Khattab", badge: "13–23 H", text: "Membentuk 8 provinsi, lembaga peradilan independen (Qadhi), jawatan administrasi (Diwan), dan Kalender Hijriah." },
+                { name: "3. Utsman bin Affan", badge: "23–35 H", text: "Terpilih lewat tim formatur 6 sahabat; memperluas wilayah hingga Armenia, Afrika Utara, dan Asia Tengah." },
+                { name: "4. Ali bin Abi Thalib", badge: "35–40 H", text: "Memindahkan pusat pemerintahan ke Kufah serta melakukan perombakan pejabat negara untuk mencegah nepotisme." }
+            ],
+            ilmu: [
+                { name: "1. Abu Bakar Ash-Shiddiq", badge: "Kodifikasi I", text: "Menghimpun lembaran wahyu Al-Qur'an menjadi satu mushaf atas usul Umar bin Khattab (diketuai Zaid bin Tsabit)." },
+                { name: "2. Umar bin Khattab", badge: "Pendidikan", text: "Mengirim para sahabat ahli fiqih dan Al-Qur'an ke berbagai provinsi baru untuk mengajarkan ajaran Islam." },
+                { name: "3. Utsman bin Affan", badge: "Kodifikasi II", text: "Membakukan bacaan Al-Qur'an dalam Mushaf Utsmani (Mushaf Al-Imam) untuk mencegah perselisihan dialek." },
+                { name: "4. Ali bin Abi Thalib", badge: "Ilmu Nahwu", text: "Menugaskan Abu Aswad Ad-Du'ali menyusun kaidah tata bahasa Arab (Nahwu) dan tanda baca huruf Al-Qur'an." }
+            ],
+            ekonomi: [
+                { name: "1. Abu Bakar Ash-Shiddiq", badge: "Zakat & Pasukan", text: "Menegakkan kewajiban zakat sebagai instrumen keadilan sosial dan mengirim 11 brigade menjaga stabilitas." },
+                { name: "2. Umar bin Khattab", badge: "Baitul Mal", text: "Melembagakan Baitul Mal secara sistematis, mendata penduduk untuk tunjangan sosial, dan membangun irigasi." },
+                { name: "3. Utsman bin Affan", badge: "Angkatan Laut", text: "Membentuk Armada Angkatan Laut Islam pertama bersama Muawiyah dan memperluas Masjidil Haram & Nabawi." },
+                { name: "4. Ali bin Abi Thalib", badge: "Audit Kas Negara", text: "Menarik kembali aset negara yang disalahgunakan ke kas Baitul Mal dan mencetak mata uang dirham beraksara Kufi." }
+            ]
+        };
+
+        const quizItems = [
+            {
+                q: "1. Siapakah sahabat yang mengusulkan penghimpunan Al-Qur'an pada masa Khalifah Abu Bakar setelah banyak penghafal Al-Qur'an gugur dalam Perang Yamamah?",
+                opts: ["Zaid bin Tsabit", "Umar bin Khattab", "Utsman bin Affan", "Ali bin Abi Thalib"],
+                ans: 1,
+                info: "Umar bin Khattab mengusulkan kodifikasi Al-Qur'an kepada Abu Bakar, lalu Zaid bin Tsabit ditunjuk sebagai ketua panitia penulisnya."
+            },
+            {
+                q: "2. Salah satu reformasi administrasi besar pada masa Khalifah Umar bin Khattab dalam bidang keuangan negara adalah...",
+                opts: ["Membentuk Armada Angkatan Laut", "Melembagakan Baitul Mal secara sistematis", "Memindahkan ibu kota ke Kufah", "Menyusun kaidah ilmu Nahwu"],
+                ans: 1,
+                info: "Umar bin Khattab melembagakan Baitul Mal untuk mengelola pemasukan dan pengeluaran negara secara terstruktur."
+            },
+            {
+                q: "3. Atas usul siapakah Khalifah Utsman bin Affan melakukan standarisasi penulisan Mushaf Al-Qur'an (Mushaf Utsmani)?",
+                opts: ["Hudzaifah bin Yaman", "Muawiyah bin Abi Sufyan", "Amr bin Ash", "Abu Aswad Ad-Du'ali"],
+                ans: 0,
+                info: "Hudzaifah bin Yaman melaporkan perbedaan cara baca Al-Qur'an di wilayah Armenia dan Azerbaijan sehingga Utsman membakukan Mushaf Utsmani."
+            },
+            {
+                q: "4. Pada masa Khalifah Utsman bin Affan, angkatan laut Islam pertama kali dibentuk atas usulan gubernur Syam yang bernama...",
+                opts: ["Khalid bin Walid", "Sa'ad bin Abi Waqqash", "Muawiyah bin Abi Sufyan", "Abu Ubaidah bin Jarrah"],
+                ans: 2,
+                info: "Muawiyah bin Abi Sufyan mengusulkan pembentukan armada laut untuk menjaga wilayah pesisir Laut Tengah dari serangan Bizantium."
+            },
+            {
+                q: "5. Tokoh yang ditugaskan Khalifah Ali bin Abi Thalib untuk menyusun dasar-dasar ilmu Nahwu (tata bahasa Arab) adalah...",
+                opts: ["Zaid bin Tsabit", "Abu Aswad Ad-Du'ali", "Abdullah bin Mas'ud", "Imam Sibawaih"],
+                ans: 1,
+                info: "Abu Aswad Ad-Du'ali menyusun kaidah ilmu Nahwu atas perintah Ali bin Abi Thalib guna menjaga kemurnian bahasa Al-Qur'an."
+            }
+        ];
+
+        // ==========================================
+        // ENGINE RENDER & NAVIGASI FLIPBOOK
+        // ==========================================
+        let pagePointer = 0;
+        let currentCompareCat = 'politik';
+        let quizResponses = {};
+
+        function isWideScreen() {
+            return window.innerWidth >= 1024;
+        }
+
+        function renderFlipBook() {
+            const leftEl = document.getElementById('leftPage');
+            const rightEl = document.getElementById('rightPage');
+            const total = modulePages.length;
+            const wide = isWideScreen();
+
+            if (wide && pagePointer % 2 !== 0) {
+                pagePointer -= 1;
+            }
+
+            // Render Kiri / Mobile
+            leftEl.innerHTML = modulePages[pagePointer].render();
+            leftEl.classList.remove('flip-enter');
+            void leftEl.offsetWidth;
+            leftEl.classList.add('flip-enter');
+            leftEl.scrollTop = 0;
+
+            // Render Kanan (Desktop)
+            if (wide) {
+                if (pagePointer + 1 < total) {
+                    rightEl.innerHTML = modulePages[pagePointer + 1].render();
+                    rightEl.classList.remove('flip-enter');
+                    void rightEl.offsetWidth;
+                    rightEl.classList.add('flip-enter');
+                    rightEl.scrollTop = 0;
+                } else {
+                    rightEl.innerHTML = '';
+                }
+            }
+
+            // Inisialisasi sub-komponen jika halaman terkait sedang tampil
+            const visibleIndices = wide ? [pagePointer, pagePointer + 1] : [pagePointer];
+            if (visibleIndices.includes(7)) {
+                renderCompareGrid();
+            }
+            if (visibleIndices.includes(8)) {
+                renderQuizBox();
+            }
+
+            updateFooterControls();
+        }
+
+        function updateFooterControls() {
+            const total = modulePages.length;
+            const wide = isWideScreen();
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+            const label = document.getElementById('pageLabel');
+            const fill = document.getElementById('progressFill');
+
+            btnPrev.disabled = pagePointer === 0;
+
+            if (wide) {
+                const rightPageNum = Math.min(pagePointer + 2, total);
+                label.textContent = `Halaman ${pagePointer + 1}–${rightPageNum} dari ${total}`;
+                btnNext.disabled = pagePointer + 2 >= total;
+                fill.style.width = `${(rightPageNum / total) * 100}%`;
+            } else {
+                label.textContent = `Halaman ${pagePointer + 1} dari ${total}`;
+                btnNext.disabled = pagePointer + 1 >= total;
+                fill.style.width = `${((pagePointer + 1) / total) * 100}%`;
+            }
+        }
+
+        function nextPage() {
+            const step = isWideScreen() ? 2 : 1;
+            if (pagePointer + step < modulePages.length) {
+                pagePointer += step;
+                renderFlipBook();
+            }
+        }
+
+        function prevPage() {
+            const step = isWideScreen() ? 2 : 1;
+            if (pagePointer - step >= 0) {
+                pagePointer -= step;
+                renderFlipBook();
+            }
+        }
+
+        function jumpToPage(idx) {
+            pagePointer = idx;
+            renderFlipBook();
+            const modal = document.getElementById('tocModal');
+            if (!modal.classList.contains('hidden')) {
+                toggleModal('tocModal');
+            }
+        }
+
+        // ==========================================
+        // INTERAKSI KHUSUS TIAP HALAMAN
+        // ==========================================
+        function showFlowStep(idx) {
+            const box = document.getElementById('flowDetailBox');
+            const item = flowStepsData[idx];
+            if (box && item) {
+                box.innerHTML = `
+                    <p class="font-bold text-amber-900 mb-0.5">${item.title}</p>
+                    <p>${item.text}</p>
+                `;
+            }
+        }
+
+        function simDecision(opt) {
+            const res = document.getElementById('simResult');
+            if (!res) return;
+            res.classList.remove('hidden');
+            if (opt === 'A') {
+                res.innerHTML = `<strong>Keputusan Tepat!</strong> Di Saqifah Bani Sa'idah, kaum Anshar dan Muhajirin akhirnya bersepakat membaiat <strong>Abu Bakar Ash-Shiddiq</strong> karena senioritas, ketegasan, dan kedekatannya dengan Rasulullah SAW sehingga persatuan umat terselamatkan.`;
+            } else if (opt === 'B') {
+                res.innerHTML = `<strong>Berisiko Perpecahan:</strong> Usulan dua pemimpin sempat muncul di Saqifah, namun Umar bin Khattab mengingatkan bahwa dua kepemimpinan dalam satu negara akan melemahkan umat Islam.`;
+            } else {
+                res.innerHTML = `<strong>Sangat Berbahaya:</strong> Menunda kepemimpinan di tengah ancaman nabi palsu dan pembangkang zakat dapat meruntuhkan negara Islam yang baru berdiri.`;
+            }
+        }
+
+        function selectUmarReform(idx) {
+            const box = document.getElementById('umarReformBox');
+            const item = umarReforms[idx];
+            if (!box || !item) return;
+
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`umar-btn-${i}`);
+                if (btn) {
+                    btn.className = i === idx
+                        ? "p-2 rounded-xl bg-emeraldDark text-white text-xs font-bold text-center shadow transition cursor-pointer"
+                        : "p-2 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 text-slate-700 text-xs font-bold text-center transition cursor-pointer";
+                }
+            }
+
+            box.innerHTML = `
+                <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark mb-1">${item.title}</h3>
+                <p class="text-xs text-slate-600 leading-relaxed">${item.desc}</p>
+            `;
+        }
+
+        function setCompareCategory(cat) {
+            currentCompareCat = cat;
+            ['politik', 'ilmu', 'ekonomi'].forEach(c => {
+                const btn = document.getElementById(`cat-${c}`);
+                if (btn) {
+                    btn.className = c === cat
+                        ? "px-3 py-1.5 rounded-xl text-xs font-bold bg-emeraldDark text-white shadow cursor-pointer"
+                        : "px-3 py-1.5 rounded-xl text-xs font-bold bg-stone-200 text-slate-700 hover:bg-stone-300 cursor-pointer";
+                }
+            });
+            renderCompareGrid();
+        }
+
+        function renderCompareGrid() {
+            const grid = document.getElementById('compareGrid');
+            if (!grid) return;
+            const list = compareMatrixData[currentCompareCat] || [];
+            grid.innerHTML = list.map(item => `
+                <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-1 mb-1">
+                            <span class="text-xs font-extrabold text-emeraldDark">${item.name}</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 shrink-0">${item.badge}</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">${item.text}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderQuizBox() {
+            const box = document.getElementById('quizBox');
+            if (!box) return;
+
+            box.innerHTML = quizItems.map((item, qIdx) => {
+                const chosen = quizResponses[qIdx];
+                const isAnswered = chosen !== undefined;
+                return `
+                    <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs">
+                        <p class="text-xs font-bold text-slate-800 mb-2">${item.q}</p>
+                        <div class="space-y-1">
+                            ${item.opts.map((opt, oIdx) => {
+                                let style = "bg-stone-50 hover:bg-emeraldLight border-stone-200 text-slate-700";
+                                if (isAnswered) {
+                                    if (oIdx === item.ans) style = "bg-emerald-100 border-emerald-500 text-emerald-950 font-bold";
+                                    else if (oIdx === chosen) style = "bg-red-100 border-red-400 text-red-900";
+                                    else style = "bg-stone-50 border-stone-200 text-slate-400";
+                                }
+                                return `
+                                    <button onclick="pickQuizAns(${qIdx}, ${oIdx})" class="w-full text-left text-xs px-3 py-1.5 rounded-lg border transition cursor-pointer ${style}">
+                                        ${String.fromCharCode(65 + oIdx)}. ${opt}
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+                        ${isAnswered ? `
+                            <div class="mt-2 text-[11px] p-2 rounded-lg ${chosen === item.ans ? 'bg-emeraldLight text-emeraldDark' : 'bg-amber-50 text-amber-900'}">
+                                <strong>${chosen === item.ans ? 'Benar!' : 'Pembahasan:'}</strong> ${item.info}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+
+            const scoreEl = document.getElementById('scoreDisplay');
+            if (scoreEl) {
+                let correctCount = 0;
+                quizItems.forEach((it, idx) => {
+                    if (quizResponses[idx] === it.ans) correctCount++;
+                });
+                scoreEl.textContent = `Skor: ${correctCount * 20} / 100`;
+            }
+        }
+
+        function pickQuizAns(qIdx, oIdx) {
+            quizResponses[qIdx] = oIdx;
+            renderQuizBox();
+        }
+
+        // ==========================================
+        // UTILITAS MODAL, TOC, KEYBOARD & TOUCH SWIPE
+        // ==========================================
+        function populateTOC() {
+            const tocGrid = document.getElementById('tocGrid');
+            tocGrid.innerHTML = modulePages.map((p, idx) => `
+                <button onclick="jumpToPage(${idx})" class="text-left p-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-stone-200 flex items-center gap-2.5 transition cursor-pointer">
+                    <span class="w-6 h-6 rounded-lg bg-emeraldDark text-goldBright text-xs font-extrabold flex items-center justify-center shrink-0">${p.num}</span>
+                    <span class="text-xs font-bold text-slate-800 truncate">${p.title}</span>
+                </button>
+            `).join('');
+        }
+
+        function toggleModal(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                el.classList.add('flex');
+            } else {
+                el.classList.add('hidden');
+                el.classList.remove('flex');
+            }
+        }
+
+        function copyEmbedCode() {
+            const box = document.getElementById('embedCodeBox');
+            box.select();
+            box.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            const toast = document.getElementById('copyToast');
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+
+        // Keyboard Arrow Support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowLeft') prevPage();
+        });
+
+        // Touch Swipe Support
+        let startX = 0;
+        const stage = document.getElementById('bookStage');
+        stage.addEventListener('touchstart', (e) => {
+            startX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        stage.addEventListener('touchend', (e) => {
+            const deltaX = startX - e.changedTouches[0].screenX;
+            if (Math.abs(deltaX) > 50) {
+                if (deltaX > 0) nextPage();
+                else prevPage();
+            }
+        }, { passive: true });
+
+        window.addEventListener('resize', renderFlipBook);
+
+        window.onload = function () {
+            populateTOC();
+            renderFlipBook();
+        };
+    </script>
+</body>
+</html>
