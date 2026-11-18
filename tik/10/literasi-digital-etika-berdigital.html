@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modul ajar interaktif TIK/Informatika Kelas 10 Fase E: literasi digital, etika berdigital, dan pelindungan data pribadi dengan pendekatan Kurikulum Merdeka dan deep learning.">
+    <title>Literasi Digital & Etika Berdigital • Modul TIK Kelas 10</title>
+
+    <!-- Tailwind CSS hasil build (terpusat, tanpa CDN) -->
+    <link rel="stylesheet" href="../../assets/css/output.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col antialiased portal-bg">
+
+    <!-- Header bersama -->
+    <div data-site-header data-base="../../" data-active="modul-ajar"></div>
+
+    <!-- Toolbar khusus modul -->
+    <header class="bg-emeraldDeep text-white border-b-2 border-goldBright shadow-md z-30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+                <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-goldBright to-goldWarm flex items-center justify-center text-emeraldDark shadow-sm shrink-0">
+                    <span data-icon="laptop-code" class="text-lg"></span>
+                </span>
+                <div class="min-w-0">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2 py-0.5 rounded-md bg-goldWarm text-white text-[10px] font-extrabold uppercase tracking-wider">TIK • Kelas X</span>
+                        <span class="text-[11px] font-semibold text-emerald-200">Kurikulum Merdeka • Fase E • Deep Learning</span>
+                    </div>
+                    <h1 class="font-bold text-sm sm:text-base md:text-lg tracking-tight leading-tight truncate">
+                        Literasi Digital & Etika Berdigital: Cakap Menyaring Informasi
+                    </h1>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="hidden sm:block w-36">
+                    <p id="progressTeks" class="text-[10px] font-bold text-amber-200 mb-1">Langkah 1 dari 6</p>
+                    <div class="w-full bg-emerald-950/60 h-2 rounded-full overflow-hidden">
+                        <div id="progressFill" class="bg-gradient-to-r from-goldBright to-goldWarm h-full rounded-full transition-all duration-300" style="width: 16.7%"></div>
+                    </div>
+                </div>
+                <button onclick="bukaLangkah(5)" class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-bold transition cursor-pointer">
+                    Sumber & Rujukan
+                </button>
+                <a href="../../index.html#modul-ajar" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-bold transition cursor-pointer">
+                    <span data-icon="house"></span><span class="hidden md:inline">Portal</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigasi langkah deep learning -->
+    <nav class="bg-white/90 backdrop-blur-sm border-b border-creamBorder z-20" aria-label="Langkah pembelajaran">
+        <div class="max-w-6xl mx-auto px-3 sm:px-6 py-2.5">
+            <div class="flex gap-2 overflow-x-auto thin-scroll pb-1">
+                <button onclick="bukaLangkah(0)" id="step-btn-0" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">1. Pretest</button>
+                <button onclick="bukaLangkah(1)" id="step-btn-1" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">2. Pilar Materi</button>
+                <button onclick="bukaLangkah(2)" id="step-btn-2" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">3. Lab Analisis</button>
+                <button onclick="bukaLangkah(3)" id="step-btn-3" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">4. Simulasi Izin</button>
+                <button onclick="bukaLangkah(4)" id="step-btn-4" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">5. Buat Produk</button>
+                <button onclick="bukaLangkah(5)" id="step-btn-5" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">6. Refleksi & Posttest</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 1 — PRETEST DIAGNOSTIK                               -->
+        <!-- ============================================================ -->
+        <section id="langkah-0" class="step-panel animate-fade-up space-y-5">
+            <div class="bg-gradient-to-br from-emeraldDark via-emeraldDeep to-emerald-900 text-white rounded-3xl p-6 sm:p-8 shadow-lg relative overflow-hidden islamic-pattern">
+                <div class="relative z-10 max-w-3xl">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-amber-200 text-[11px] font-extrabold uppercase tracking-wider mb-3">
+                        <span data-icon="clipboard-question"></span> Tahap 1 • Diagnostik Awal
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight mb-2">
+                        Seberapa siap kamu menyaring informasi di ruang digital?
+                    </h2>
+                    <p class="text-sm text-emerald-100 leading-relaxed">
+                        Jawab 4 pertanyaan berikut dengan jujur. Ini bukan ulangan—jawabanmu dipakai untuk memetakan pemahaman awal dan memandu langkah berikutnya.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Pretest Diagnostik</p>
+                        <h3 class="text-lg font-extrabold text-emeraldDark">4 situasi digital sehari-hari</h3>
+                    </div>
+                    <span class="text-xs text-slate-500">Pilih satu jawaban per soal, lalu tekan periksa.</span>
+                </div>
+                <div id="pretestContainer" class="p-5 sm:p-7 space-y-5"></div>
+                <div class="px-5 sm:px-7 pb-6 flex flex-wrap items-center justify-between gap-3 border-t border-creamBorder pt-4">
+                    <p id="pretestHasil" class="text-xs font-bold text-slate-500">Belum dijawab.</p>
+                    <div class="flex gap-2">
+                        <button onclick="ulangPretest()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Ulangi</button>
+                        <button onclick="periksaPretest()" class="px-4 py-2 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold shadow transition cursor-pointer">Periksa Jawaban</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-5 flex gap-3">
+                <span data-icon="lightbulb" class="text-goldWarm text-xl mt-0.5"></span>
+                <div class="text-xs sm:text-sm text-amber-900 leading-relaxed">
+                    <strong class="block mb-1">Kenapa ini disebut deep learning?</strong>
+                    Kamu tidak hanya menghafal definisi. Kamu menganalisis situasi, menimbang risiko, lalu nanti akan memproduksi panduan sendiri. Pemahaman muncul dari penggunaan informasi, bukan dari mengingatnya.
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button onclick="bukaLangkah(1)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">
+                    Lanjut ke Materi <span data-icon="arrow-right"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 2 — EMPAT PILAR LITERASI DIGITAL                     -->
+        <!-- ============================================================ -->
+        <section id="langkah-1" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div>
+                    <p class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-goldWarm">Tahap 2 • Membangun Konsep</p>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-emeraldDark mt-1">Empat pilar literasi digital</h2>
+                    <div class="gold-divider w-24 mt-3"></div>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-500 max-w-md">Klik setiap pilar untuk membuka penjelasan, contoh, dan tautan sumbernya.</p>
+            </div>
+
+            <div id="pilarGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+
+            <div id="pilarDetail" class="bg-white rounded-3xl border-2 border-creamBorder shadow-sm p-5 sm:p-7 min-h-[190px]">
+                <!-- Diisi oleh pilihan siswa -->
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-3">
+                <div class="bg-emeraldLight/70 border border-emerald-200 rounded-2xl p-4">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wide text-emeraldMid mb-1">Pahami</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Mengurai mengapa informasi pun bisa menyesatkan, bukan sekadar tahu ciri-cirinya.</p>
+                </div>
+                <div class="bg-emeraldLight/70 border border-emerald-200 rounded-2xl p-4">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wide text-emeraldMid mb-1">Terapkan</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Memakai kriteria pada kasus baru: postingan, izin aplikasi, dan pesan berantai.</p>
+                </div>
+                <div class="bg-emeraldLight/70 border border-emerald-200 rounded-2xl p-4">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wide text-emeraldMid mb-1">Transfer</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Membawa kebiasaan cakap digital ke luar kelas—ke grup keluarga dan teman sebaya.</p>
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="bukaLangkah(0)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali</button>
+                <button onclick="bukaLangkah(2)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">Masuk Lab Analisis <span data-icon="arrow-right"></span></button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 3 — LAB ANALISIS HOAKS                               -->
+        <!-- ============================================================ -->
+        <section id="langkah-2" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Tahap 3 • Lab Analisis</p>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Bongkar postingan mencurigakan</h3>
+                    <p class="text-xs text-slate-500 mt-1">Perhatikan unggahan berikut, lalu centang semua tanda yang menurutmu patut dicurigai.</p>
+                </div>
+
+                <div class="p-5 sm:p-7 grid lg:grid-cols-2 gap-5">
+                    <div class="bg-slate-50 rounded-2xl border border-slate-200 p-4 sm:p-5">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-goldWarm to-goldBright text-white flex items-center justify-center font-extrabold text-sm shrink-0">KA</div>
+                            <div class="min-w-0">
+                                <p class="font-bold text-sm text-slate-800 truncate">@kesehatan_cepat_official</p>
+                                <p class="text-[11px] text-slate-400">Akun dibuat 3 hari lalu • 212 ribu pengikut</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+                            <p class="text-sm sm:text-base font-extrabold text-slate-800 leading-snug">
+                                BREAKING ‼️ Minum kopi pahit terbukti menyembuhkan diabetes dalam 3 hari! 🍵
+                            </p>
+                            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                Dokter-dokter tidak memberi tahu ini kepada kamu. Share sekarang sebelum statusnya dihapus admin! ⏳👇
+                            </p>
+                            <div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-4 text-[11px] font-bold text-slate-400">
+                                <span>❤️ 18,4 rb</span><span>🔁 42,1 rb</span><span>💬 3.208</span>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-3">Ilustrasi kasus buatan untuk keperluan pembelajaran.</p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs font-extrabold uppercase tracking-wide text-emeraldMid mb-3">Tanda yang perlu dicurigai:</p>
+                        <div id="analisisPilihan" class="space-y-2"></div>
+                        <button onclick="periksaAnalisis()" class="mt-4 w-full py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold shadow transition cursor-pointer">
+                            Periksa Analisis Saya
+                        </button>
+                        <div id="analisisHasil" class="hidden mt-4 rounded-xl border p-4 text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-5 flex gap-3">
+                <span data-icon="scale-balanced" class="text-goldWarm text-xl mt-0.5"></span>
+                <p class="text-xs sm:text-sm text-amber-900 leading-relaxed">
+                    <strong class="block mb-1">Kriteria cepat: SUMBER – WAKTU – BUKTI – EMOSI.</strong>
+                    Cek siapa yang mengatakan, kapan informasi itu muncul, bukti apa yang dilampirkan, dan apakah pesan memaksamu bereaksi cepat karena takut atau marah.
+                </p>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="bukaLangkah(1)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali</button>
+                <button onclick="bukaLangkah(3)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">Lanjut Simulasi <span data-icon="arrow-right"></span></button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 4 — SIMULASI IZIN APLIKASI                           -->
+        <!-- ============================================================ -->
+        <section id="langkah-3" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Tahap 4 • Simulasi Keamanan</p>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Kamu install aplikasi kamera. Izin mana yang diberikan?</h3>
+                    <p class="text-xs text-slate-500 mt-1">Terapkan prinsip <strong>least privilege</strong>: berikan hanya akses yang benar-benar diperlukan.</p>
+                </div>
+
+                <div class="p-5 sm:p-7 grid lg:grid-cols-3 gap-5">
+                    <div id="izinList" class="lg:col-span-2 space-y-3"></div>
+
+                    <aside class="bg-emeraldDark text-white rounded-2xl p-5 flex flex-col justify-between">
+                        <div>
+                            <p class="text-[11px] font-extrabold uppercase tracking-wider text-amber-200">Skor risiko sementara</p>
+                            <p id="risikoAngka" class="text-4xl font-extrabold text-goldBright mt-1">65</p>
+                            <p id="risikoLabel" class="text-xs font-bold text-emerald-100 mt-1">Tinggi</p>
+                            <div class="w-full bg-emerald-950/60 h-3 rounded-full overflow-hidden mt-4">
+                                <div id="risikoBar" class="h-full bg-gradient-to-r from-goldBright to-goldWarm rounded-full transition-all duration-300" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <p id="risikoNasihat" class="text-[11px] text-emerald-100 leading-relaxed mt-5">
+                            Ada izin yang tidak relevan masih dinyalakan. Matikan untuk menurunkan risiko.
+                        </p>
+                    </aside>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-creamBorder p-4 sm:p-5">
+                <label for="refleksiIzin" class="block text-xs font-extrabold text-emeraldDark mb-2">Refleksi singkat: mengapa kamu menolak satu izin?</label>
+                <textarea id="refleksiIzin" rows="2" placeholder="Contoh: aplikasi kamera tidak perlu mengetahui lokasiku untuk memotret." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none"></textarea>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="bukaLangkah(2)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali</button>
+                <button onclick="bukaLangkah(4)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">Buat Produk <span data-icon="arrow-right"></span></button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 5 — PRODUK SISWA                                     -->
+        <!-- ============================================================ -->
+        <section id="langkah-4" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Tahap 5 • Ciptakan</p>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Buat kartu panduan 30 detik</h3>
+                    <p class="text-xs text-slate-500 mt-1">Tulis 3 langkah agar temanmu tidak mudah tertipu informasi di media sosial.</p>
+                </div>
+
+                <div class="p-5 sm:p-7 grid lg:grid-cols-2 gap-5">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="langkahSatu" class="block text-xs font-extrabold text-emeraldDark mb-1.5">Langkah 1</label>
+                            <input id="langkahSatu" type="text" maxlength="90" placeholder="Contoh: Berhenti sebelum membagikan" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="langkahDua" class="block text-xs font-extrabold text-emeraldDark mb-1.5">Langkah 2</label>
+                            <input id="langkahDua" type="text" maxlength="90" placeholder="Contoh: Cek sumber dan tanggalnya" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="langkahTiga" class="block text-xs font-extrabold text-emeraldDark mb-1.5">Langkah 3</label>
+                            <input id="langkahTiga" type="text" maxlength="90" placeholder="Contoh: Bandingkan dengan 2 sumber tepercaya" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="audiensProduk" class="block text-xs font-extrabold text-emeraldDark mb-1.5">Untuk siapa kartu ini?</label>
+                            <select id="audiensProduk" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 bg-emeraldLight/50 text-sm font-bold text-emeraldDark focus:ring-2 focus:ring-emeraldMid focus:outline-none cursor-pointer">
+                                <option value="Teman sebaya">Teman sebaya</option>
+                                <option value="Keluarga">Keluarga</option>
+                                <option value="Warga sekolah">Warga sekolah</option>
+                                <option value="Publik media sosial">Publik media sosial</option>
+                            </select>
+                        </div>
+                        <button onclick="buatKartu()" class="w-full py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">
+                            Pratinjau Kartu Saya
+                        </button>
+                    </div>
+
+                    <div class="bg-creamPaper rounded-2xl border-2 border-creamBorder p-5 relative overflow-hidden">
+                        <div class="absolute -top-10 -right-10 w-32 h-32 hero-glow rounded-full pointer-events-none"></div>
+                        <div class="relative">
+                            <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-goldWarm">Kartu Cakap Digital</p>
+                            <h4 class="text-lg font-extrabold text-emeraldDark mt-1">Sebelum kamu Share…</h4>
+                            <div id="kartuPreview" class="mt-4 space-y-2.5">
+                                <p class="text-xs text-slate-400 italic">Isi tiga langkah di sebelah kiri, lalu tekan pratinjau.</p>
+                            </div>
+                            <div class="gold-divider my-4"></div>
+                            <p class="text-[11px] text-slate-500">Disusun untuk: <strong id="kartuAudiens" class="text-emeraldDark">Teman sebaya</strong></p>
+                            <div id="kartuAksi" class="hidden mt-4 flex gap-2">
+                                <button onclick="salinKartu()" class="flex-1 py-2.5 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold transition cursor-pointer">Salin Teks</button>
+                                <button onclick="simpanJurnal()" class="flex-1 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-emeraldDark text-xs font-extrabold transition cursor-pointer">Simpan ke Jurnal</button>
+                            </div>
+                            <p id="kartuPesan" class="hidden text-[11px] font-bold text-emeraldMid mt-3"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="bukaLangkah(3)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali</button>
+                <button onclick="bukaLangkah(5)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">Ukur Pemahaman <span data-icon="arrow-right"></span></button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 6 — REFLEKSI, POSTTEST & SUMBER                      -->
+        <!-- ============================================================ -->
+        <section id="langkah-5" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Tahap 6 • Ukur & Refleksi</p>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Posttest: apakah pemahamanmu berkembang?</h3>
+                </div>
+                <div id="posttestContainer" class="p-5 sm:p-7 space-y-5"></div>
+                <div class="px-5 sm:px-7 pb-6 pt-4 border-t border-creamBorder flex flex-wrap items-center justify-between gap-3">
+                    <p id="posttestHasil" class="text-xs font-bold text-slate-500">Belum dijawab.</p>
+                    <button onclick="periksaPosttest()" class="px-4 py-2 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold shadow transition cursor-pointer">Lihat Hasil Belajar</button>
+                </div>
+            </div>
+
+            <div id="hasilAkhir" class="hidden bg-gradient-to-br from-emeraldDark to-emeraldDeep text-white rounded-3xl p-6 sm:p-7 shadow-lg">
+                <p class="text-[11px] font-extrabold uppercase tracking-wider text-amber-200">Ringkasan Pembelajaran</p>
+                <div class="mt-3 grid sm:grid-cols-3 gap-3">
+                    <div class="bg-white/10 border border-white/15 rounded-xl p-4">
+                        <p class="text-[11px] text-emerald-100">Pretest</p>
+                        <p id="ringkasanPretest" class="text-2xl font-extrabold text-goldBright">–</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/15 rounded-xl p-4">
+                        <p class="text-[11px] text-emerald-100">Posttest</p>
+                        <p id="ringkasanPosttest" class="text-2xl font-extrabold text-goldBright">–</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/15 rounded-xl p-4">
+                        <p class="text-[11px] text-emerald-100">Pertumbuhan</p>
+                        <p id="ringkasanGrowth" class="text-2xl font-extrabold text-goldBright">–</p>
+                    </div>
+                </div>
+                <p id="ringkasanNasihat" class="text-xs sm:text-sm text-emerald-100 mt-4 leading-relaxed"></p>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm p-5 sm:p-7">
+                <label for="refleksiAkhir" class="block text-xs font-extrabold text-emeraldDark mb-2">Jurnal refleksi: apa satu kebiasaan digital yang akan kamu ubah mulai hari ini?</label>
+                <textarea id="refleksiAkhir" rows="3" placeholder="Tuliskan komitmenmu..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none"></textarea>
+                <div class="mt-3 flex flex-wrap items-center justify-between gap-2">
+                    <p id="pesanSimpan" class="text-[11px] font-bold text-emeraldMid"></p>
+                    <button onclick="simpanJurnalAkhir()" class="px-4 py-2 rounded-xl bg-goldWarm hover:bg-amber-700 text-white text-xs font-extrabold transition cursor-pointer">Simpan Jurnal Belajar</button>
+                </div>
+            </div>
+
+            <div id="sumber" class="bg-creamPaper rounded-3xl border-2 border-creamBorder p-5 sm:p-7">
+                <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Sumber & Rujukan</p>
+                <h3 class="text-lg font-extrabold text-emeraldDark mt-1">Bahan pembelajaran merujuk pada:</h3>
+                <ol class="mt-4 space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed list-decimal list-inside">
+                    <li>
+                        <strong>Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi.</strong> Kurikulum Merdeka (Fase E) &mdash; kerangka pembelajaran mendalam dan Profil Pelajar Pancasila.
+                        <a href="https://kurikulum.kemdikbud.go.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">kurikulum.kemdikbud.go.id</a>
+                    </li>
+                    <li>
+                        <strong>Kementerian Komunikasi dan Digital (Komdigi), Pusbang Literasi Digital.</strong> Makin Cakap Digital &mdash; empat pilar: Kemampuan, Etika, Budaya, dan Keamanan Berdigital.
+                        <a href="https://literasidigital.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">literasidigital.id</a>
+                    </li>
+                    <li>
+                        <strong>UNESCO</strong> (dikutip dalam literasidigital.id): literasi digital mencakup kemampuan mengakses, memahami, membuat, mengomunikasikan, dan mengevaluasi informasi melalui teknologi digital.
+                    </li>
+                    <li>
+                        <strong>Undang-Undang Republik Indonesia Nomor 27 Tahun 2022</strong> tentang Pelindungan Data Pribadi &mdash; dasar pengambilan keputusan pada simulasi izin aplikasi.
+                        <a href="https://peraturan.bpk.go.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">JDIH BPK RI</a>
+                    </li>
+                    <li>
+                        <strong>Permendikbudristek Nomor 7 Tahun 2022</strong> tentang Standar Isi pada Pendidikan Anak Usia Dini, Dasar, dan Menengah.
+                        <a href="https://peraturan.bpk.go.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">JDIH BPK RI</a>
+                    </li>
+                </ol>
+                <p class="text-[11px] text-slate-400 mt-4">Tautan diakses pada 18 November 2026. Ilustrasi postingan dan skenario izin dibuat untuk keperluan simulasi kelas.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-between gap-2">
+                <button onclick="bukaLangkah(4)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali ke Produk</button>
+                <a href="../../index.html#modul-ajar" class="px-4 py-2.5 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold transition cursor-pointer">Selesai & Kembali ke Portal</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer bersama -->
+    <div data-site-footer data-base="../../"></div>
+
+    <div id="toastModul" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2.5 rounded-xl bg-emeraldDark text-white text-xs font-bold shadow-xl border border-goldBright">
+        Berhasil disalin!
+    </div>
+
+    <!-- Skrip bersama -->
+    <script src="../../assets/js/data.js"></script>
+    <script src="../../assets/js/icons.js"></script>
+    <script src="../../assets/js/components.js"></script>
+
+    <!-- Logika modul -->
+    <script>
+        /* ============================================================
+           DATA KONTEN
+           ============================================================ */
+        const KUNCI_SIMPAN = 'modul-tik-literasi-digital-v1';
+
+        const soalPretest = [
+            {
+                pertanyaan: 'Kamu menerima pesan: "Promo gratis HP, klik di sini sekarang!" dari nomor tak dikenal. Apa tindakan paling bijak?',
+                opsi: [
+                    'Klik segera karena takut kehabisan',
+                    'Cek sumber tautan dan jangan beri data pribadi',
+                    'Teruskan ke semua teman agar mereka tahu',
+                    'Balas dengan nama lengkap dan alamat'
+                ],
+                jawaban: 1,
+                alasan: 'Tautan dari sumber tidak jelas berisiko phishing. Verifikasi sumber dan jangan pernah memberikan data pribadi lewat pesan semacam ini.'
+            },
+            {
+                pertanyaan: 'Manakah yang termasuk data pribadi berdasarkan UU No. 27 Tahun 2022?',
+                opsi: [
+                    'Judul berita di portal sekolah',
+                    'Warna favorit pada polling kelas',
+                    'Nama lengkap beserta nomor telepon',
+                    'Nama mata pelajaran di jadwal'
+                ],
+                jawaban: 2,
+                alasan: 'Data pribadi adalah data tentang orang yang teridentifikasi atau dapat diidentifikasi, seperti nama lengkap, nomor telepon, dan alamat.'
+            },
+            {
+                pertanyaan: 'Akun baru dengan ratusan ribu pengikut hanya membagikan satu produk tanpa sumber. Apa yang paling tepat?',
+                opsi: [
+                    'Percaya karena jumlah pengikutnya besar',
+                    'Langsung membeli agar tidak kehabisan',
+                    'Cek jejak akun dan bandingkan dengan sumber lain',
+                    'Laporkan akun tanpa membaca isinya'
+                ],
+                jawaban: 2,
+                alasan: 'Jumlah pengikut bukan jaminan kredibilitas. Telusuri jejak digital dan bandingkan informasi dengan sumber tepercaya lain.'
+            },
+            {
+                pertanyaan: 'Sikap yang mencerminkan Budaya Berdigital adalah …',
+                opsi: [
+                    'Mengomentari dengan hinaan agar cepat viral',
+                    'Menghormati perbedaan dan tidak menyebar ujaran kebencian',
+                    'Menyalin karya orang lain tanpa atribusi',
+                    'Mengabaikan etika demi banyak likes'
+                ],
+                jawaban: 1,
+                alasan: 'Budaya Berdigital menekankan kesadaran akan nilai Pancasila, keberagaman, dan tata krama saat berinteraksi di ruang digital.'
+            }
+        ];
+
+        const soalPosttest = [
+            {
+                pertanyaan: 'Artikel riset dibagikan ulang influencer tanpa mencantumkan penulis aslinya. Apa langkah paling tepat sebelum membagikannya kembali?',
+                opsi: [
+                    'Bagikan saja karena isinya sudah benar',
+                    'Lacak ke sumber asli dan sertakan atribusi',
+                    'Ubah judulnya agar terlihat seperti karyamu',
+                    'Hapus komentar yang meminta sumber'
+                ],
+                jawaban: 1,
+                alasan: 'Transfer pemahaman: menghargai karya berarti menelusuri sumber dan mencantumkan atribusi, bukan hanya menyalin konten.'
+            },
+            {
+                pertanyaan: 'Aplikasi kamera meminta akses kontak dan lokasi padahal kamu hanya ingin memotret. Keputusan terbaik:',
+                opsi: [
+                    'Izinkan semua agar aplikasi bekerja maksimal',
+                    'Izinkan lokasi saja, tolak kontak',
+                    'Tolak izin yang tidak relevan dengan fitur',
+                    'Berikan akses penuh lalu hapus setelah dipakai'
+                ],
+                jawaban: 2,
+                alasan: 'Prinsip least privilege: berikan hanya izin yang diperlukan. Akses kontak dan lokasi tidak relevan untuk memotret.'
+            },
+            {
+                pertanyaan: 'Hoaks sudah viral di grup keluarga. Respons yang paling mencerminkan pemahaman mendalam adalah …',
+                opsi: [
+                    'Ikut membagikan agar semua orang waspada',
+                    'Diam saja supaya tidak berkonflik',
+                    'Koreksi dengan sopan sertakan sumber valid',
+                    'Menertawakan orang yang mempercayainya'
+                ],
+                jawaban: 2,
+                alasan: 'Deep learning ditunjukkan dengan tindakan perbaikan: mengoreksi secara empatik sekaligus menyediakan bukti yang dapat dicek.'
+            },
+            {
+                pertanyaan: 'Pemahaman mendalam dalam modul ini paling tepat ditunjukkan dengan …',
+                opsi: [
+                    'Menghafal empat pilar literasi digital',
+                    'Menuliskan definisi pilar tanpa contoh',
+                    'Menggunakan kriteria untuk keputusan baru dan menjelaskan alasannya',
+                    'Mengulang penjelasan guru kata demi kata'
+                ],
+                jawaban: 2,
+                alasan: 'Pemahaman mendalam terjadi ketika konsep dipakai pada situasi baru, dievaluasi, dan dapat dijelaskan kembali dengan alasan.'
+            }
+        ];
+
+        const pilar = [
+            {
+                nama: 'Kemampuan Berdigital',
+                icon: 'laptop-code',
+                ringkas: 'Menguasai perangkat, perangkat lunak, dan sistem digital secara percaya diri.',
+                detail: 'Kamu tidak hanya bisa membuka aplikasi, tetapi juga memahami cara kerja dasarnya: dari filter pencarian, pengaturan privasi, sampai mengenali ketika sebuah tampilan bisa menipu.',
+            },
+            {
+                nama: 'Etika Berdigital',
+                icon: 'scale-balanced',
+                ringkas: 'Menjaga tata krama, menghargai karya orang lain, dan bersikap jujur.',
+                detail: 'Netiquette berlaku juga di dunia maya. Meminta izin sebelum membagikan foto, mencantumkan sumber, dan tidak menyebarkan ujaran kebencian adalah bentuk nyata etika digital.'
+            },
+            {
+                nama: 'Budaya Berdigital',
+                icon: 'users',
+                ringkas: 'Menguatkan nilai Pancasila, keberagaman, dan cinta tanah air di ruang digital.',
+                detail: 'Konten yang kamu bagikan mencerminkan siapa kamu. Menghormati perbedaan, menghindari polarisasi, dan mengangkat karya lokal adalah cara menjaga budaya digital yang sehat.'
+            },
+            {
+                nama: 'Keamanan Berdigital',
+                icon: 'shield-check',
+                ringkas: 'Mengenali ancaman, menjaga data pribadi, dan mengambil keputusan aman.',
+                detail: 'Keamanan bukan sekadar password yang kuat. Kamu perlu membaca izin aplikasi, mengenali phishing, dan memahami bahwa data pribadi dilindungi oleh UU No. 27 Tahun 2022.'
+            }
+        ];
+
+        const tandaHoaks = [
+            { teks: 'Memakai kata "BREAKING" dan tanda seru berlebihan', red: true, alasan: 'Kata sensasional dipakai untuk memicu reaksi cepat sebelum pembaca sempat berpikir.' },
+            { teks: 'Tidak ada nama penulis, tanggal, atau sumber riset', red: true, alasan: 'Informasi kesehatan yang valid seharusnya memiliki penulis, institusi, dan rujukan yang dapat dilacak.' },
+            { teks: 'Mendesak membagikan "sebelum dihapus admin"', red: true, alasan: 'Tekanan waktu adalah teknik manipulasi supaya verifikasi dilewati.' },
+            { teks: 'Menjanjikan penyembuhan instan tanpa bukti', red: true, alasan: 'Klaim medis memerlukan bukti ilmiah dan tidak boleh dijadikan promosi instan.' },
+            { teks: 'Menyertakan tautan ke jurnal atau situs resmi', red: false, alasan: 'Keberadaan sumber yang dapat dicek justru merupakan tanda informasi lebih tepercaya.' }
+        ];
+
+        const izinAplikasi = [
+            { id: 'lokasi', nama: 'Akses lokasi presisi', perlu: false, risiko: 25, alasan: 'Aplikasi kamera tidak memerlukan lokasi presisi untuk memotret.' },
+            { id: 'kamera', nama: 'Akses kamera', perlu: true, risiko: 5, alasan: 'Ini adalah izin inti sesuai fungsi aplikasi.' },
+            { id: 'kontak', nama: 'Akses daftar kontak', perlu: false, risiko: 30, alasan: 'Tidak ada fitur yang membutuhkan daftar kontak dalam simulasi ini.' },
+            { id: 'notifikasi', nama: 'Kirim notifikasi', perlu: true, risiko: 5, alasan: 'Notifikasi membantu pengingat pengaturan dan bukan data sensitif.' }
+        ];
+
+        /* ============================================================
+           STATE & PENYIMPANAN
+           ============================================================ */
+        let state = {
+            langkah: 0,
+            pretest: [null, null, null, null],
+            posttest: [null, null, null, null],
+            pretestSelesai: false,
+            posttestSelesai: false,
+            izin: { lokasi: true, kamera: true, kontak: true, notifikasi: true },
+            kartu: ['', '', ''],
+            audiens: 'Teman sebaya',
+            jurnalIzin: '',
+            jurnalAkhir: ''
+        };
+
+        function muatState() {
+            try {
+                const data = localStorage.getItem(KUNCI_SIMPAN);
+                if (!data) return;
+                const simpan = JSON.parse(data);
+                state = Object.assign(state, simpan);
+            } catch (e) { /* abaikan penyimpanan rusak */ }
+        }
+
+        function simpanState() {
+            try { localStorage.setItem(KUNCI_SIMPAN, JSON.stringify(state)); } catch (e) { /* abaikan */ }
+        }
+
+        /* ============================================================
+           NAVIGASI LANGKAH
+           ============================================================ */
+        function bukaLangkah(index) {
+            state.langkah = Math.max(0, Math.min(5, index));
+            document.querySelectorAll('.step-panel').forEach((panel, i) => {
+                panel.classList.toggle('hidden', i !== state.langkah);
+            });
+            document.querySelectorAll('.step-btn').forEach((btn, i) => {
+                const aktif = i === state.langkah;
+                btn.className = aktif
+                    ? 'step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer bg-emeraldDark text-white shadow-sm'
+                    : 'step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer bg-white text-emeraldDark border border-creamBorder hover:bg-emeraldLight';
+            });
+            document.getElementById('progressTeks').textContent = `Langkah ${state.langkah + 1} dari 6`;
+            document.getElementById('progressFill').style.width = `${((state.langkah + 1) / 6) * 100}%`;
+            simpanState();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ============================================================
+           RENDER PRETEST & POSTTEST
+           ============================================================ */
+        function renderSoal(soal, stateKey, containerId) {
+            document.getElementById(containerId).innerHTML = soal.map((item, i) => `
+                <div class="rounded-2xl border border-creamBorder p-4 sm:p-5 bg-white">
+                    <p class="text-xs font-extrabold uppercase tracking-wide text-goldWarm mb-1">Soal ${i + 1}</p>
+                    <p class="text-sm font-bold text-emeraldDark leading-snug">${item.pertanyaan}</p>
+                    <div class="mt-3 grid gap-2">
+                        ${item.opsi.map((opsi, o) => `
+                            <label class="opsi-${stateKey}-${i}-${o} flex items-start gap-2.5 px-3 py-2 rounded-xl border border-stone-200 hover:bg-emeraldLight/50 cursor-pointer transition">
+                                <input type="radio" name="${stateKey}-${i}" value="${o}" class="mt-0.5 accent-emeraldMid" ${state[stateKey][i] === o ? 'checked' : ''} onchange="pilihJawaban('${stateKey}', ${i}, ${o})">
+                                <span class="text-xs sm:text-sm text-slate-700 leading-snug">${opsi}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div id="alasan-${stateKey}-${i}" class="hidden mt-3 rounded-xl px-3.5 py-2.5 text-[11px] sm:text-xs leading-relaxed"></div>
+                </div>
+            `).join('');
+        }
+
+        function pilihJawaban(stateKey, i, o) {
+            state[stateKey][i] = o;
+            simpanState();
+        }
+
+        function skor(soal, jawaban) {
+            return soal.reduce((total, item, i) => total + (jawaban[i] === item.jawaban ? 1 : 0), 0);
+        }
+
+        function tampilkanPembahasan(soal, stateKey, jawaban) {
+            soal.forEach((item, i) => {
+                const box = document.getElementById(`alasan-${stateKey}-${i}`);
+                if (!box) return;
+                const benar = jawaban[i] === item.jawaban;
+                box.classList.remove('hidden');
+                box.className = benar
+                    ? 'mt-3 rounded-xl px-3.5 py-2.5 text-[11px] sm:text-xs leading-relaxed bg-emeraldLight border border-emerald-200 text-emeraldDeep'
+                    : 'mt-3 rounded-xl px-3.5 py-2.5 text-[11px] sm:text-xs leading-relaxed bg-amber-50 border border-amber-200 text-amber-900';
+                box.innerHTML = `<strong>${benar ? 'Tepat.' : 'Perlu diperhatikan.'}</strong> Jawaban yang paling tepat: <strong>${item.opsi[item.jawaban]}</strong>. ${item.alasan}`;
+
+                item.opsi.forEach((_, o) => {
+                    const label = document.querySelector(`.opsi-${stateKey}-${i}-${o}`);
+                    if (!label) return;
+                    label.classList.remove('border-emeraldMid', 'bg-emeraldLight', 'border-amber-300', 'bg-amber-50');
+                    if (o === item.jawaban) label.classList.add('border-emeraldMid', 'bg-emeraldLight');
+                    if (o === jawaban[i] && o !== item.jawaban) label.classList.add('border-amber-300', 'bg-amber-50');
+                });
+            });
+        }
+
+        function periksaPretest() {
+            if (state.pretest.some(x => x === null)) {
+                document.getElementById('pretestHasil').textContent = 'Lengkapi keempat jawaban dulu, ya.';
+                return;
+            }
+            state.pretestSelesai = true;
+            const nilai = skor(soalPretest, state.pretest);
+            document.getElementById('pretestHasil').innerHTML = `Pretest selesai: <strong class="text-emeraldDark">${nilai} dari 4</strong>. Lihat pembahasan di bawah setiap soal.`;
+            tampilkanPembahasan(soalPretest, 'pretest', state.pretest);
+            simpanState();
+        }
+
+        function ulangPretest() {
+            state.pretest = [null, null, null, null];
+            state.pretestSelesai = false;
+            renderSoal(soalPretest, 'pretest', 'pretestContainer');
+            document.getElementById('pretestHasil').textContent = 'Belum dijawab.';
+            simpanState();
+        }
+
+        function periksaPosttest() {
+            if (state.posttest.some(x => x === null)) {
+                document.getElementById('posttestHasil').textContent = 'Lengkapi keempat jawaban dulu, ya.';
+                return;
+            }
+            state.posttestSelesai = true;
+            const nilaiPost = skor(soalPosttest, state.posttest);
+            const nilaiPre = state.pretestSelesai ? skor(soalPretest, state.pretest) : null;
+            document.getElementById('posttestHasil').innerHTML = `Posttest: <strong class="text-emeraldDark">${nilaiPost} dari 4</strong>.`;
+            tampilkanPembahasan(soalPosttest, 'posttest', state.posttest);
+
+            document.getElementById('hasilAkhir').classList.remove('hidden');
+            document.getElementById('ringkasanPretest').textContent = nilaiPre === null ? '–' : `${nilaiPre}/4`;
+            document.getElementById('ringkasanPosttest').textContent = `${nilaiPost}/4`;
+            const growth = nilaiPre === null ? '–' : `${nilaiPost - nilaiPre >= 0 ? '+' : ''}${nilaiPost - nilaiPre}`;
+            document.getElementById('ringkasanGrowth').textContent = growth;
+            document.getElementById('ringkasanNasihat').textContent = nilaiPost >= 3
+                ? 'Pemahamanmu sudah kuat. Tant berikutnya: ajarkan kriteria ini kepada orang di sekitarmu—itu disebut transfer pengetahuan.'
+                : 'Masih ada konsep yang perlu diperkuat. Ulangi Lab Analisis dan perhatikan kembali kriteria SUMBER – WAKTU – BUKTI – EMOSI.';
+            simpanState();
+        }
+
+        /* ============================================================
+           PILAR MATERI
+           ============================================================ */
+        function renderPilar() {
+            document.getElementById('pilarGrid').innerHTML = pilar.map((p, i) => `
+                <button onclick="bukaPilar(${i})" id="pilar-btn-${i}" class="text-left p-4 rounded-2xl bg-white hover:bg-emeraldLight/60 border-2 border-creamBorder transition cursor-pointer">
+                    <span class="w-10 h-10 rounded-xl bg-emeraldLight text-emeraldDark flex items-center justify-center text-lg mb-3">
+                        <span data-icon="${p.icon}"></span>
+                    </span>
+                    <h4 class="font-extrabold text-sm text-emeraldDark leading-snug">${p.nama}</h4>
+                    <p class="text-[11px] text-slate-500 leading-relaxed mt-1.5">${p.ringkas}</p>
+                </button>
+            `).join('');
+            bukaPilar(0);
+        }
+
+        function bukaPilar(i) {
+            const p = pilar[i];
+            pilar.forEach((_, idx) => {
+                const btn = document.getElementById(`pilar-btn-${idx}`);
+                if (btn) btn.className = idx === i
+                    ? 'text-left p-4 rounded-2xl bg-emeraldDark text-white border-2 border-goldBright shadow-sm transition cursor-pointer'
+                    : 'text-left p-4 rounded-2xl bg-white hover:bg-emeraldLight/60 border-2 border-creamBorder transition cursor-pointer';
+                const iconSpan = btn ? btn.querySelector('[data-icon]') : null;
+                if (iconSpan) iconSpan.className = idx === i
+                    ? 'text-goldBright text-lg'
+                    : 'text-emeraldDark text-lg';
+            });
+            document.getElementById('pilarDetail').innerHTML = `
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Pilar ${i + 1}</p>
+                        <h4 class="text-lg sm:text-xl font-extrabold text-emeraldDark mt-1">${p.nama}</h4>
+                    </div>
+                    <span class="w-12 h-12 rounded-2xl bg-emeraldLight text-emeraldDark flex items-center justify-center text-2xl">
+                        <span data-icon="${p.icon}"></span>
+                    </span>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed mt-4">${p.detail}</p>
+                <div class="mt-4 pt-4 border-t border-creamBorder flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 rounded-lg bg-emeraldLight text-emeraldMid text-[11px] font-extrabold">Sumber: Komdigi, Makin Cakap Digital</span>
+                    <a href="https://literasidigital.id/" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-lg bg-white border border-creamBorder text-emeraldMid text-[11px] font-extrabold hover:bg-emeraldLight transition">Baca rujukan ↗</a>
+                </div>
+            `;
+        }
+
+        /* ============================================================
+           LAB ANALISIS
+           ============================================================ */
+        function renderAnalisis() {
+            document.getElementById('analisisPilihan').innerHTML = tandaHoaks.map((t, i) => `
+                <label class="flex items-start gap-2.5 p-3 rounded-xl border border-creamBorder bg-white hover:bg-amber-50/60 cursor-pointer transition">
+                    <input type="checkbox" id="flag-${i}" class="mt-0.5 accent-goldWarm w-4 h-4">
+                    <span class="text-xs sm:text-sm text-slate-700 leading-snug">${t.teks}</span>
+                </label>
+            `).join('');
+        }
+
+        function periksaAnalisis() {
+            let benar = 0;
+            const rincian = tandaHoaks.map((t, i) => {
+                const dipilih = document.getElementById(`flag-${i}`).checked;
+                const tepat = dipilih === t.red;
+                if (tepat) benar++;
+                return `
+                    <div class="flex items-start gap-2 ${tepat ? 'text-emeraldDeep' : 'text-amber-900'}">
+                        <span data-icon="${tepat ? 'circle-check' : 'circle-info'}" class="mt-0.5 shrink-0"></span>
+                        <span><strong>${t.teks}.</strong> ${t.alasan}</span>
+                    </div>
+                `;
+            }).join('');
+
+            const box = document.getElementById('analisisHasil');
+            box.classList.remove('hidden');
+            box.className = benar === tandaHoaks.length
+                ? 'mt-4 rounded-xl border p-4 text-xs leading-relaxed bg-emeraldLight border-emerald-200 text-emeraldDeep space-y-2'
+                : 'mt-4 rounded-xl border p-4 text-xs leading-relaxed bg-amber-50 border-amber-200 text-amber-900 space-y-2';
+            box.innerHTML = `<p class="font-extrabold text-sm">Skor kewaspaan: ${benar} dari ${tandaHoaks.length}</p>${rincian}`;
+        }
+
+        /* ============================================================
+           SIMULASI IZIN
+           ============================================================ */
+        function renderIzin() {
+            document.getElementById('izinList').innerHTML = izinAplikasi.map(item => `
+                <div class="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl border border-creamBorder bg-white">
+                    <div class="min-w-0">
+                        <p class="font-bold text-sm text-emeraldDark">${item.nama}</p>
+                        <p class="text-[11px] text-slate-500 mt-0.5">${item.alasan}</p>
+                    </div>
+                    <div class="flex gap-2 shrink-0">
+                        <button onclick="aturIzin('${item.id}', true)" id="izin-${item.id}-ya" class="px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer">Izinkan</button>
+                        <button onclick="aturIzin('${item.id}', false)" id="izin-${item.id}-tidak" class="px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer">Tolak</button>
+                    </div>
+                </div>
+            `).join('');
+            updateIzin();
+        }
+
+        function aturIzin(id, nilai) {
+            state.izin[id] = nilai;
+            updateIzin();
+            simpanState();
+        }
+
+        function updateIzin() {
+            izinAplikasi.forEach(item => {
+                const ya = document.getElementById(`izin-${item.id}-ya`);
+                const tidak = document.getElementById(`izin-${item.id}-tidak`);
+                if (!ya || !tidak) return;
+                ya.className = state.izin[item.id]
+                    ? 'px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer bg-emeraldDark text-white shadow-sm'
+                    : 'px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer bg-white border border-creamBorder text-slate-500 hover:bg-emeraldLight';
+                tidak.className = !state.izin[item.id]
+                    ? 'px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer bg-goldWarm text-white shadow-sm'
+                    : 'px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer bg-white border border-creamBorder text-slate-500 hover:bg-amber-50';
+            });
+
+            const total = izinAplikasi.reduce((sum, item) => sum + (state.izin[item.id] ? item.risiko : 0), 0);
+            const label = total <= 15 ? 'Rendah' : total <= 40 ? 'Sedang' : 'Tinggi';
+            document.getElementById('risikoAngka').textContent = total;
+            document.getElementById('risikoLabel').textContent = `Risiko ${label}`;
+            document.getElementById('risikoBar').style.width = `${Math.min(100, total)}%`;
+            document.getElementById('risikoNasihat').textContent = total <= 15
+                ? 'Baik! Kamu hanya memberi izin yang relevan. Data pribadimu lebih terjaga.'
+                : 'Masih ada izin yang tidak diperlukan dinyalakan. Matikan untuk menurunkan risiko sesuai prinsip least privilege.';
+        }
+
+        /* ============================================================
+           PRODUK SISWA
+           ============================================================ */
+        function buatKartu() {
+            state.kartu = [
+                document.getElementById('langkahSatu').value.trim(),
+                document.getElementById('langkahDua').value.trim(),
+                document.getElementById('langkahTiga').value.trim()
+            ];
+            state.audiens = document.getElementById('audiensProduk').value;
+            simpanState();
+
+            const isi = state.kartu.some(Boolean)
+                ? state.kartu.map((baris, i) => `
+                    <div class="flex items-start gap-3">
+                        <span class="w-6 h-6 rounded-lg bg-emeraldDark text-goldBright text-xs font-extrabold flex items-center justify-center shrink-0">${i + 1}</span>
+                        <p class="text-sm text-slate-700 leading-snug">${escapeHtml(baris || '—')}</p>
+                    </div>
+                `).join('')
+                : '<p class="text-xs text-slate-400 italic">Isi tiga langkah di sebelah kiri, lalu tekan pratinjau.</p>';
+
+            document.getElementById('kartuPreview').innerHTML = isi;
+            document.getElementById('kartuAudiens').textContent = state.audiens;
+            document.getElementById('kartuAksi').classList.toggle('hidden', !state.kartu.some(Boolean));
+        }
+
+        function teksKartu() {
+            return `KARTU CAKAP DIGITAL — Sebelum Share…\n1. ${state.kartu[0] || '—'}\n2. ${state.kartu[1] || '—'}\n3. ${state.kartu[2] || '—'}\n\nUntuk: ${state.audiens}\nModul TIK Kelas 10 • Literasi Digital & Etika Berdigital`;
+        }
+
+        function salinKartu() {
+            const teks = teksKartu();
+            const tampilToast = () => {
+                const toast = document.getElementById('toastModul');
+                toast.textContent = 'Kartu berhasil disalin!';
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 1800);
+            };
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(teks).then(tampilToast).catch(() => fallbackSalin(teks, tampilToast));
+            } else {
+                fallbackSalin(teks, tampilToast);
+            }
+        }
+
+        function fallbackSalin(teks, callback) {
+            const input = document.createElement('textarea');
+            input.value = teks;
+            input.style.position = 'fixed';
+            input.style.opacity = '0';
+            document.body.appendChild(input);
+            input.select();
+            try { document.execCommand('copy'); } catch (e) { /* abaikan */ }
+            document.body.removeChild(input);
+            callback();
+        }
+
+        function simpanJurnal() {
+            state.jurnalIzin = document.getElementById('refleksiIzin').value.trim();
+            simpanState();
+            const pesan = document.getElementById('kartuPesan');
+            pesan.textContent = 'Kartu dan refleksi izin tersimpan di perangkat ini.';
+            pesan.classList.remove('hidden');
+        }
+
+        function simpanJurnalAkhir() {
+            state.jurnalAkhir = document.getElementById('refleksiAkhir').value.trim();
+            simpanState();
+            const pesan = document.getElementById('pesanSimpan');
+            pesan.textContent = 'Jurnal refleksi berhasil disimpan.';
+        }
+
+        /* ============================================================
+           INISIALISASI
+           ============================================================ */
+        function initModul() {
+            muatState();
+            renderSoal(soalPretest, 'pretest', 'pretestContainer');
+            renderSoal(soalPosttest, 'posttest', 'posttestContainer');
+            renderPilar();
+            renderAnalisis();
+            renderIzin();
+
+            document.getElementById('langkahSatu').value = state.kartu[0] || '';
+            document.getElementById('langkahDua').value = state.kartu[1] || '';
+            document.getElementById('langkahTiga').value = state.kartu[2] || '';
+            document.getElementById('audiensProduk').value = state.audiens;
+            document.getElementById('refleksiIzin').value = state.jurnalIzin;
+            document.getElementById('refleksiAkhir').value = state.jurnalAkhir;
+
+            if (state.pretestSelesai) {
+                const nilai = skor(soalPretest, state.pretest);
+                document.getElementById('pretestHasil').innerHTML = `Pretest tersimpan: <strong class="text-emeraldDark">${nilai} dari 4</strong>.`;
+                tampilkanPembahasan(soalPretest, 'pretest', state.pretest);
+            }
+            if (state.posttestSelesai) {
+                const nilai = skor(soalPosttest, state.posttest);
+                document.getElementById('posttestHasil').innerHTML = `Posttest tersimpan: <strong class="text-emeraldDark">${nilai} dari 4</strong>.`;
+                tampilkanPembahasan(soalPosttest, 'posttest', state.posttest);
+            }
+            bukaLangkah(state.langkah || 0);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initModul);
+        } else {
+            initModul();
+        }
+    </script>
+</body>
+</html>

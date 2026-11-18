@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modul ajar interaktif Koding dan Kecerdasan Artifisial (KKA) Kelas 10 Fase E: algoritma, data, model, lab latih mesin, etika AI UNESCO, dan refleksi deep learning.">
+    <title>Koding & Kecerdasan Artifisial: Melatih Mesin, Menjaga Manusia • KKA Kelas 10</title>
+
+    <!-- Tailwind CSS hasil build (terpusat, tanpa CDN) -->
+    <link rel="stylesheet" href="../../assets/css/output.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col antialiased portal-bg">
+
+    <!-- Header bersama -->
+    <div data-site-header data-base="../../" data-active="modul-ajar"></div>
+
+    <!-- Toolbar khusus modul -->
+    <header class="bg-emeraldDark text-white border-b-2 border-goldBright shadow-md z-30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+                <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-goldBright to-goldWarm flex items-center justify-center text-emeraldDark shadow-sm shrink-0">
+                    <span data-icon="code" class="text-lg"></span>
+                </span>
+                <div class="min-w-0">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2 py-0.5 rounded-md bg-goldWarm text-white text-[10px] font-extrabold uppercase tracking-wider">KKA • Kelas X</span>
+                        <span class="text-[11px] font-semibold text-emerald-200">Kurikulum Merdeka • Fase E • Deep Learning</span>
+                    </div>
+                    <h1 class="font-bold text-sm sm:text-base md:text-lg tracking-tight leading-tight truncate">
+                        Koding & Kecerdasan Artifisial: Melatih Mesin, Menjaga Manusia
+                    </h1>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="hidden sm:block w-36">
+                    <p id="progressTeks" class="text-[10px] font-bold text-amber-200 mb-1">Langkah 1 dari 6</p>
+                    <div class="w-full bg-emerald-950/60 h-2 rounded-full overflow-hidden">
+                        <div id="progressFill" class="bg-gradient-to-r from-goldBright to-goldWarm h-full rounded-full transition-all duration-300" style="width: 16.7%"></div>
+                    </div>
+                </div>
+                <button onclick="bukaLangkah(5)" class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-bold transition cursor-pointer">
+                    Sumber & Rujukan
+                </button>
+                <a href="../../index.html#modul-ajar" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-bold transition cursor-pointer">
+                    <span data-icon="house"></span><span class="hidden md:inline">Portal</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigasi langkah deep learning -->
+    <nav class="bg-white/90 backdrop-blur-sm border-b border-creamBorder z-20" aria-label="Langkah pembelajaran">
+        <div class="max-w-6xl mx-auto px-3 sm:px-6 py-2.5">
+            <div class="flex gap-2 overflow-x-auto thin-scroll pb-1">
+                <button onclick="bukaLangkah(0)" id="step-btn-0" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">1. Pretest</button>
+                <button onclick="bukaLangkah(1)" id="step-btn-1" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">2. Konsep Inti</button>
+                <button onclick="bukaLangkah(2)" id="step-btn-2" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">3. Lab Latih Model</button>
+                <button onclick="bukaLangkah(3)" id="step-btn-3" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">4. Etika AI</button>
+                <button onclick="bukaLangkah(4)" id="step-btn-4" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">5. Buat Produk</button>
+                <button onclick="bukaLangkah(5)" id="step-btn-5" class="step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer">6. Refleksi & Posttest</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 1 — PRETEST                                          -->
+        <!-- ============================================================ -->
+        <section id="langkah-0" class="step-panel animate-fade-up space-y-5">
+            <div class="bg-gradient-to-br from-emeraldDark via-emeraldDeep to-emerald-900 text-white rounded-3xl p-6 sm:p-8 shadow-lg relative overflow-hidden islamic-pattern">
+                <div class="relative z-10 max-w-3xl">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-amber-200 text-[11px] font-extrabold uppercase tracking-wider mb-3">
+                        <span data-icon="clipboard-question"></span> Tahap 1 • Diagnostik Awal
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight mb-2">
+                        Apa yang sudah kamu pahami tentang koding dan AI?
+                    </h2>
+                    <p class="text-sm text-emerald-100 leading-relaxed">
+                        Jawab 4 situasi berikut dengan jujur. Hasilnya dipakai untuk memetakan pemahaman awal, bukan untuk menilai kamu.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Pretest Diagnostik</p>
+                        <h3 class="text-lg font-extrabold text-emeraldDark">4 situasi koding & kecerdasan artifisial</h3>
+                    </div>
+                    <span class="text-xs text-slate-500">Pilih satu jawaban per soal, lalu tekan periksa.</span>
+                </div>
+                <div id="pretestContainer" class="p-5 sm:p-7 space-y-5"></div>
+                <div class="px-5 sm:px-7 pb-6 flex flex-wrap items-center justify-between gap-3 border-t border-creamBorder pt-4">
+                    <p id="pretestHasil" class="text-xs font-bold text-slate-500">Belum dijawab.</p>
+                    <div class="flex gap-2">
+                        <button onclick="ulangPretest()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Ulangi</button>
+                        <button onclick="periksaPretest()" class="px-4 py-2 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold shadow transition cursor-pointer">Periksa Jawaban</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-5 flex gap-3">
+                <span data-icon="lightbulb" class="text-goldWarm text-xl mt-0.5"></span>
+                <div class="text-xs sm:text-sm text-amber-900 leading-relaxed">
+                    <strong class="block mb-1">Kenapa ini deep learning?</strong>
+                    Kamu tidak akan menghafal definisi AI. Kamu akan mengatur bobot sebuah model, melihat kesalahannya, memperbaikinya, lalu memutuskan kapan mesin boleh dipercaya dan kapan manusia harus mengambil alih.
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button onclick="bukaLangkah(1)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">
+                    Lanjut ke Konsep <span data-icon="arrow-right"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 2 — KONSEP INTI                                       -->
+        <!-- ============================================================ -->
+        <section id="langkah-1" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div>
+                    <p class="text-[11px] font-extrabold uppercase tracking-[0.18em] text-goldWarm">Tahap 2 • Membangun Konsep</p>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-emeraldDark mt-1">Koding, data, dan model AI</h2>
+                    <div class="gold-divider w-24 mt-3"></div>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-500 max-w-md">Klik setiap kartu untuk membuka penjelasan dan contohnya.</p>
+            </div>
+
+            <div id="konsepGrid" class="grid sm:grid-cols-3 gap-3"></div>
+
+            <div id="konsepDetail" class="bg-white rounded-3xl border-2 border-creamBorder shadow-sm p-5 sm:p-7 min-h-[190px]"></div>
+
+            <div class="grid md:grid-cols-3 gap-3">
+                <div class="bg-emeraldLight/70 border border-emerald-200 rounded-2xl p-4">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wide text-emeraldMid mb-1">Pahami</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Mengurai bedanya instruksi eksplisit (koding) dan pola yang dipelajari mesin dari contoh (pembelajaran mesin).</p>
+                </div>
+                <div class="bg-emeraldLight/70 border border-emerald-200 rounded-2xl p-4">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wide text-emeraldMid mb-1">Terapkan</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Mengatur bobot model di lab, mengukur akurasinya, lalu memperbaiki kesalahan secara berulang.</p>
+                </div>
+                <div class="bg-emeraldLight/70 border border-emerald-200 rounded-2xl p-4">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wide text-emeraldMid mb-1">Transfer</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Membawa prinsip transparansi, privasi, dan pengawasan manusia ke penggunaan AI sehari-hari.</p>
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="bukaLangkah(0)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali</button>
+                <button onclick="bukaLangkah(2)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">Masuk Lab <span data-icon="arrow-right"></span></button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 3 — LAB LATIH MODEL                                   -->
+        <!-- ============================================================ -->
+        <section id="langkah-2" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Tahap 3 • Laboratorium Koding</p>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Latih model sederhana untuk menyaring informasi</h3>
+                    <p class="text-xs text-slate-500 mt-1">
+                        Model ini belajar dari dua ciri: <strong>x1 = ada sumber jelas (1) atau tidak (0)</strong> dan <strong>x2 = bahasa emosional/sensasional (1) atau netral (0)</strong>. Keluaran <strong>1</strong> berarti “layak dipercaya”, <strong>0</strong> berarti “mencurigakan”.
+                    </p>
+                </div>
+
+                <div class="p-5 sm:p-7 grid lg:grid-cols-3 gap-5">
+                    <!-- Pengatur bobot -->
+                    <div class="bg-creamSand/80 rounded-2xl border border-amber-900/10 p-4 sm:p-5 space-y-4">
+                        <div>
+                            <p class="text-xs font-extrabold uppercase tracking-wide text-emeraldDark mb-1">Bobot model</p>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">Geser sampai model mengenali pola dari data latih.</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-emeraldDark">w1 · sumber jelas</span>
+                                <span id="val-w1" class="text-goldDeep font-extrabold">0.2</span>
+                            </div>
+                            <input id="w1" type="range" min="-3" max="3" step="0.1" value="0.2" oninput="aturBobot()" class="w-full cursor-pointer accent-emeraldDark">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-emeraldDark">w2 · bahasa emosional</span>
+                                <span id="val-w2" class="text-goldDeep font-extrabold">0.3</span>
+                            </div>
+                            <input id="w2" type="range" min="-3" max="3" step="0.1" value="0.3" oninput="aturBobot()" class="w-full cursor-pointer accent-emeraldDark">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-emeraldDark">b · bias</span>
+                                <span id="val-b" class="text-goldDeep font-extrabold">0.5</span>
+                            </div>
+                            <input id="b" type="range" min="-3" max="3" step="0.1" value="0.5" oninput="aturBobot()" class="w-full cursor-pointer accent-emeraldDark">
+                        </div>
+                        <div class="pt-3 border-t border-amber-900/10 space-y-2">
+                            <button onclick="latihOtomatis()" class="w-full py-2.5 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold shadow transition cursor-pointer">
+                                Latih Otomatis (Perceptron)
+                            </button>
+                            <button onclick="resetBobot()" class="w-full py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-emeraldDark text-xs font-bold transition cursor-pointer">
+                                Reset Bobot
+                            </button>
+                        </div>
+                        <p id="labPesan" class="text-[11px] text-slate-500 leading-relaxed">Cobalah ubah w2 menjadi nilai negatif, lalu amati apa yang terjadi.</p>
+                    </div>
+
+                    <!-- Tabel prediksi -->
+                    <div class="lg:col-span-2 space-y-3">
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <p class="text-xs font-extrabold uppercase tracking-wide text-emeraldDark">Data latih & hasil prediksi</p>
+                                <span id="labAkurasi" class="px-3 py-1 rounded-lg bg-amber-100 text-goldDeep text-xs font-extrabold">3 / 6 benar</span>
+                            </div>
+                            <div class="w-full bg-creamSand h-2 rounded-full overflow-hidden mb-3">
+                                <div id="labAkurasiBar" class="bg-gradient-to-r from-emeraldDark to-goldWarm h-full rounded-full transition-all duration-300" style="width: 50%"></div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-[11px] border-collapse">
+                                    <thead>
+                                        <tr class="text-slate-400 font-extrabold uppercase tracking-wide">
+                                            <th class="py-2 pr-2">Contoh</th>
+                                            <th class="py-2 pr-2">x1</th>
+                                            <th class="py-2 pr-2">x2</th>
+                                            <th class="py-2 pr-2">z</th>
+                                            <th class="py-2">Prediksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="labTable" class="divide-y divide-slate-100 text-slate-600"></tbody>
+                                </table>
+                            </div>
+                            <p class="text-[10px] text-slate-400 mt-2">z = w1×x1 + w2×x2 + bias. Prediksi 1 jika z ≥ 0.</p>
+                        </div>
+
+                        <div id="ujiHasil" class="bg-emeraldLight border border-emerald-200 rounded-2xl p-4 text-xs text-emeraldDeep leading-relaxed">
+                            <p class="font-extrabold text-emeraldDark mb-1 flex items-center gap-1.5">
+                                <span data-icon="circle-info"></span> Uji coba data baru
+                            </p>
+                            <p class="text-slate-600">Setelah model mencapai 6/6 pada data latih, tekan tombol di bawah untuk melihat apakah model tetap benar pada situasi yang belum pernah dilihatnya.</p>
+                        </div>
+                        <button onclick="ujiDataBaru()" class="w-full py-3 rounded-xl bg-goldWarm hover:bg-goldDeep text-white text-xs font-extrabold shadow transition cursor-pointer">
+                            Uji dengan Data Baru
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-5 flex gap-3">
+                <span data-icon="triangle-exclamation" class="text-goldWarm text-xl mt-0.5"></span>
+                <p class="text-xs sm:text-sm text-amber-900 leading-relaxed">
+                    <strong class="block mb-1">Pertanyaan kritis:</strong>
+                    Model bisa saja sangat pintar pada data latih tetapi salah pada kasus baru. Itu disebut <em>overfitting</em>. Apa yang bisa dilakukan? Perbanyak dan ragamkan data, uji ulang, dan tetap libatkan penilaian manusia.
+                </p>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="bukaLangkah(1)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali</button>
+                <button onclick="bukaLangkah(3)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">Lanjut ke Etika <span data-icon="arrow-right"></span></button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 4 — ETIKA AI                                          -->
+        <!-- ============================================================ -->
+        <section id="langkah-3" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Tahap 4 • Simulasi Etika</p>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Kapan mesin boleh memutuskan, kapan manusia mengambil alih?</h3>
+                    <p class="text-xs text-slate-500 mt-1">Pilih respons paling bertanggung jawab untuk setiap situasi.</p>
+                </div>
+                <div id="etikaContainer" class="p-5 sm:p-7 space-y-5"></div>
+                <div class="px-5 sm:px-7 pb-6 pt-4 border-t border-creamBorder flex flex-wrap items-center justify-between gap-3">
+                    <p id="etikaHasil" class="text-xs font-bold text-slate-500">Belum dijawab.</p>
+                    <button onclick="periksaEtika()" class="px-4 py-2 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold shadow transition cursor-pointer">Lihat Pembahasan</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="bg-emeraldLight/70 border border-emerald-200 rounded-2xl p-4">
+                    <p class="text-xs font-extrabold text-emeraldDark mb-1 flex items-center gap-1.5">
+                        <span data-icon="book-open" class="text-goldWarm"></span> UNESCO (2021)
+                    </p>
+                    <p class="text-[11px] text-slate-600 leading-relaxed">Rekomendasi Etika AI menekankan privasi, transparansi, keadilan, keamanan, dan pengawasan manusia. AI tidak boleh menghapus tanggung jawab manusia.</p>
+                </div>
+                <div class="bg-emeraldLight/70 border border-emerald-200 rounded-2xl p-4">
+                    <p class="text-xs font-extrabold text-emeraldDark mb-1 flex items-center gap-1.5">
+                        <span data-icon="shield-check" class="text-goldWarm"></span> Komdigi & UU No. 27/2022
+                    </p>
+                    <p class="text-[11px] text-slate-600 leading-relaxed">Bijak pakai AI berarti kritis terhadap hasilnya, menjaga data pribadi, dan tidak menjadikan AI sebagai pengganti proses berpikir sendiri.</p>
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="bukaLangkah(2)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali</button>
+                <button onclick="bukaLangkah(4)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">Buat Produk <span data-icon="arrow-right"></span></button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 5 — PRODUK SISWA                                     -->
+        <!-- ============================================================ -->
+        <section id="langkah-4" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Tahap 5 • Ciptakan</p>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Buat kartu “AI Bertanggung Jawab”</h3>
+                    <p class="text-xs text-slate-500 mt-1">Tuliskan 3 aturan untuk temanmu dan satu contoh prompt yang jujur.</p>
+                </div>
+
+                <div class="p-5 sm:p-7 grid lg:grid-cols-2 gap-5">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="kartuSatu" class="block text-xs font-extrabold text-emeraldDark mb-1.5">Aturan 1</label>
+                            <input id="kartuSatu" type="text" maxlength="100" placeholder="Contoh: Cek ulang fakta yang dihasilkan AI" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="kartuDua" class="block text-xs font-extrabold text-emeraldDark mb-1.5">Aturan 2</label>
+                            <input id="kartuDua" type="text" maxlength="100" placeholder="Contoh: Jangan berikan data pribadi ke AI" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="kartuTiga" class="block text-xs font-extrabold text-emeraldDark mb-1.5">Aturan 3</label>
+                            <input id="kartuTiga" type="text" maxlength="100" placeholder="Contoh: Cantumkan jika AI ikut membantu" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="promptContoh" class="block text-xs font-extrabold text-emeraldDark mb-1.5">Contoh prompt yang jujur</label>
+                            <textarea id="promptContoh" rows="3" maxlength="240" placeholder="Contoh: Bantu aku membuat kerangka argumen tentang penolakan hoaks. Aku akan periksa sendiri setiap fakta dan menulis ulang dengan bahasaku." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none"></textarea>
+                        </div>
+                        <button onclick="buatKartu()" class="w-full py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">
+                            Pratinjau Kartu Saya
+                        </button>
+                    </div>
+
+                    <div class="bg-creamPaper rounded-2xl border-2 border-creamBorder p-5 relative overflow-hidden">
+                        <div class="absolute -top-10 -right-10 w-32 h-32 hero-glow rounded-full pointer-events-none"></div>
+                        <div class="relative">
+                            <p class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-goldWarm">Kartu AI Bertanggung Jawab</p>
+                            <h4 class="text-lg font-extrabold text-emeraldDark mt-1">Sebelum kamu pakai AI…</h4>
+                            <div id="kartuPreview" class="mt-4 space-y-2.5">
+                                <p class="text-xs text-slate-400 italic">Isi tiga aturan di sebelah kiri, lalu tekan pratinjau.</p>
+                            </div>
+                            <div id="kartuPrompt" class="hidden mt-4 bg-white rounded-xl border border-creamBorder p-3.5">
+                                <p class="text-[10px] font-extrabold uppercase tracking-wide text-emeraldMid mb-1">Contoh prompt</p>
+                                <p id="kartuPromptTeks" class="text-xs text-slate-600 leading-relaxed"></p>
+                            </div>
+                            <div class="gold-divider my-4"></div>
+                            <p class="text-[11px] text-slate-500">Prinsip: transparan · privat · adil · diawasi manusia</p>
+                            <div id="kartuAksi" class="hidden mt-4 flex gap-2">
+                                <button onclick="salinKartu()" class="flex-1 py-2.5 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold transition cursor-pointer">Salin Teks</button>
+                                <button onclick="simpanJurnal()" class="flex-1 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-emeraldDark text-xs font-extrabold transition cursor-pointer">Simpan ke Jurnal</button>
+                            </div>
+                            <p id="kartuPesan" class="hidden text-[11px] font-bold text-emeraldMid mt-3"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <button onclick="bukaLangkah(3)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali</button>
+                <button onclick="bukaLangkah(5)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-sm font-extrabold shadow transition cursor-pointer">Ukur Pemahaman <span data-icon="arrow-right"></span></button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- LANGKAH 6 — REFLEKSI, POSTTEST & SUMBER                      -->
+        <!-- ============================================================ -->
+        <section id="langkah-5" class="step-panel hidden animate-fade-up space-y-5">
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm overflow-hidden">
+                <div class="px-5 sm:px-7 py-4 border-b border-creamBorder bg-creamPaper">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Tahap 6 • Ukur & Refleksi</p>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Posttest: apakah pemahamanmu berkembang?</h3>
+                </div>
+                <div id="posttestContainer" class="p-5 sm:p-7 space-y-5"></div>
+                <div class="px-5 sm:px-7 pb-6 pt-4 border-t border-creamBorder flex flex-wrap items-center justify-between gap-3">
+                    <p id="posttestHasil" class="text-xs font-bold text-slate-500">Belum dijawab.</p>
+                    <button onclick="periksaPosttest()" class="px-4 py-2 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold shadow transition cursor-pointer">Lihat Hasil Belajar</button>
+                </div>
+            </div>
+
+            <div id="hasilAkhir" class="hidden bg-gradient-to-br from-emeraldDark to-emeraldDeep text-white rounded-3xl p-6 sm:p-7 shadow-lg">
+                <p class="text-[11px] font-extrabold uppercase tracking-wider text-amber-200">Ringkasan Pembelajaran</p>
+                <div class="mt-3 grid sm:grid-cols-3 gap-3">
+                    <div class="bg-white/10 border border-white/15 rounded-xl p-4">
+                        <p class="text-[11px] text-emerald-100">Pretest</p>
+                        <p id="ringkasanPretest" class="text-2xl font-extrabold text-goldBright">–</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/15 rounded-xl p-4">
+                        <p class="text-[11px] text-emerald-100">Posttest</p>
+                        <p id="ringkasanPosttest" class="text-2xl font-extrabold text-goldBright">–</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/15 rounded-xl p-4">
+                        <p class="text-[11px] text-emerald-100">Pertumbuhan</p>
+                        <p id="ringkasanGrowth" class="text-2xl font-extrabold text-goldBright">–</p>
+                    </div>
+                </div>
+                <p id="ringkasanNasihat" class="text-xs sm:text-sm text-emerald-100 mt-4 leading-relaxed"></p>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-creamBorder shadow-sm p-5 sm:p-7">
+                <label for="refleksiAkhir" class="block text-xs font-extrabold text-emeraldDark mb-2">Jurnal refleksi: kapan kamu akan membiarkan AI membantu, dan kapan kamu akan mengambil alih?</label>
+                <textarea id="refleksiAkhir" rows="3" placeholder="Tuliskan komitmenmu..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:ring-2 focus:ring-emeraldMid focus:outline-none"></textarea>
+                <div class="mt-3 flex flex-wrap items-center justify-between gap-2">
+                    <p id="pesanSimpan" class="text-[11px] font-bold text-emeraldMid"></p>
+                    <button onclick="simpanJurnalAkhir()" class="px-4 py-2 rounded-xl bg-goldWarm hover:bg-amber-700 text-white text-xs font-extrabold transition cursor-pointer">Simpan Jurnal Belajar</button>
+                </div>
+            </div>
+
+            <div id="sumber" class="bg-creamPaper rounded-3xl border-2 border-creamBorder p-5 sm:p-7">
+                <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Sumber & Rujukan</p>
+                <h3 class="text-lg font-extrabold text-emeraldDark mt-1">Bahan pembelajaran merujuk pada:</h3>
+                <ol class="mt-4 space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed list-decimal list-inside">
+                    <li>
+                        <strong>Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi.</strong> Kurikulum Merdeka (Fase E) — pendekatan pembelajaran mendalam dan Profil Pelajar Pancasila.
+                        <a href="https://kurikulum.kemdikbud.go.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">kurikulum.kemdikbud.go.id</a>
+                    </li>
+                    <li>
+                        <strong>UNESCO.</strong> Recommendation on the Ethics of Artificial Intelligence (2021) — martabat manusia, privasi, transparansi, keadilan, keamanan, dan pengawasan manusia.
+                        <a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">unesco.org — AI Ethics</a>
+                    </li>
+                    <li>
+                        <strong>Kementerian Komunikasi dan Digital (Komdigi), Pusbang Literasi Digital.</strong> Makin Cakap Digital — empat pilar literasi digital dan edukasi “Bijak Pakai AI”.
+                        <a href="https://literasidigital.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">literasidigital.id</a>
+                    </li>
+                    <li>
+                        <strong>Undang-Undang Republik Indonesia Nomor 27 Tahun 2022</strong> tentang Pelindungan Data Pribadi — dasar keputusan privasi pada simulasi etika.
+                        <a href="https://peraturan.bpk.go.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">JDIH BPK RI</a>
+                    </li>
+                    <li>
+                        <strong>Permendikbudristek Nomor 7 Tahun 2022</strong> tentang Standar Isi Pendidikan Dasar dan Menengah.
+                        <a href="https://peraturan.bpk.go.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">JDIH BPK RI</a>
+                    </li>
+                </ol>
+                <p class="text-[11px] text-slate-400 mt-4">Tautan diakses pada 18 November 2026. Dataset dan skenario pada lab dibuat untuk simulasi kelas; model perceptron dijalankan sepenuhnya di browser tanpa mengirim data.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-between gap-2">
+                <button onclick="bukaLangkah(4)" class="px-4 py-2.5 rounded-xl bg-white hover:bg-emeraldLight border border-creamBorder text-xs font-bold text-emeraldDark transition cursor-pointer">Kembali ke Produk</button>
+                <a href="../../index.html#modul-ajar" class="px-4 py-2.5 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white text-xs font-extrabold transition cursor-pointer">Selesai & Kembali ke Portal</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer bersama -->
+    <div data-site-footer data-base="../../"></div>
+
+    <div id="toastModul" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2.5 rounded-xl bg-emeraldDark text-white text-xs font-bold shadow-xl border border-goldBright">
+        Berhasil disalin!
+    </div>
+
+    <!-- Skrip bersama -->
+    <script src="../../assets/js/data.js"></script>
+    <script src="../../assets/js/icons.js"></script>
+    <script src="../../assets/js/components.js"></script>
+
+    <!-- Logika modul -->
+    <script>
+        /* ============================================================
+           DATA KONTEN
+           ============================================================ */
+        const KUNCI_SIMPAN = 'modul-kka-koding-ai-v1';
+
+        const soalPretest = [
+            {
+                pertanyaan: 'Perintah yang ditulis manusia agar komputer melakukan langkah tertentu disebut …',
+                opsi: ['Model', 'Koding', 'Data latih', 'Bias'],
+                jawaban: 1,
+                alasan: 'Koding adalah penulisan instruksi eksplisit. Model pembelajaran mesin justru menemukan pola dari contoh, bukan dari perintah langkah demi langkah.'
+            },
+            {
+                pertanyaan: 'Sebuah AI memberi jawaban yakin padahal fakta yang disebutkan tidak ada. Sikap paling tepat adalah …',
+                opsi: ['Dipercaya karena AI selalu benar', 'Dibagikan agar banyak orang tahu', 'Dicek silang dengan sumber resmi sebelum dipakai', 'Dihapus tanpa diberi tahu'],
+                jawaban: 2,
+                alasan: 'Model AI dapat menghasilkan informasi yang salah (halusinasi). Prinsip human oversight dan transparansi menuntut verifikasi oleh manusia.'
+            },
+            {
+                pertanyaan: 'Dalam model sederhana, data yang dipakai untuk belajar disebut …',
+                opsi: ['Data latih', 'Antarmuka', 'Sistem operasi', 'Jaringan'],
+                jawaban: 0,
+                alasan: 'Data latih adalah contoh-contoh yang dipakai model untuk mengenali pola. Kualitas dan keragaman data sangat menentukan hasilnya.'
+            },
+            {
+                pertanyaan: 'Aplikasi AI untuk mengubah teks meminta akses daftar kontak. Tindakan yang mencerminkan privasi data adalah …',
+                opsi: ['Izinkan agar AI bekerja lebih baik', 'Tolak karena tidak relevan dengan fungsinya', 'Izinkan lalu hapus setelah selesai', 'Berikan saja, tidak ada risikonya'],
+                jawaban: 1,
+                alasan: 'Berikan hanya izin yang diperlukan (least privilege). Akses kontak tidak relevan untuk mengubah teks dan berpotensi melanggar privasi.'
+            }
+        ];
+
+        const soalPosttest = [
+            {
+                pertanyaan: 'Model mencapai 100% akurasi pada data latih tetapi sering salah pada kasus baru. Penjelasan paling tepat adalah …',
+                opsi: ['Model sudah sempurna', 'Model mengalami overfitting dan perlu data yang lebih beragam', 'Jumlah bobot terlalu sedikit', 'AI tidak bisa diedit lagi'],
+                jawaban: 1,
+                alasan: 'Overfitting terjadi ketika model menghafal data latih alih-alih mempelajari pola yang umum. Solusinya: ragamkan data, uji ulang, dan awasi hasilnya.'
+            },
+            {
+                pertanyaan: 'Kamu memakai AI untuk membuat kerangka tugas, lalu menulis sendiri dan mencantumkan keterangan bantuan AI. Ini mencerminkan prinsip …',
+                opsi: ['Privasi dan transparansi', 'Penghafalan', 'Penggunaan AI tanpa batas', 'Menyembunyikan sumber'],
+                jawaban: 0,
+                alasan: 'Transparansi berarti jujur mengungkap peran AI; privasi berarti tidak memasukkan data sensitif. Tanggung jawab akhir tetap pada manusia.'
+            },
+            {
+                pertanyaan: 'AI yang dilatih hanya dari satu kelompok memberikan rekomendasi yang merugikan kelompok lain. Prinsip UNESCO yang paling relevan adalah …',
+                opsi: ['Kecepatan', 'Keadilan dan non-diskriminasi', 'Penghapusan pengawasan manusia', 'Penggunaan data sebanyak-banyaknya tanpa pemeriksaan'],
+                jawaban: 1,
+                alasan: 'Rekomendasi Etika AI UNESCO menekankan fairness and non-discrimination serta diversitas data agar manfaat AI dapat diakses semua pihak.'
+            },
+            {
+                pertanyaan: 'Bukti pemahaman mendalam dalam modul ini ditunjukkan dengan …',
+                opsi: ['Menghafal definisi kecerdasan artifisial', 'Menyalin jawaban AI tanpa membaca', 'Mengatur model, menguji kelemahannya, lalu menjelaskan keputusan etisnya', 'Mengulang penjelasan guru kata demi kata'],
+                jawaban: 2,
+                alasan: 'Deep learning terjadi ketika konsep diterapkan, dievaluasi, dan ditransfer ke situasi baru disertai alasan yang dapat dipertanggungjawabkan.'
+            }
+        ];
+
+        const konsep = [
+            {
+                nama: 'Koding',
+                icon: 'code',
+                ringkas: 'Menulis instruksi eksplisit yang dijalankan komputer langkah demi langkah.',
+                detail: 'Dalam koding, manusia menentukan aturannya: “jika A maka lakukan B”. Hasilnya sepenuhnya mengikuti logika yang ditulis. Di lab nanti, kamu akan melihat bahwa pendekatan ini berbeda dengan model yang belajar dari contoh.',
+                contoh: 'if (sumberJelas) { hasil = "layak dipercaya"; }'
+            },
+            {
+                nama: 'Data',
+                icon: 'layer-group',
+                ringkas: 'Contoh-contoh yang menjadi bahan bakar bagi model pembelajaran mesin.',
+                detail: 'Model tidak memahami dunia seperti manusia. Ia menangkap pola statistik dari data yang diberikan. Jika datanya timpang atau mengandung bias, model akan mewarisi bias tersebut. Karena itu, jumlah dan keragaman data penting.',
+                contoh: '6 contoh pesan dengan label: layak dipercaya / mencurigakan.'
+            },
+            {
+                nama: 'Model AI',
+                icon: 'wand-magic-sparkles',
+                ringkas: 'Sistem yang menyesuaikan bobot agar prediksinya mendekati label pada data latih.',
+                detail: 'Perceptron adalah model paling sederhana: ia menjumlahkan bobot kali ciri, menambah bias, lalu mengambil keputusan. Proses memperbaiki bobot disebut pelatihan. Setelah dilatih, model tetap perlu diuji pada data yang belum pernah dilihat.',
+                contoh: 'z = w1×x1 + w2×x2 + bias; prediksi = 1 jika z ≥ 0.'
+            }
+        ];
+
+        const dataLatih = [
+            { nama: 'Berita resmi Kemdikbud', x1: 1, x2: 0, y: 1 },
+            { nama: 'Artikel riset dengan penulis', x1: 1, x2: 0, y: 1 },
+            { nama: 'Postingan “BREAKING!!” tanpa sumber', x1: 0, x2: 1, y: 0 },
+            { nama: 'Promo klik sekarang, tanpa penulis', x1: 0, x2: 1, y: 0 },
+            { nama: 'Infografis Komdigi dengan tautan', x1: 1, x2: 0, y: 1 },
+            { nama: 'Kabar viral dari akun baru', x1: 0, x2: 1, y: 0 }
+        ];
+
+        const dataUji = [
+            { nama: 'Laporan bencana dari lembaga resmi, nada mendesak', x1: 1, x2: 1, y: 1 },
+            { nama: 'Catatan netral dari akun tanpa sumber', x1: 0, x2: 0, y: 0 }
+        ];
+
+        const soalEtika = [
+            {
+                situasi: 'AI membantu kamu membuat esai, lalu kamu kumpulkan sebagai karya sendiri tanpa keterangan.',
+                opsi: [
+                    'Tidak apa-apa karena hasilnya sudah bagus',
+                    'Tulis ulang dengan bahasamu dan cantumkan bahwa AI digunakan sebagai alat bantu',
+                    'Hapus jejak AI agar tidak diketahui guru',
+                    'Minta AI menulis versi lain yang lebih sulit terdeteksi'
+                ],
+                jawaban: 1,
+                prinsip: 'Transparansi & akuntabilitas',
+                alasan: 'AI boleh membantu, tetapi manusia tetap bertanggung jawab. Mengungkap peran AI dan menulis ulang hasilnya adalah bentuk kejujuran akademik.'
+            },
+            {
+                situasi: 'Aplikasi pengubah teks meminta izin kontak dan lokasi presisi.',
+                opsi: [
+                    'Izinkan semua agar fitur lengkap',
+                    'Tolak izin yang tidak berkaitan dengan fungsi utama aplikasi',
+                    'Izinkan sebentar saja lalu hapus riwayatnya',
+                    'Tidak perlu memikirkan izin selama aplikasinya gratis'
+                ],
+                jawaban: 1,
+                prinsip: 'Privasi & perlindungan data',
+                alasan: 'Sesuai UU No. 27 Tahun 2022 dan prinsip UNESCO, data pribadi harus dilindungi sepanjang siklus penggunaan teknologi.'
+            },
+            {
+                situasi: 'AI menyebutkan seorang tokoh melakukan sesuatu yang tidak ada dalam sumber sejarah.',
+                opsi: [
+                    'Langsung dipercaya karena AI terdengar meyakinkan',
+                    'Dijadikan bahan candaan di grup kelas',
+                    'Verifikasi ke sumber resmi dan tidak membagikan sebelum dipastikan',
+                    'Ditambahkan ke makalah sebagai fakta baru'
+                ],
+                jawaban: 2,
+                prinsip: 'Pengawasan manusia & keakuratan',
+                alasan: 'Model dapat berhalusinasi. Pengawasan manusia berarti memeriksa ulang klaim sebelum menggunakannya, terutama pada materi faktual.'
+            },
+            {
+                situasi: 'Rekomendasi AI hanya cocok untuk satu kelompok dan merugikan kelompok lain.',
+                opsi: [
+                    'Dipakai saja karena mayoritas puas',
+                    'Diuji dengan data yang lebih beragam dan hasilnya dievaluasi ulang',
+                    'Ditutup agar tidak menimbulkan perdebatan',
+                    'Disalahkan sepenuhnya kepada AI tanpa tindakan'
+                ],
+                jawaban: 1,
+                prinsip: 'Keadilan & non-diskriminasi',
+                alasan: 'UNESCO menekankan keadilan, inklusi, dan keragaman. Evaluasi ulang dengan data beragam membantu mengurangi bias.'
+            }
+        ];
+
+        /* ============================================================
+           STATE & PENYIMPANAN
+           ============================================================ */
+        let state = {
+            langkah: 0,
+            pretest: [null, null, null, null],
+            posttest: [null, null, null, null],
+            pretestSelesai: false,
+            posttestSelesai: false,
+            bobot: { w1: 0.2, w2: 0.3, b: 0.5 },
+            etika: [null, null, null, null],
+            etikaSelesai: false,
+            kartu: ['', '', ''],
+            prompt: '',
+            jurnalIzin: '',
+            jurnalAkhir: ''
+        };
+
+        function muatState() {
+            try {
+                const data = localStorage.getItem(KUNCI_SIMPAN);
+                if (!data) return;
+                state = Object.assign(state, JSON.parse(data));
+            } catch (e) { /* abaikan penyimpanan rusak */ }
+        }
+
+        function simpanState() {
+            try { localStorage.setItem(KUNCI_SIMPAN, JSON.stringify(state)); } catch (e) { /* abaikan */ }
+        }
+
+        /* ============================================================
+           NAVIGASI LANGKAH
+           ============================================================ */
+        function bukaLangkah(index) {
+            state.langkah = Math.max(0, Math.min(5, index));
+            document.querySelectorAll('.step-panel').forEach((panel, i) => {
+                panel.classList.toggle('hidden', i !== state.langkah);
+            });
+            document.querySelectorAll('.step-btn').forEach((btn, i) => {
+                const aktif = i === state.langkah;
+                btn.className = aktif
+                    ? 'step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer bg-emeraldDark text-white shadow-sm'
+                    : 'step-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition cursor-pointer bg-white text-emeraldDark border border-creamBorder hover:bg-emeraldLight';
+            });
+            document.getElementById('progressTeks').textContent = `Langkah ${state.langkah + 1} dari 6`;
+            document.getElementById('progressFill').style.width = `${((state.langkah + 1) / 6) * 100}%`;
+            simpanState();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* ============================================================
+           PRETEST & POSTTEST
+           ============================================================ */
+        function renderSoal(soal, stateKey, containerId) {
+            document.getElementById(containerId).innerHTML = soal.map((item, i) => `
+                <div class="rounded-2xl border border-creamBorder p-4 sm:p-5 bg-white">
+                    <p class="text-xs font-extrabold uppercase tracking-wide text-goldWarm mb-1">Soal ${i + 1}</p>
+                    <p class="text-sm font-bold text-emeraldDark leading-snug">${item.pertanyaan}</p>
+                    <div class="mt-3 grid gap-2">
+                        ${item.opsi.map((opsi, o) => `
+                            <label class="opsi-${stateKey}-${i}-${o} flex items-start gap-2.5 px-3 py-2 rounded-xl border border-stone-200 hover:bg-emeraldLight/50 cursor-pointer transition">
+                                <input type="radio" name="${stateKey}-${i}" value="${o}" class="mt-0.5 accent-emeraldMid" ${state[stateKey][i] === o ? 'checked' : ''} onchange="pilihJawaban('${stateKey}', ${i}, ${o})">
+                                <span class="text-xs sm:text-sm text-slate-700 leading-snug">${opsi}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div id="alasan-${stateKey}-${i}" class="hidden mt-3 rounded-xl px-3.5 py-2.5 text-[11px] sm:text-xs leading-relaxed"></div>
+                </div>
+            `).join('');
+        }
+
+        function pilihJawaban(stateKey, i, o) {
+            state[stateKey][i] = o;
+            simpanState();
+        }
+
+        function skor(soal, jawaban) {
+            return soal.reduce((total, item, i) => total + (jawaban[i] === item.jawaban ? 1 : 0), 0);
+        }
+
+        function tampilkanPembahasan(soal, stateKey, jawaban) {
+            soal.forEach((item, i) => {
+                const box = document.getElementById(`alasan-${stateKey}-${i}`);
+                if (!box) return;
+                const benar = jawaban[i] === item.jawaban;
+                box.classList.remove('hidden');
+                box.className = benar
+                    ? 'mt-3 rounded-xl px-3.5 py-2.5 text-[11px] sm:text-xs leading-relaxed bg-emeraldLight border border-emerald-200 text-emeraldDeep'
+                    : 'mt-3 rounded-xl px-3.5 py-2.5 text-[11px] sm:text-xs leading-relaxed bg-amber-50 border border-amber-200 text-amber-900';
+                box.innerHTML = `<strong>${benar ? 'Tepat.' : 'Perlu diperhatikan.'}</strong> Jawaban paling tepat: <strong>${item.opsi[item.jawaban]}</strong>. ${item.alasan}`;
+
+                item.opsi.forEach((_, o) => {
+                    const label = document.querySelector(`.opsi-${stateKey}-${i}-${o}`);
+                    if (!label) return;
+                    label.classList.remove('border-emeraldMid', 'bg-emeraldLight', 'border-amber-300', 'bg-amber-50');
+                    if (o === item.jawaban) label.classList.add('border-emeraldMid', 'bg-emeraldLight');
+                    if (o === jawaban[i] && o !== item.jawaban) label.classList.add('border-amber-300', 'bg-amber-50');
+                });
+            });
+        }
+
+        function periksaPretest() {
+            if (state.pretest.some(x => x === null)) {
+                document.getElementById('pretestHasil').textContent = 'Lengkapi keempat jawaban dulu, ya.';
+                return;
+            }
+            state.pretestSelesai = true;
+            const nilai = skor(soalPretest, state.pretest);
+            document.getElementById('pretestHasil').innerHTML = `Pretest selesai: <strong class="text-emeraldDark">${nilai} dari 4</strong>. Lihat pembahasan di bawah setiap soal.`;
+            tampilkanPembahasan(soalPretest, 'pretest', state.pretest);
+            simpanState();
+        }
+
+        function ulangPretest() {
+            state.pretest = [null, null, null, null];
+            state.pretestSelesai = false;
+            renderSoal(soalPretest, 'pretest', 'pretestContainer');
+            document.getElementById('pretestHasil').textContent = 'Belum dijawab.';
+            simpanState();
+        }
+
+        function periksaPosttest() {
+            if (state.posttest.some(x => x === null)) {
+                document.getElementById('posttestHasil').textContent = 'Lengkapi keempat jawaban dulu, ya.';
+                return;
+            }
+            state.posttestSelesai = true;
+            const nilaiPost = skor(soalPosttest, state.posttest);
+            const nilaiPre = state.pretestSelesai ? skor(soalPretest, state.pretest) : null;
+            document.getElementById('posttestHasil').innerHTML = `Posttest: <strong class="text-emeraldDark">${nilaiPost} dari 4</strong>.`;
+            tampilkanPembahasan(soalPosttest, 'posttest', state.posttest);
+
+            document.getElementById('hasilAkhir').classList.remove('hidden');
+            document.getElementById('ringkasanPretest').textContent = nilaiPre === null ? '–' : `${nilaiPre}/4`;
+            document.getElementById('ringkasanPosttest').textContent = `${nilaiPost}/4`;
+            const growth = nilaiPre === null ? '–' : `${nilaiPost - nilaiPre >= 0 ? '+' : ''}${nilaiPost - nilaiPre}`;
+            document.getElementById('ringkasanGrowth').textContent = growth;
+            document.getElementById('ringkasanNasihat').textContent = nilaiPost >= 3
+                ? 'Pemahamanmu sudah kuat. Tant berikutnya: jelaskan kepada teman mengapa model perlu diuji dan mengapa manusia tetap mengawasi AI.'
+                : 'Masih ada konsep yang perlu diperkuat. Ulangi lab dan perhatikan kembali kriteria sumber, keakuratan, dan keadilan.';
+            simpanState();
+        }
+
+        /* ============================================================
+           KONSEP INTI
+           ============================================================ */
+        function renderKonsep() {
+            document.getElementById('konsepGrid').innerHTML = konsep.map((k, i) => `
+                <button onclick="bukaKonsep(${i})" id="konsep-btn-${i}" class="text-left p-4 rounded-2xl bg-white hover:bg-emeraldLight/60 border-2 border-creamBorder transition cursor-pointer">
+                    <span class="w-10 h-10 rounded-xl bg-emeraldLight text-emeraldDark flex items-center justify-center text-lg mb-3">
+                        <span data-icon="${k.icon}"></span>
+                    </span>
+                    <h4 class="font-extrabold text-sm text-emeraldDark leading-snug">${k.nama}</h4>
+                    <p class="text-[11px] text-slate-500 leading-relaxed mt-1.5">${k.ringkas}</p>
+                </button>
+            `).join('');
+            bukaKonsep(0);
+        }
+
+        function bukaKonsep(i) {
+            const k = konsep[i];
+            konsep.forEach((_, idx) => {
+                const btn = document.getElementById(`konsep-btn-${idx}`);
+                if (!btn) return;
+                btn.className = idx === i
+                    ? 'text-left p-4 rounded-2xl bg-emeraldDark text-white border-2 border-goldBright shadow-sm transition cursor-pointer'
+                    : 'text-left p-4 rounded-2xl bg-white hover:bg-emeraldLight/60 border-2 border-creamBorder transition cursor-pointer';
+                const iconSpan = btn.querySelector('[data-icon]');
+                if (iconSpan) iconSpan.className = idx === i ? 'text-goldBright text-lg' : 'text-emeraldDark text-lg';
+            });
+            document.getElementById('konsepDetail').innerHTML = `
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Konsep ${i + 1}</p>
+                        <h4 class="text-lg sm:text-xl font-extrabold text-emeraldDark mt-1">${k.nama}</h4>
+                    </div>
+                    <span class="w-12 h-12 rounded-2xl bg-emeraldLight text-emeraldDark flex items-center justify-center text-2xl">
+                        <span data-icon="${k.icon}"></span>
+                    </span>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed mt-4">${k.detail}</p>
+                <div class="mt-4 pt-4 border-t border-creamBorder">
+                    <p class="text-[11px] font-extrabold uppercase tracking-wide text-emeraldMid mb-1">Contoh</p>
+                    <code class="block text-xs bg-creamSand border border-creamBorder rounded-xl px-3.5 py-2.5 text-emeraldDark">${k.contoh}</code>
+                </div>
+            `;
+        }
+
+        /* ============================================================
+           LAB PERCEPTRON
+           ============================================================ */
+        function prediksi(item, bobot) {
+            const z = bobot.w1 * item.x1 + bobot.w2 * item.x2 + bobot.b;
+            return { z: z, y: z >= 0 ? 1 : 0 };
+        }
+
+        function aturBobot() {
+            state.bobot = {
+                w1: parseFloat(document.getElementById('w1').value),
+                w2: parseFloat(document.getElementById('w2').value),
+                b: parseFloat(document.getElementById('b').value)
+            };
+            simpanState();
+            updateModel();
+        }
+
+        function resetBobot() {
+            state.bobot = { w1: 0.2, w2: 0.3, b: 0.5 };
+            document.getElementById('w1').value = state.bobot.w1;
+            document.getElementById('w2').value = state.bobot.w2;
+            document.getElementById('b').value = state.bobot.b;
+            simpanState();
+            updateModel();
+            document.getElementById('labPesan').textContent = 'Bobot dikembalikan ke nilai awal. Coba ubah w2 menjadi negatif.';
+        }
+
+        function updateModel() {
+            const w = state.bobot;
+            document.getElementById('val-w1').textContent = w.w1.toFixed(1);
+            document.getElementById('val-w2').textContent = w.w2.toFixed(1);
+            document.getElementById('val-b').textContent = w.b.toFixed(1);
+
+            let benar = 0;
+            document.getElementById('labTable').innerHTML = dataLatih.map(item => {
+                const hasil = prediksi(item, w);
+                const tepat = hasil.y === item.y;
+                if (tepat) benar++;
+                return `
+                    <tr>
+                        <td class="py-2 pr-2 font-semibold">${item.nama}</td>
+                        <td class="py-2 pr-2 text-center">${item.x1}</td>
+                        <td class="py-2 pr-2 text-center">${item.x2}</td>
+                        <td class="py-2 pr-2 text-center font-mono">${hasil.z.toFixed(2)}</td>
+                        <td class="py-2">
+                            <span class="px-2 py-0.5 rounded-lg text-[10px] font-extrabold ${tepat ? 'bg-emeraldLight text-emeraldDark' : 'bg-amber-100 text-amber-800'}">
+                                ${hasil.y === 1 ? 'Dipercaya' : 'Dicurigai'} ${tepat ? '✓' : '✗'}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            const pct = Math.round((benar / dataLatih.length) * 100);
+            document.getElementById('labAkurasi').textContent = `${benar} / ${dataLatih.length} benar`;
+            document.getElementById('labAkurasiBar').style.width = `${pct}%`;
+            document.getElementById('labAkurasi').className = benar === dataLatih.length
+                ? 'px-3 py-1 rounded-lg bg-emeraldLight text-emeraldDark text-xs font-extrabold'
+                : 'px-3 py-1 rounded-lg bg-amber-100 text-goldDeep text-xs font-extrabold';
+
+            if (benar === dataLatih.length) {
+                document.getElementById('labPesan').textContent = 'Model sudah mengenali semua pola di data latih. Sekarang uji dengan data baru!';
+            } else {
+                document.getElementById('labPesan').textContent = 'Ada prediksi yang salah. Perbesar w1, kecilkan w2, dan sesuaikan bias sampai semua benar.';
+            }
+        }
+
+        function latihOtomatis() {
+            let w = { w1: 0.2, w2: 0.3, b: 0.5 };
+            const lr = 0.2;
+            let epoch = 0;
+            for (; epoch < 60; epoch++) {
+                let salah = 0;
+                dataLatih.forEach(item => {
+                    const hasil = prediksi(item, w);
+                    const error = item.y - hasil.y;
+                    if (error !== 0) {
+                        salah++;
+                        w.w1 = Math.round((w.w1 + lr * error * item.x1) * 100) / 100;
+                        w.w2 = Math.round((w.w2 + lr * error * item.x2) * 100) / 100;
+                        w.b = Math.round((w.b + lr * error) * 100) / 100;
+                    }
+                });
+                if (salah === 0) break;
+            }
+            state.bobot = w;
+            document.getElementById('w1').value = w.w1;
+            document.getElementById('w2').value = w.w2;
+            document.getElementById('b').value = w.b;
+            simpanState();
+            updateModel();
+            document.getElementById('labPesan').textContent = `Pelatihan selesai dalam ${epoch + 1} putaran. Perhatikan nilai bobot yang ditemukan mesin.`;
+        }
+
+        function ujiDataBaru() {
+            let benar = 0;
+            const baris = dataUji.map(item => {
+                const hasil = prediksi(item, state.bobot);
+                const tepat = hasil.y === item.y;
+                if (tepat) benar++;
+                return `
+                    <div class="flex flex-wrap items-start justify-between gap-2 bg-white rounded-xl border border-emerald-200 px-3.5 py-2.5">
+                        <span class="text-xs text-slate-700 leading-snug flex-1 min-w-[180px]">${item.nama}</span>
+                        <span class="px-2 py-0.5 rounded-lg text-[10px] font-extrabold ${tepat ? 'bg-emeraldLight text-emeraldDark' : 'bg-amber-100 text-amber-800'}">
+                            ${tepat ? 'Benar' : 'Salah'} · z = ${hasil.z.toFixed(2)}
+                        </span>
+                    </div>
+                `;
+            }).join('');
+
+            const box = document.getElementById('ujiHasil');
+            box.innerHTML = `
+                <p class="font-extrabold text-emeraldDark mb-2 flex items-center gap-1.5">
+                    <span data-icon="${benar === dataUji.length ? 'circle-check' : 'circle-info'}"></span>
+                    Hasil uji data baru: ${benar} dari ${dataUji.length} benar
+                </p>
+                <div class="space-y-2">${baris}</div>
+                <p class="text-slate-600 mt-3 leading-relaxed">
+                    ${benar === dataUji.length
+                        ? 'Model menangani kasus baru dengan baik. Tetap lakukan pengawasan manusia sebelum memakai hasilnya.'
+                        : 'Model salah pada situasi yang belum pernah dilihatnya. Ini bukti bahwa akurasi di data latih saja tidak cukup. Ragamkan data latih dan minta manusia memeriksa keputusan penting.'}
+                </p>
+            `;
+        }
+
+        /* ============================================================
+           SIMULASI ETIKA
+           ============================================================ */
+        function renderEtika() {
+            document.getElementById('etikaContainer').innerHTML = soalEtika.map((item, i) => `
+                <div class="rounded-2xl border border-creamBorder p-4 sm:p-5 bg-white">
+                    <p class="text-xs font-extrabold uppercase tracking-wide text-goldWarm mb-1">Situasi ${i + 1}</p>
+                    <p class="text-sm font-bold text-emeraldDark leading-snug">${item.situasi}</p>
+                    <div class="mt-3 grid gap-2">
+                        ${item.opsi.map((opsi, o) => `
+                            <label class="opsi-etika-${i}-${o} flex items-start gap-2.5 px-3 py-2 rounded-xl border border-stone-200 hover:bg-emeraldLight/50 cursor-pointer transition">
+                                <input type="radio" name="etika-${i}" value="${o}" class="mt-0.5 accent-emeraldMid" ${state.etika[i] === o ? 'checked' : ''} onchange="pilihEtika(${i}, ${o})">
+                                <span class="text-xs sm:text-sm text-slate-700 leading-snug">${opsi}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                    <div id="alasan-etika-${i}" class="hidden mt-3 rounded-xl px-3.5 py-2.5 text-[11px] sm:text-xs leading-relaxed"></div>
+                </div>
+            `).join('');
+        }
+
+        function pilihEtika(i, o) {
+            state.etika[i] = o;
+            simpanState();
+        }
+
+        function periksaEtika() {
+            if (state.etika.some(x => x === null)) {
+                document.getElementById('etikaHasil').textContent = 'Lengkapi keempat situasi dulu, ya.';
+                return;
+            }
+            state.etikaSelesai = true;
+            const nilai = skor(soalEtika, state.etika);
+            document.getElementById('etikaHasil').innerHTML = `Keputusan etis: <strong class="text-emeraldDark">${nilai} dari 4</strong> tepat.`;
+
+            soalEtika.forEach((item, i) => {
+                const box = document.getElementById(`alasan-etika-${i}`);
+                if (!box) return;
+                const benar = state.etika[i] === item.jawaban;
+                box.classList.remove('hidden');
+                box.className = benar
+                    ? 'mt-3 rounded-xl px-3.5 py-2.5 text-[11px] sm:text-xs leading-relaxed bg-emeraldLight border border-emerald-200 text-emeraldDeep'
+                    : 'mt-3 rounded-xl px-3.5 py-2.5 text-[11px] sm:text-xs leading-relaxed bg-amber-50 border border-amber-200 text-amber-900';
+                box.innerHTML = `<strong>${item.prinsip}.</strong> ${item.alasan} Jawaban paling tepat: <strong>${item.opsi[item.jawaban]}</strong>.`;
+
+                item.opsi.forEach((_, o) => {
+                    const label = document.querySelector(`.opsi-etika-${i}-${o}`);
+                    if (!label) return;
+                    label.classList.remove('border-emeraldMid', 'bg-emeraldLight', 'border-amber-300', 'bg-amber-50');
+                    if (o === item.jawaban) label.classList.add('border-emeraldMid', 'bg-emeraldLight');
+                    if (o === state.etika[i] && o !== item.jawaban) label.classList.add('border-amber-300', 'bg-amber-50');
+                });
+            });
+            simpanState();
+        }
+
+        /* ============================================================
+           PRODUK SISWA
+           ============================================================ */
+        function buatKartu() {
+            state.kartu = [
+                document.getElementById('kartuSatu').value.trim(),
+                document.getElementById('kartuDua').value.trim(),
+                document.getElementById('kartuTiga').value.trim()
+            ];
+            state.prompt = document.getElementById('promptContoh').value.trim();
+            simpanState();
+
+            const isi = state.kartu.some(Boolean)
+                ? state.kartu.map((baris, i) => `
+                    <div class="flex items-start gap-3">
+                        <span class="w-6 h-6 rounded-lg bg-emeraldDark text-goldBright text-xs font-extrabold flex items-center justify-center shrink-0">${i + 1}</span>
+                        <p class="text-sm text-slate-700 leading-snug">${escapeHtml(baris || '—')}</p>
+                    </div>
+                `).join('')
+                : '<p class="text-xs text-slate-400 italic">Isi tiga aturan di sebelah kiri, lalu tekan pratinjau.</p>';
+
+            document.getElementById('kartuPreview').innerHTML = isi;
+            const promptBox = document.getElementById('kartuPrompt');
+            promptBox.classList.toggle('hidden', !state.prompt);
+            if (state.prompt) document.getElementById('kartuPromptTeks').textContent = state.prompt;
+            document.getElementById('kartuAksi').classList.toggle('hidden', !state.kartu.some(Boolean));
+        }
+
+        function teksKartu() {
+            return `KARTU AI BERTANGGUNG JAWAB\n1. ${state.kartu[0] || '—'}\n2. ${state.kartu[1] || '—'}\n3. ${state.kartu[2] || '—'}\n\nContoh prompt:\n${state.prompt || '—'}\n\nPrinsip: transparan · privat · adil · diawasi manusia\nModul KKA Kelas 10 • Koding & Kecerdasan Artifisial`;
+        }
+
+        function salinKartu() {
+            const teks = teksKartu();
+            const tampilToast = () => {
+                const toast = document.getElementById('toastModul');
+                toast.textContent = 'Kartu berhasil disalin!';
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 1800);
+            };
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(teks).then(tampilToast).catch(() => fallbackSalin(teks, tampilToast));
+            } else {
+                fallbackSalin(teks, tampilToast);
+            }
+        }
+
+        function fallbackSalin(teks, callback) {
+            const input = document.createElement('textarea');
+            input.value = teks;
+            input.style.position = 'fixed';
+            input.style.opacity = '0';
+            document.body.appendChild(input);
+            input.select();
+            try { document.execCommand('copy'); } catch (e) { /* abaikan */ }
+            document.body.removeChild(input);
+            callback();
+        }
+
+        function simpanJurnal() {
+            state.jurnalIzin = document.getElementById('promptContoh').value.trim();
+            simpanState();
+            const pesan = document.getElementById('kartuPesan');
+            pesan.textContent = 'Kartu dan contoh prompt tersimpan di perangkat ini.';
+            pesan.classList.remove('hidden');
+        }
+
+        function simpanJurnalAkhir() {
+            state.jurnalAkhir = document.getElementById('refleksiAkhir').value.trim();
+            simpanState();
+            document.getElementById('pesanSimpan').textContent = 'Jurnal refleksi berhasil disimpan.';
+        }
+
+        /* ============================================================
+           INISIALISASI
+           ============================================================ */
+        function initModul() {
+            muatState();
+            renderSoal(soalPretest, 'pretest', 'pretestContainer');
+            renderSoal(soalPosttest, 'posttest', 'posttestContainer');
+            renderKonsep();
+            renderEtika();
+
+            document.getElementById('w1').value = state.bobot.w1;
+            document.getElementById('w2').value = state.bobot.w2;
+            document.getElementById('b').value = state.bobot.b;
+            updateModel();
+
+            document.getElementById('kartuSatu').value = state.kartu[0] || '';
+            document.getElementById('kartuDua').value = state.kartu[1] || '';
+            document.getElementById('kartuTiga').value = state.kartu[2] || '';
+            document.getElementById('promptContoh').value = state.prompt || '';
+            document.getElementById('refleksiAkhir').value = state.jurnalAkhir || '';
+
+            if (state.pretestSelesai) {
+                const nilai = skor(soalPretest, state.pretest);
+                document.getElementById('pretestHasil').innerHTML = `Pretest tersimpan: <strong class="text-emeraldDark">${nilai} dari 4</strong>.`;
+                tampilkanPembahasan(soalPretest, 'pretest', state.pretest);
+            }
+            if (state.posttestSelesai) {
+                const nilai = skor(soalPosttest, state.posttest);
+                document.getElementById('posttestHasil').innerHTML = `Posttest tersimpan: <strong class="text-emeraldDark">${nilai} dari 4</strong>.`;
+                tampilkanPembahasan(soalPosttest, 'posttest', state.posttest);
+            }
+            if (state.etikaSelesai) periksaEtika();
+            bukaLangkah(state.langkah || 0);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initModul);
+        } else {
+            initModul();
+        }
+    </script>
+</body>
+</html>

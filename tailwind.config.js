@@ -4,6 +4,7 @@ module.exports = {
         "./index.html",
         "./ski/**/*.html",
         "./tik/**/*.html",
+        "./kka/**/*.html",
         "./assets/js/**/*.js"
     ],
     theme: {

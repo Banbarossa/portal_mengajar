@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pedoman praktikum Koding dan Kecerdasan Artifisial (KKA) Kelas 10 Fase E: alur kerja, etika data dan AI, pilihan proyek, checklist kesiapan, serta rubrik dan kalkulator penilaian.">
+    <title>Pedoman Praktikum KKA Kelas X • Koding & Kecerdasan Artifisial</title>
+
+    <!-- Tailwind CSS hasil build (terpusat, tanpa CDN) -->
+    <link rel="stylesheet" href="../../assets/css/output.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col antialiased portal-bg">
+
+    <!-- Header bersama -->
+    <div data-site-header data-base="../../" data-active="modul-ajar"></div>
+
+    <!-- ============================================================== -->
+    <!-- HEADER IDENTITAS PEDOMAN                                       -->
+    <!-- ============================================================== -->
+    <header class="bg-gradient-to-br from-emeraldDark via-emeraldMid to-emerald-900 text-white border-b-4 border-goldBright shadow-lg islamic-pattern">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                <div class="max-w-3xl space-y-2.5">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 rounded-full bg-goldWarm text-white text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+                            Kurikulum Merdeka • Fase E
+                        </span>
+                        <span class="px-3 py-1 rounded-full bg-white/15 border border-white/20 text-amber-200 text-xs font-semibold">
+                            KKA • Koding & Kecerdasan Artifisial
+                        </span>
+                        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-emerald-100 text-xs font-semibold">
+                            Pendekatan Deep Learning
+                        </span>
+                    </div>
+
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">
+                        Pedoman Praktikum KKA <span class="text-amber-300">Laboratorium Kode, Data & Model</span>
+                    </h1>
+
+                    <p class="text-xs sm:text-sm md:text-base text-emerald-100 leading-relaxed">
+                        Panduan pelaksanaan praktikum koding, pengolahan data, pembangunan model sederhana, dan evaluasi etika AI. Siswa belajar dengan membuat, menguji, memperbaiki, dan menjelaskan keputusan teknisnya—bukan sekadar menghafal teori.
+                    </p>
+                </div>
+
+                <!-- Kartu Ringkasan Kesiapan Real-time -->
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 shrink-0 lg:w-64 no-print">
+                    <div class="flex items-center justify-between text-xs mb-1.5">
+                        <span class="font-bold text-amber-200 uppercase tracking-wider">Kesiapan Praktikum</span>
+                        <span id="headerReadinessPct" class="font-extrabold text-amber-300">0%</span>
+                    </div>
+                    <div class="w-full bg-emerald-950/60 h-2.5 rounded-full overflow-hidden mb-2.5">
+                        <div id="headerReadinessBar" class="bg-gradient-to-r from-amber-300 to-goldWarm h-full rounded-full transition-all duration-300" style="width: 0%;"></div>
+                    </div>
+                    <p id="headerIntegrityStatus" class="text-[11px] text-emerald-100 flex items-center gap-1.5">
+                        <span data-icon="circle-info" class="text-amber-300"></span>
+                        <span>Pakta integritas belum dicentang</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================== -->
+    <!-- NAVIGASI TAB INTERAKTIF 4 BAGIAN                               -->
+    <!-- ============================================================== -->
+    <div class="z-30 bg-creamPaper/95 backdrop-blur-md border-b border-amber-900/15 shadow-sm no-print">
+        <div class="max-w-6xl mx-auto px-3 sm:px-6 py-2.5">
+            <nav aria-label="Navigasi Bagian Pedoman" class="grid grid-cols-2 lg:grid-cols-4 gap-2">
+                <button onclick="switchTab(0)" id="tab-btn-0" class="tab-nav-btn px-3.5 py-2.5 rounded-xl bg-emeraldDark text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center sm:justify-start gap-2.5 cursor-pointer">
+                    <span class="w-6 h-6 rounded-lg bg-goldBright text-emeraldDark font-extrabold text-xs flex items-center justify-center shrink-0">1</span>
+                    <span class="truncate">Alur & Tata Tertib</span>
+                </button>
+
+                <button onclick="switchTab(1)" id="tab-btn-1" class="tab-nav-btn px-3.5 py-2.5 rounded-xl bg-creamSand hover:bg-emeraldSoft text-slate-700 font-bold text-xs sm:text-sm border border-amber-900/10 transition flex items-center justify-center sm:justify-start gap-2.5 cursor-pointer">
+                    <span class="w-6 h-6 rounded-lg bg-white text-emeraldDark font-extrabold text-xs flex items-center justify-center shrink-0">2</span>
+                    <span class="truncate">Pilihan Proyek Praktikum</span>
+                </button>
+
+                <button onclick="switchTab(2)" id="tab-btn-2" class="tab-nav-btn px-3.5 py-2.5 rounded-xl bg-creamSand hover:bg-emeraldSoft text-slate-700 font-bold text-xs sm:text-sm border border-amber-900/10 transition flex items-center justify-center sm:justify-start gap-2.5 cursor-pointer">
+                    <span class="w-6 h-6 rounded-lg bg-white text-emeraldDark font-extrabold text-xs flex items-center justify-center shrink-0">3</span>
+                    <span class="truncate">Checklist Persiapan</span>
+                </button>
+
+                <button onclick="switchTab(3)" id="tab-btn-3" class="tab-nav-btn px-3.5 py-2.5 rounded-xl bg-creamSand hover:bg-emeraldSoft text-slate-700 font-bold text-xs sm:text-sm border border-amber-900/10 transition flex items-center justify-center sm:justify-start gap-2.5 cursor-pointer">
+                    <span class="w-6 h-6 rounded-lg bg-white text-emeraldDark font-extrabold text-xs flex items-center justify-center shrink-0">4</span>
+                    <span class="truncate">Rubrik & Kalkulator Skor</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+        <!-- ============================================================ -->
+        <!-- TAB 1: ALUR & TATA TERTIB                                    -->
+        <!-- ============================================================ -->
+        <section id="tab-panel-0" class="tab-panel animate-fade-in-panel space-y-6">
+
+            <!-- Bagian 1A: Peta Jalan Praktikum -->
+            <div class="bg-creamPaper rounded-3xl border border-amber-900/15 p-5 sm:p-7 shadow-sm">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Bagian 1A • Peta Jalan Praktikum</span>
+                        <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark">4 Tahapan Praktikum Koding & AI</h2>
+                    </div>
+                    <span class="text-xs text-slate-500">Klik kartu tahapan untuk melihat rincian aktivitas</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+                    <button onclick="selectStage(0)" id="stage-card-0" class="text-left p-4 rounded-2xl bg-emeraldDark text-white border-2 border-goldBright shadow-sm transition cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2.5 py-0.5 rounded-md bg-goldBright text-emeraldDark text-[11px] font-extrabold">Tahap 01</span>
+                            <span data-icon="users" class="text-amber-300"></span>
+                        </div>
+                        <h3 class="font-extrabold text-sm leading-snug">Pembentukan Tim & Pakta Etika</h3>
+                        <p class="text-[11px] text-emerald-100 mt-1">Pembagian peran, topik, dan kesepakatan etika data.</p>
+                    </button>
+
+                    <button onclick="selectStage(1)" id="stage-card-1" class="text-left p-4 rounded-2xl bg-white hover:bg-emeraldSoft/60 text-slate-800 border-2 border-slate-200 transition cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2.5 py-0.5 rounded-md bg-emeraldSoft text-emeraldDark text-[11px] font-extrabold">Tahap 02</span>
+                            <span data-icon="magnifying-glass-chart" class="text-goldWarm"></span>
+                        </div>
+                        <h3 class="font-extrabold text-sm text-emeraldDark leading-snug">Pengumpulan & Pembersihan Data</h3>
+                        <p class="text-[11px] text-slate-500 mt-1">Menyusun dataset kecil, berlabel, dan bebas data sensitif.</p>
+                    </button>
+
+                    <button onclick="selectStage(2)" id="stage-card-2" class="text-left p-4 rounded-2xl bg-white hover:bg-emeraldSoft/60 text-slate-800 border-2 border-slate-200 transition cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2.5 py-0.5 rounded-md bg-emeraldSoft text-emeraldDark text-[11px] font-extrabold">Tahap 03</span>
+                            <span data-icon="code" class="text-goldWarm"></span>
+                        </div>
+                        <h3 class="font-extrabold text-sm text-emeraldDark leading-snug">Pembangunan Model & Uji Coba</h3>
+                        <p class="text-[11px] text-slate-500 mt-1">Menulis kode, melatih model, dan mengukur akurasi.</p>
+                    </button>
+
+                    <button onclick="selectStage(3)" id="stage-card-3" class="text-left p-4 rounded-2xl bg-white hover:bg-emeraldSoft/60 text-slate-800 border-2 border-slate-200 transition cursor-pointer">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="px-2.5 py-0.5 rounded-md bg-emeraldSoft text-emeraldDark text-[11px] font-extrabold">Tahap 04</span>
+                            <span data-icon="chalkboard-user" class="text-goldWarm"></span>
+                        </div>
+                        <h3 class="font-extrabold text-sm text-emeraldDark leading-snug">Presentasi & Refleksi</h3>
+                        <p class="text-[11px] text-slate-500 mt-1">Demo karya, model card, dan evaluasi keterbatasan.</p>
+                    </button>
+                </div>
+
+                <div id="stageDetailPanel" class="bg-creamSand/90 border border-amber-900/15 rounded-2xl p-4 sm:p-5">
+                    <!-- Dirender via JS -->
+                </div>
+            </div>
+
+            <!-- Bagian 1B: Tata Tertib & Pakta Integritas -->
+            <div class="bg-creamPaper rounded-3xl border border-amber-900/15 p-5 sm:p-7 shadow-sm">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Bagian 1B • Etika Koding & AI</span>
+                        <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Tata Tertib Praktikum KKA</h2>
+                    </div>
+                    <span id="pactCounterBadge" class="px-3 py-1 rounded-full bg-amber-100 text-goldDeep text-xs font-extrabold">
+                        0 / 5 Komitmen Disetujui
+                    </span>
+                </div>
+
+                <p class="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
+                    Kode dan data yang kamu olah membawa dampak bagi orang lain. <strong>Centang kelima butir komitmen berikut</strong> sebagai kesepakatan tim sebelum praktikum dimulai.
+                </p>
+
+                <div id="integrityRulesList" class="space-y-2.5 mb-5">
+                    <!-- Dirender via JS -->
+                </div>
+
+                <div id="pactCompleteBanner" class="hidden bg-emeraldSoft border-2 border-emeraldMid rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-in-panel">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emeraldDark text-amber-300 flex items-center justify-center text-lg shrink-0">
+                            <span data-icon="shield-check"></span>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-extrabold text-emeraldDark">Pakta Integritas Aktif!</h4>
+                            <p class="text-xs text-slate-600">Seluruh komitmen privasi, transparansi, keadilan, dan keamanan kode telah disetujui. Silakan lanjut memilih proyek.</p>
+                        </div>
+                    </div>
+                    <button onclick="switchTab(1)" class="px-4 py-2.5 rounded-xl bg-goldWarm hover:bg-goldDeep text-white font-bold text-xs shrink-0 transition cursor-pointer">
+                        Lihat Pilihan Proyek <span data-icon="arrow-right" class="ml-1"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dasar Kurikulum & Sumber -->
+            <div class="bg-white rounded-3xl border border-creamBorder p-5 sm:p-7 shadow-sm">
+                <div class="mb-3">
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Dasar Penyusunan</span>
+                    <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Kurikulum Merdeka, Deep Learning & Sumber Valid</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 text-xs text-slate-600 leading-relaxed">
+                    <div class="bg-emeraldLight/70 border border-emerald-200 rounded-2xl p-4">
+                        <p class="font-extrabold text-emeraldDark mb-1.5 flex items-center gap-1.5">
+                            <span data-icon="lightbulb" class="text-goldWarm"></span> Alur Deep Learning
+                        </p>
+                        <p><strong>Memahami</strong> cara kerja algoritma lewat kasus, <strong>menerapkan</strong>nya dalam kode dan data, lalu <strong>mentransfer</strong> sikap kritis saat memakai AI di luar kelas. Penilaian difokuskan pada proses berpikir dan keputusan etis.</p>
+                    </div>
+                    <div class="bg-creamSand/70 border border-amber-900/10 rounded-2xl p-4">
+                        <p class="font-extrabold text-emeraldDark mb-1.5 flex items-center gap-1.5">
+                            <span data-icon="book-open" class="text-goldWarm"></span> Rujukan Resmi
+                        </p>
+                        <ul class="space-y-1.5">
+                            <li><a href="https://kurikulum.kemdikbud.go.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">Kemdikbudristek — Kurikulum Merdeka Fase E</a></li>
+                            <li><a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">UNESCO — Recommendation on the Ethics of AI</a></li>
+                            <li><a href="https://literasidigital.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">Komdigi — Makin Cakap Digital, Bijak Pakai AI</a></li>
+                            <li><a href="https://peraturan.bpk.go.id/" target="_blank" rel="noopener" class="text-emeraldMid font-bold underline underline-offset-2">UU RI No. 27 Tahun 2022 — Pelindungan Data Pribadi</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-400 mt-3">Tautan diakses pada 18 November 2026. Seluruh dataset dan skenario dalam pedoman ini dibuat untuk simulasi kelas.</p>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- TAB 2: PILIHAN PROYEK PRAKTIKUM                              -->
+        <!-- ============================================================ -->
+        <section id="tab-panel-1" class="tab-panel hidden animate-fade-in-panel space-y-6">
+            <div class="bg-creamPaper rounded-3xl border border-amber-900/15 p-5 sm:p-7 shadow-sm">
+                <div class="mb-5">
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Bagian 2 • Eksplorasi Format Karya</span>
+                    <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Pilih Satu Proyek Praktikum Kelompok</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                        Klik salah satu dari <strong>3 pilihan proyek</strong> untuk melihat alat/bahan, langkah kerja, dan luaran yang dikumpulkan. Semua proyek dapat dikerjakan tanpa layanan AI berbayar.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <button onclick="selectProject(0)" id="proj-card-0" class="text-left p-5 rounded-2xl bg-emeraldDark text-white border-2 border-goldBright shadow-md transition flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-2xl bg-goldBright text-emeraldDark flex items-center justify-center text-lg font-extrabold">
+                                    <span data-icon="code"></span>
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-white/15 text-amber-200 text-[11px] font-extrabold">Opsi A • Koding</span>
+                            </div>
+                            <h3 class="font-extrabold text-base leading-snug mb-1.5">Klasifikasi Pesan Sederhana</h3>
+                            <p class="text-xs text-emerald-100 leading-relaxed">
+                                Membangun aturan atau model kecil untuk membedakan pesan layak dipercaya dan mencurigakan.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/15 text-xs font-bold text-amber-300 flex items-center justify-between">
+                            <span>Sedang Ditampilkan</span>
+                            <span data-icon="circle-check"></span>
+                        </div>
+                    </button>
+
+                    <button onclick="selectProject(1)" id="proj-card-1" class="text-left p-5 rounded-2xl bg-white hover:bg-emeraldSoft/60 text-slate-800 border-2 border-slate-200 shadow-sm transition flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-2xl bg-creamSand text-goldWarm flex items-center justify-center text-lg font-extrabold">
+                                    <span data-icon="book-sparkles"></span>
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-goldDeep text-[11px] font-extrabold">Opsi B • Prompt</span>
+                            </div>
+                            <h3 class="font-extrabold text-base text-emeraldDark leading-snug mb-1.5">Asisten Belajar Berbasis Prompt</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Merancang prompt terstruktur dan menguji jawaban AI terhadap sumber resmi Pelajaran KKA.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-xs font-bold text-emeraldMid flex items-center justify-between">
+                            <span>Klik untuk Detail</span>
+                            <span data-icon="arrow-right"></span>
+                        </div>
+                    </button>
+
+                    <button onclick="selectProject(2)" id="proj-card-2" class="text-left p-5 rounded-2xl bg-white hover:bg-emeraldSoft/60 text-slate-800 border-2 border-slate-200 shadow-sm transition flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-2xl bg-emeraldSoft text-emeraldDark flex items-center justify-center text-lg font-extrabold">
+                                    <span data-icon="chart-line"></span>
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-emeraldSoft text-emeraldDark text-[11px] font-extrabold">Opsi C • Analitis</span>
+                            </div>
+                            <h3 class="font-extrabold text-base text-emeraldDark leading-snug mb-1.5">Audit Data & Model Card</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Memeriksa keseimbangan dataset, mengukur kinerja model, dan mendokumentasikan keterbatasannya.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 text-xs font-bold text-emeraldMid flex items-center justify-between">
+                            <span>Klik untuk Detail</span>
+                            <span data-icon="arrow-right"></span>
+                        </div>
+                    </button>
+                </div>
+
+                <div id="projectDetailBox" class="bg-white border-2 border-emeraldMid/25 rounded-3xl p-5 sm:p-6 shadow-sm">
+                    <!-- Dirender via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- TAB 3: CHECKLIST PERSIAPAN (LOCALSTORAGE)                    -->
+        <!-- ============================================================ -->
+        <section id="tab-panel-2" class="tab-panel hidden animate-fade-in-panel space-y-6">
+            <div class="bg-creamPaper rounded-3xl border border-amber-900/15 p-5 sm:p-7 shadow-sm">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Bagian 3 • Manajemen Kesiapan Tim</span>
+                        <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Checklist Persiapan Praktikum Kelompok</h2>
+                        <p class="text-xs text-slate-600 mt-0.5">Progres centang tersimpan otomatis di perangkatmu. Salin atau cetak ringkasan sebagai laporan kesiapan kepada guru.</p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 no-print">
+                        <button onclick="copyReadinessSummary()" class="px-3.5 py-2 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white font-bold text-xs shadow-sm transition flex items-center gap-1.5 cursor-pointer">
+                            <span data-icon="copy"></span>
+                            <span>Salin Ringkasan</span>
+                        </button>
+                        <button onclick="window.print()" class="px-3.5 py-2 rounded-xl bg-goldWarm hover:bg-goldDeep text-white font-bold text-xs shadow-sm transition flex items-center gap-1.5 cursor-pointer">
+                            <span data-icon="print"></span>
+                            <span>Cetak</span>
+                        </button>
+                        <button onclick="resetChecklist()" class="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs transition cursor-pointer" title="Reset Semua Centang">
+                            <span data-icon="rotate-left"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="copyAlertBanner" class="hidden mb-4 bg-emeraldSoft border border-emeraldMid text-emeraldDark px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 animate-fade-in-panel">
+                    <span data-icon="circle-check" class="text-emeraldMid"></span>
+                    <span>Ringkasan kesiapan berhasil disalin. Tempelkan di WhatsApp grup kelas atau Google Classroom.</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-creamSand p-4 rounded-2xl border border-amber-900/10 mb-5">
+                    <div>
+                        <label for="teamNameInput" class="block text-[11px] font-extrabold text-emeraldDark uppercase mb-1">Nama Kelompok / Kelas</label>
+                        <input id="teamNameInput" oninput="saveTeamMeta()" type="text" placeholder="Contoh: Kelompok 4 - X IPA 1" class="w-full px-3 py-2 rounded-xl bg-white border border-amber-900/15 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emeraldMid">
+                    </div>
+                    <div>
+                        <label for="teamTopicSelect" class="block text-[11px] font-extrabold text-emeraldDark uppercase mb-1">Fokus Proyek</label>
+                        <select id="teamTopicSelect" onchange="saveTeamMeta()" class="w-full px-3 py-2 rounded-xl bg-white border border-amber-900/15 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emeraldMid cursor-pointer">
+                            <option value="Klasifikasi pesan & deteksi hoaks">Klasifikasi pesan & deteksi hoaks</option>
+                            <option value="Asisten belajar berbasis prompt">Asisten belajar berbasis prompt</option>
+                            <option value="Audit data & keadilan model">Audit data & keadilan model</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="teamFormatSelect" class="block text-[11px] font-extrabold text-emeraldDark uppercase mb-1">Format Luaran</label>
+                        <select id="teamFormatSelect" onchange="saveTeamMeta()" class="w-full px-3 py-2 rounded-xl bg-white border border-amber-900/15 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emeraldMid cursor-pointer">
+                            <option value="Opsi A: Kode + laporan singkat">Opsi A: Kode + laporan singkat</option>
+                            <option value="Opsi B: Prompt log + transkrip uji">Opsi B: Prompt log + transkrip uji</option>
+                            <option value="Opsi C: Laporan audit + model card">Opsi C: Laporan audit + model card</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 mb-5 shadow-sm">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="text-xs font-extrabold text-emeraldDark">Persentase Kesiapan Praktikum Kelompok</span>
+                        <span id="checklistPctText" class="text-sm font-extrabold text-goldWarm">0% (0/12 Item)</span>
+                    </div>
+                    <div class="w-full bg-creamSand h-3 rounded-full overflow-hidden">
+                        <div id="checklistProgressBar" class="bg-gradient-to-r from-emeraldDark via-emeraldMid to-goldWarm h-full rounded-full transition-all duration-300" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div id="checklistCategoriesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Dirender via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- TAB 4: RUBRIK & KALKULATOR SKOR                              -->
+        <!-- ============================================================ -->
+        <section id="tab-panel-3" class="tab-panel hidden animate-fade-in-panel space-y-6">
+
+            <div class="bg-creamPaper rounded-3xl border border-amber-900/15 p-5 sm:p-7 shadow-sm">
+                <div class="mb-4">
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Bagian 4A • Standar Evaluasi Guru</span>
+                    <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Rubrik Penilaian Praktikum KKA</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                        Gunakan acuan kriteria berikut untuk menilai proses dan produk. Bobot mengutamakan kualitas data, fungsi kode, serta etika dan keadilan model.
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto rounded-2xl border border-amber-900/15">
+                    <table class="w-full text-left border-collapse bg-white text-xs">
+                        <thead>
+                            <tr class="bg-emeraldDark text-white">
+                                <th class="p-3.5 font-extrabold w-48">Aspek & Bobot</th>
+                                <th class="p-3.5 font-extrabold bg-emeraldMid">Sangat Baik (86–100)</th>
+                                <th class="p-3.5 font-extrabold">Baik (71–85)</th>
+                                <th class="p-3.5 font-extrabold">Cukup (≤70)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="p-3.5 font-extrabold text-emeraldDark bg-creamSoft/60">
+                                    1. Kualitas Data & Dokumentasi
+                                    <span class="block text-goldWarm font-extrabold mt-0.5">Bobot: 25%</span>
+                                </td>
+                                <td class="p-3.5 text-slate-700 leading-relaxed">Dataset berlabel, beragam, bebas data sensitif, serta dilengkapi sumber, cara pengumpulan, dan catatan pembersihan.</td>
+                                <td class="p-3.5 text-slate-600 leading-relaxed">Dataset cukup jelas dan berlabel, namun dokumentasi sumber atau langkah pembersihan belum lengkap.</td>
+                                <td class="p-3.5 text-slate-500 leading-relaxed">Data tidak berlabel, berisi data pribadi, atau tidak ada catatan asal-usulnya.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-extrabold text-emeraldDark bg-creamSoft/60">
+                                    2. Logika Kode & Fungsionalitas Model
+                                    <span class="block text-goldWarm font-extrabold mt-0.5">Bobot: 30%</span>
+                                </td>
+                                <td class="p-3.5 text-slate-700 leading-relaxed">Kode berjalan tanpa error, algoritma sesuai tujuan, ada pengujian, dan model mencapai kinerja yang dijelaskan dengan metrik.</td>
+                                <td class="p-3.5 text-slate-600 leading-relaxed">Kode berjalan dengan sedikit catatan, fungsi utama terpenuhi, namun pengujian atau metrik masih terbatas.</td>
+                                <td class="p-3.5 text-slate-500 leading-relaxed">Kode tidak dapat dijalankan, logika tidak sesuai kasus, atau hasil tidak diukur sama sekali.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-extrabold text-emeraldDark bg-creamSoft/60">
+                                    3. Etika, Privasi & Keadilan
+                                    <span class="block text-goldWarm font-extrabold mt-0.5">Bobot: 25%</span>
+                                </td>
+                                <td class="p-3.5 text-slate-700 leading-relaxed">Privasi terjaga, kredensial tidak ditulis dalam kode, bantuan AI dinyatakan, dan model diuji pada data beragam serta keterbatasannya dijelaskan.</td>
+                                <td class="p-3.5 text-slate-600 leading-relaxed">Etika sudah diperhatikan, tetapi uji keadilan atau penjelasan keterbatasan model belum memadai.</td>
+                                <td class="p-3.5 text-slate-500 leading-relaxed">Mengandung data pribadi tanpa izin, password/API key tertanam, atau menyembunyikan penggunaan AI.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-extrabold text-emeraldDark bg-creamSoft/60">
+                                    4. Kolaborasi & Refleksi
+                                    <span class="block text-goldWarm font-extrabold mt-0.5">Bobot: 20%</span>
+                                </td>
+                                <td class="p-3.5 text-slate-700 leading-relaxed">Peran jelas, dokumentasi percobaan rapi, dan refleksi menunjukkan transfer pengetahuan serta rencana perbaikan nyata.</td>
+                                <td class="p-3.5 text-slate-600 leading-relaxed">Mayoritas anggota berkontribusi dan refleksi ditulis, namun rencana perbaikan masih umum.</td>
+                                <td class="p-3.5 text-slate-500 leading-relaxed">Tugas dikerjakan 1–2 orang saja, terlambat, atau refleksi hanya ringkasan tanpa makna.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bg-creamPaper rounded-3xl border-2 border-goldWarm/40 p-5 sm:p-7 shadow-sm">
+                <div class="mb-5">
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Bagian 4B • Simulator Self-Assessment</span>
+                    <h2 class="text-lg sm:text-xl font-extrabold text-emeraldDark">Kalkulator Perkiraan Skor Proyek Mandiri</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                        Geser pengatur skor (0–100) pada setiap aspek sesuai evaluasi jujur terhadap draf karya kelompokmu untuk melihat estimasi nilai akhir.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-7 space-y-4 bg-white p-5 rounded-2xl border border-slate-200">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-emeraldDark">1. Kualitas Data & Dokumentasi (Bobot 25%)</span>
+                                <span id="val-s1" class="text-goldDeep font-extrabold">85</span>
+                            </div>
+                            <input id="slider-s1" type="range" min="0" max="100" value="85" oninput="calculateRubricScore()" class="w-full cursor-pointer accent-emeraldDark">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-emeraldDark">2. Logika Kode & Fungsionalitas (Bobot 30%)</span>
+                                <span id="val-s2" class="text-goldDeep font-extrabold">80</span>
+                            </div>
+                            <input id="slider-s2" type="range" min="0" max="100" value="80" oninput="calculateRubricScore()" class="w-full cursor-pointer accent-emeraldDark">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-emeraldDark">3. Etika, Privasi & Keadilan (Bobot 25%)</span>
+                                <span id="val-s3" class="text-goldDeep font-extrabold">88</span>
+                            </div>
+                            <input id="slider-s3" type="range" min="0" max="100" value="88" oninput="calculateRubricScore()" class="w-full cursor-pointer accent-emeraldDark">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-emeraldDark">4. Kolaborasi & Refleksi (Bobot 20%)</span>
+                                <span id="val-s4" class="text-goldDeep font-extrabold">90</span>
+                            </div>
+                            <input id="slider-s4" type="range" min="0" max="100" value="90" oninput="calculateRubricScore()" class="w-full cursor-pointer accent-emeraldDark">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-gradient-to-br from-emeraldDark to-emerald-900 text-white rounded-3xl p-6 text-center shadow-md islamic-pattern">
+                        <span class="inline-block px-3 py-1 rounded-full bg-white/15 text-amber-300 text-[11px] font-extrabold uppercase tracking-wider mb-2">
+                            Estimasi Nilai Akhir Proyek
+                        </span>
+                        <div id="finalCalculatedScore" class="text-4xl sm:text-5xl font-extrabold text-amber-300 my-2">85.3</div>
+                        <div id="finalGradePredicate" class="inline-block px-3.5 py-1 rounded-xl bg-goldWarm text-white font-extrabold text-xs mb-3">
+                            Predikat: B (Baik)
+                        </div>
+                        <p id="finalGradeAdvice" class="text-xs text-emerald-100 leading-relaxed bg-white/10 p-3 rounded-xl border border-white/15">
+                            Karya kelompokmu sudah berada di kategori Baik. Tingkatkan fungsionalitas kode dan uji model dengan data yang lebih beragam untuk meraih predikat Sangat Baik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Catatan kaki khusus pedoman -->
+    <footer class="bg-creamPaper border-t border-amber-900/15 py-4 px-4 text-center text-xs text-slate-500">
+        Pedoman Praktikum Koding dan Kecerdasan Artifisial (KKA) Kelas X • Fase E • Kurikulum Merdeka & Deep Learning
+    </footer>
+
+    <!-- Footer bersama -->
+    <div data-site-footer data-base="../../"></div>
+
+    <!-- Skrip bersama -->
+    <script src="../../assets/js/data.js"></script>
+    <script src="../../assets/js/icons.js"></script>
+    <script src="../../assets/js/components.js"></script>
+
+    <!-- ============================================================== -->
+    <!-- JAVASCRIPT DATA & INTERACTIVE CONTROLLER                       -->
+    <!-- ============================================================== -->
+    <script>
+        // ==========================================
+        // 1. DATA TAHAPAN PRAKTIKUM
+        // ==========================================
+        const practicumStages = [
+            {
+                num: "Tahap 01",
+                title: "Pembentukan Tim & Pakta Etika AI",
+                duration: "Pertemuan 1 (30 Menit)",
+                desc: "Guru membentuk kelompok heterogen beranggotakan 4–5 siswa. Tim menentukan fokus proyek, membagi peran, dan menyetujui pakta integritas yang mencakup privasi data serta tanggung jawab penggunaan AI.",
+                deliverables: [
+                    "Peran jelas: Koordinator, Pengumpul Data, Pemrogram, Penguji, dan Penyaji.",
+                    "Seluruh anggota mencentang pakta integritas pada halaman ini.",
+                    "Fokus proyek spesifik ditetapkan, misalnya klasifikasi pesan di grup kelas."
+                ]
+            },
+            {
+                num: "Tahap 02",
+                title: "Pengumpulan & Pembersihan Data",
+                duration: "Pertemuan 1–2 (Mandiri & Bimbingan)",
+                desc: "Tim menyusun dataset kecil berlabel dari sumber yang sah. Data dibersihkan dari informasi pribadi, diseimbangkan antar-kelas, dan dicatat asal-usulnya dalam lembar dokumentasi.",
+                deliverables: [
+                    "Dataset berisi minimal 20 contoh dengan dua label yang jelas.",
+                    "Tidak ada nama, nomor telepon, alamat, atau foto orang tanpa izin.",
+                    "Catatan sumber data dan langkah pembersihan dibuat."
+                ]
+            },
+            {
+                num: "Tahap 03",
+                title: "Pembangunan Model & Uji Coba",
+                duration: "Pertemuan 2–3 (Laboratorium Komputer)",
+                desc: "Tim menulis pseudocode lalu mengimplementasikannya. Model diuji pada data yang tidak dipakai saat pelatihan, kinerja diukur, dan kesalahan dianalisis untuk perbaikan.",
+                deliverables: [
+                    "Kode atau prompt log yang dapat dijalankan/diikuti kembali.",
+                    "Tabel hasil uji beserta metrik sederhana (akurasi atau jumlah benar).",
+                    "Log percobaan berisi minimal 3 kali perubahan dan alasannya."
+                ]
+            },
+            {
+                num: "Tahap 04",
+                title: "Presentasi & Refleksi",
+                duration: "Pertemuan 4 (Gelar Karya Kelas)",
+                desc: "Tim mendemonstrasikan karyanya, menjelaskan pilihan teknis, serta menyampaikan keterbatasan model. Setiap siswa menulis refleksi tentang sikap kritis terhadap AI di luar kelas.",
+                deliverables: [
+                    "Demo singkat maksimal 5–7 menit per kelompok.",
+                    "Model card berisi tujuan, data, kinerja, dan batasan penggunaan.",
+                    "Jurnal refleksi pribadi dengan satu komitmen konkret."
+                ]
+            }
+        ];
+
+        // ==========================================
+        // 2. DATA PAKTA INTEGRITAS KODING & AI
+        // ==========================================
+        const integrityRules = [
+            {
+                id: "rule-1",
+                title: "Privasi & Keamanan Data",
+                detail: "Kami tidak menggunakan nama, alamat, nomor telepon, atau foto orang lain tanpa izin. Data sensitif kami anonimisasi sebelum dipakai sebagai contoh."
+            },
+            {
+                id: "rule-2",
+                title: "Kejujuran & Transparansi Model",
+                detail: "Kami tidak memanipulasi hasil agar terlihat lebih baik. Kami mencantumkan sumber data, cara pelabelan, dan menyatakan jika AI dipakai untuk membantu proses."
+            },
+            {
+                id: "rule-3",
+                title: "Kode Aman & Kredensial Terjaga",
+                detail: "Kami tidak menuliskan password, token, atau API key di dalam kode atau dokumen bersama, serta tidak membagikan akun kepada pihak lain."
+            },
+            {
+                id: "rule-4",
+                title: "Keadilan & Kesadaran Bias",
+                detail: "Kami menguji model dengan data yang beragam, mencatat kelompok yang mungkin dirugikan, dan menjelaskan keterbatasan hasil secara terbuka."
+            },
+            {
+                id: "rule-5",
+                title: "Dokumentasi & Kolaborasi Adil",
+                detail: "Setiap anggota berkontribusi sesuai peran, mencatat percobaan dengan rapi, dan mengumpulkan karya tepat waktu sesuai jadwal."
+            }
+        ];
+
+        // ==========================================
+        // 3. DATA PILIHAN PROYEK PRAKTIKUM
+        // ==========================================
+        const projectOptions = [
+            {
+                badge: "Opsi A • Koding & Logika",
+                title: "Klasifikasi Pesan Sederhana",
+                idealFor: "Cocok untuk tim yang nyaman menulis kode dan ingin melihat langsung bagaimana aturan atau model mengambil keputusan.",
+                tools: [
+                    "Browser + editor kode (VS Code, Replit, atau editor teks biasa)",
+                    "JavaScript atau Python untuk aturan/perceptron sederhana",
+                    "20–30 contoh pesan berlabel: layak dipercaya / mencurigakan"
+                ],
+                steps: [
+                    "Tentukan dua ciri sederhana, misalnya ada sumber (x1) dan nada emosional (x2).",
+                    "Tulis pseudocode aturan keputusan, lalu terjemahkan ke kode.",
+                    "Uji dengan data yang tidak dipakai saat membuat aturan dan catat jumlah benar.",
+                    "Perbaiki aturan berdasarkan kesalahan, lalu dokumentasikan alasan perubahannya."
+                ],
+                outputExample: "Berkas kode (.js/.py), tangkapan layar hasil uji, dan laporan 1 halaman berisi aturan, akurasi, serta keterbatasan model."
+            },
+            {
+                badge: "Opsi B • Prompt & Evaluasi",
+                title: "Asisten Belajar Berbasis Prompt",
+                idealFor: "Cocok untuk tim yang tertarik merancang instruksi (prompt) dan menguji kualitas jawaban AI secara kritis.",
+                tools: [
+                    "Lembar kerja untuk prompt log (tujuan, konteks, batasan, format jawaban)",
+                    "Alat AI berbasis teks yang tersedia di sekolah (penggunaan dicatat)",
+                    "Sumber resmi Kemdikbudristek dan Komdigi sebagai pembanding jawaban"
+                ],
+                steps: [
+                    "Pilih satu topik KKA, misalnya perbedaan koding dan pembelajaran mesin.",
+                    "Susun tiga versi prompt: singkat, terstruktur, dan dengan batasan sumber.",
+                    "Uji ketiganya, bandingkan jawaban dengan sumber resmi, lalu skor keakuratan dan kejujurannya.",
+                    "Tulis versi final beserta catatan bahwa AI membantu, bukan menggantikan verifikasi."
+                ],
+                outputExample: "Prompt log berisi tiga versi prompt, tabel perbandingan jawaban, transkrip uji, dan versi final dengan keterangan batasan penggunaan."
+            },
+            {
+                badge: "Opsi C • Analisis & Model Card",
+                title: "Audit Data & Model Card",
+                idealFor: "Cocok untuk tim yang teliti, menyukai analisis, dan ingin menyoroti keadilan serta keterbatasan sebuah model.",
+                tools: [
+                    "Spreadsheet untuk tabel data dan perhitungan akurasi per kelompok",
+                    "Model sederhana dari Opsi A atau contoh yang diberikan guru",
+                    "Format model card: tujuan, data, metrik, batasan, dan rekomendasi"
+                ],
+                steps: [
+                    "Hitung komposisi data latih: berapa contoh untuk tiap label dan sumbernya.",
+                    "Uji model pada dua kelompok berbeda dan bandingkan tingkat kesalahannya.",
+                    "Jelaskan sumber ketimpangan jika ada, misalnya data terlalu sedikit untuk satu kelompok.",
+                    "Susun model card berisi tujuan, kinerja, keterbatasan, dan saran penggunaan yang aman."
+                ],
+                outputExample: "Laporan audit 1–2 halaman dengan tabel komposisi data, grafik perbandingan akurasi, dan model card yang ditandatangani seluruh anggota."
+            }
+        ];
+
+        // ==========================================
+        // 4. DATA CHECKLIST PERSIAPAN
+        // ==========================================
+        const checklistCategories = [
+            {
+                catTitle: "1. Perangkat & Lingkungan Koding",
+                icon: "laptop-code",
+                items: [
+                    { id: "chk-1", label: "Laptop/ponsel terisi daya dengan editor kode atau browser siap dipakai" },
+                    { id: "chk-2", label: "Lingkungan berjalan (Node/Python/Replit) sudah diuji dengan kode contoh" },
+                    { id: "chk-3", label: "Folder proyek dan cadangan file dibuat agar pekerjaan tidak hilang" }
+                ]
+            },
+            {
+                catTitle: "2. Data & Sumber",
+                icon: "scale-balanced",
+                items: [
+                    { id: "chk-4", label: "Dataset minimal 20 contoh dengan label yang jelas terkumpul" },
+                    { id: "chk-5", label: "Data pribadi dihapus atau dianonimisasi sebelum dipakai" },
+                    { id: "chk-6", label: "Sumber data dan tata cara pelabelan dicatat" }
+                ]
+            },
+            {
+                catTitle: "3. Peran & Keamanan",
+                icon: "user-shield",
+                items: [
+                    { id: "chk-7", label: "Peran tim (koordinator, data, kode, uji, presentasi) ditetapkan" },
+                    { id: "chk-8", label: "Tidak ada password, token, atau API key yang ditulis di kode" },
+                    { id: "chk-9", label: "Penggunaan AI dicatat dan disepakati seluruh anggota tim" }
+                ]
+            },
+            {
+                catTitle: "4. Uji Coba & Dokumentasi",
+                icon: "file-check",
+                items: [
+                    { id: "chk-10", label: "Pseudocode atau prompt log selesai disusun" },
+                    { id: "chk-11", label: "Model diuji pada data baru dan metriknya dicatat" },
+                    { id: "chk-12", label: "Log percobaan, model card, dan refleksi awal tersedia" }
+                ]
+            }
+        ];
+
+        // ==========================================
+        // 5. STATE & LOCALSTORAGE
+        // ==========================================
+        const STORAGE_KEY = "kka_kelas10_pedoman_praktikum_v1";
+
+        let appState = {
+            activeTab: 0,
+            activeStage: 0,
+            activeProject: 0,
+            checkedIntegrity: {},
+            checkedChecklist: {},
+            teamName: "",
+            teamTopic: "Klasifikasi pesan & deteksi hoaks",
+            teamFormat: "Opsi A: Kode + laporan singkat"
+        };
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) appState = { ...appState, ...JSON.parse(raw) };
+            } catch (e) {
+                /* abaikan penyimpanan yang rusak */
+            }
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            } catch (e) {
+                /* abaikan jika localStorage tidak tersedia */
+            }
+        }
+
+        // ==========================================
+        // 6. NAVIGASI TAB UTAMA
+        // ==========================================
+        function switchTab(tabIdx) {
+            appState.activeTab = tabIdx;
+            saveState();
+
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`tab-btn-${i}`);
+                const badge = btn.querySelector("span:first-child");
+                const panel = document.getElementById(`tab-panel-${i}`);
+
+                if (i === tabIdx) {
+                    btn.className = "tab-nav-btn px-3.5 py-2.5 rounded-xl bg-emeraldDark text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center justify-center sm:justify-start gap-2.5 cursor-pointer";
+                    badge.className = "w-6 h-6 rounded-lg bg-goldBright text-emeraldDark font-extrabold text-xs flex items-center justify-center shrink-0";
+                    panel.classList.remove("hidden");
+                } else {
+                    btn.className = "tab-nav-btn px-3.5 py-2.5 rounded-xl bg-creamSand hover:bg-emeraldSoft text-slate-700 font-bold text-xs sm:text-sm border border-amber-900/10 transition flex items-center justify-center sm:justify-start gap-2.5 cursor-pointer";
+                    badge.className = "w-6 h-6 rounded-lg bg-white text-emeraldDark font-extrabold text-xs flex items-center justify-center shrink-0";
+                    panel.classList.add("hidden");
+                }
+            }
+        }
+
+        // ==========================================
+        // 7. TAB 1: TAHAPAN & PAKTA INTEGRITAS
+        // ==========================================
+        function selectStage(idx) {
+            appState.activeStage = idx;
+            saveState();
+
+            for (let i = 0; i < 4; i++) {
+                const card = document.getElementById(`stage-card-${i}`);
+                if (!card) continue;
+                if (i === idx) {
+                    card.className = "text-left p-4 rounded-2xl bg-emeraldDark text-white border-2 border-goldBright shadow-sm transition cursor-pointer";
+                    card.querySelector("span").className = "px-2.5 py-0.5 rounded-md bg-goldBright text-emeraldDark text-[11px] font-extrabold";
+                    card.querySelector("h3").className = "font-extrabold text-sm leading-snug text-white";
+                    card.querySelector("p").className = "text-[11px] text-emerald-100 mt-1";
+                } else {
+                    card.className = "text-left p-4 rounded-2xl bg-white hover:bg-emeraldSoft/60 text-slate-800 border-2 border-slate-200 transition cursor-pointer";
+                    card.querySelector("span").className = "px-2.5 py-0.5 rounded-md bg-emeraldSoft text-emeraldDark text-[11px] font-extrabold";
+                    card.querySelector("h3").className = "font-extrabold text-sm text-emeraldDark leading-snug";
+                    card.querySelector("p").className = "text-[11px] text-slate-500 mt-1";
+                }
+            }
+
+            const stage = practicumStages[idx];
+            document.getElementById("stageDetailPanel").innerHTML = `
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <h4 class="text-base font-extrabold text-emeraldDark">${stage.num}: ${stage.title}</h4>
+                    <span class="px-3 py-1 rounded-full bg-amber-100 text-goldDeep text-xs font-bold">
+                        <span data-icon="clock" class="mr-1"></span> ${stage.duration}
+                    </span>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">${stage.desc}</p>
+                <div class="bg-white rounded-xl p-3.5 border border-amber-900/10">
+                    <p class="text-xs font-extrabold text-emeraldMid uppercase tracking-wider mb-2">Target Capaian Tahap Ini:</p>
+                    <ul class="space-y-1.5 text-xs text-slate-700">
+                        ${stage.deliverables.map(item => `
+                            <li class="flex items-start gap-2">
+                                <span data-icon="circle-check" class="text-goldWarm mt-0.5 shrink-0"></span>
+                                <span>${item}</span>
+                            </li>
+                        `).join("")}
+                    </ul>
+                </div>
+            `;
+        }
+
+        function renderIntegrityRules() {
+            const container = document.getElementById("integrityRulesList");
+            container.innerHTML = integrityRules.map(rule => {
+                const isChecked = !!appState.checkedIntegrity[rule.id];
+                return `
+                    <label for="${rule.id}" class="flex items-start gap-3.5 p-3.5 rounded-2xl border-2 transition cursor-pointer ${isChecked ? 'bg-emeraldSoft/70 border-emeraldMid' : 'bg-white hover:bg-creamSand/60 border-slate-200'}">
+                        <input id="${rule.id}" type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleIntegrityRule('${rule.id}')" class="accent-emeraldMid mt-1 w-5 h-5 rounded-md border-2 border-slate-300 text-emeraldMid focus:ring-emeraldMid cursor-pointer shrink-0">
+                        <div>
+                            <span class="block text-xs sm:text-sm font-extrabold ${isChecked ? 'text-emeraldDark' : 'text-slate-800'}">${rule.title}</span>
+                            <span class="block text-xs text-slate-600 leading-relaxed mt-0.5">${rule.detail}</span>
+                        </div>
+                    </label>
+                `;
+            }).join("");
+
+            updateIntegrityUI();
+        }
+
+        function toggleIntegrityRule(ruleId) {
+            appState.checkedIntegrity[ruleId] = !appState.checkedIntegrity[ruleId];
+            saveState();
+            renderIntegrityRules();
+        }
+
+        function updateIntegrityUI() {
+            const total = integrityRules.length;
+            const checkedCount = integrityRules.filter(r => appState.checkedIntegrity[r.id]).length;
+
+            document.getElementById("pactCounterBadge").textContent = `${checkedCount} / ${total} Komitmen Disetujui`;
+
+            const banner = document.getElementById("pactCompleteBanner");
+            const headerStatus = document.getElementById("headerIntegrityStatus");
+
+            if (checkedCount === total) {
+                banner.classList.remove("hidden");
+                headerStatus.innerHTML = `<span data-icon="shield-check" class="text-amber-300"></span> <span>Pakta integritas disetujui (${total}/${total})</span>`;
+            } else {
+                banner.classList.add("hidden");
+                headerStatus.innerHTML = `<span data-icon="circle-info" class="text-amber-300"></span> <span>Pakta integritas: ${checkedCount}/${total} disetujui</span>`;
+            }
+        }
+
+        // ==========================================
+        // 8. TAB 2: PILIHAN PROYEK
+        // ==========================================
+        function selectProject(idx) {
+            appState.activeProject = idx;
+            saveState();
+
+            for (let i = 0; i < 3; i++) {
+                const card = document.getElementById(`proj-card-${i}`);
+                const footer = card.querySelector("div:last-child");
+                if (i === idx) {
+                    card.className = "text-left p-5 rounded-2xl bg-emeraldDark text-white border-2 border-goldBright shadow-md transition flex flex-col justify-between cursor-pointer";
+                    card.querySelector("h3").className = "font-extrabold text-base leading-snug mb-1.5 text-white";
+                    card.querySelector("p").className = "text-xs text-emerald-100 leading-relaxed";
+                    footer.className = "mt-4 pt-3 border-t border-white/15 text-xs font-bold text-amber-300 flex items-center justify-between";
+                    footer.innerHTML = `<span>Sedang Ditampilkan</span><span data-icon="circle-check"></span>`;
+                } else {
+                    card.className = "text-left p-5 rounded-2xl bg-white hover:bg-emeraldSoft/60 text-slate-800 border-2 border-slate-200 shadow-sm transition flex flex-col justify-between cursor-pointer";
+                    card.querySelector("h3").className = "font-extrabold text-base text-emeraldDark leading-snug mb-1.5";
+                    card.querySelector("p").className = "text-xs text-slate-600 leading-relaxed";
+                    footer.className = "mt-4 pt-3 border-t border-slate-100 text-xs font-bold text-emeraldMid flex items-center justify-between";
+                    footer.innerHTML = `<span>Klik untuk Detail</span><span data-icon="arrow-right"></span>`;
+                }
+            }
+
+            const proj = projectOptions[idx];
+            document.getElementById("projectDetailBox").innerHTML = `
+                <div class="border-b border-slate-100 pb-4 mb-4">
+                    <span class="inline-block px-2.5 py-0.5 rounded-md bg-amber-100 text-goldDeep text-[11px] font-extrabold uppercase tracking-wider mb-1">
+                        ${proj.badge}
+                    </span>
+                    <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDark">${proj.title}</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1">${proj.idealFor}</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                    <div class="lg:col-span-4 bg-creamSand/80 rounded-2xl p-4 border border-amber-900/10">
+                        <h4 class="text-xs font-extrabold uppercase tracking-wider text-emeraldDark mb-2.5 flex items-center gap-1.5">
+                            <span data-icon="toolbox" class="text-goldWarm"></span> Alat & Bahan:
+                        </h4>
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            ${proj.tools.map(t => `
+                                <li class="flex items-start gap-2">
+                                    <span data-icon="check" class="text-emeraldMid mt-0.5 shrink-0"></span>
+                                    <span>${t}</span>
+                                </li>
+                            `).join("")}
+                        </ul>
+                    </div>
+
+                    <div class="lg:col-span-8 space-y-4">
+                        <div>
+                            <h4 class="text-xs font-extrabold uppercase tracking-wider text-emeraldDark mb-2.5 flex items-center gap-1.5">
+                                <span data-icon="list-ol" class="text-goldWarm"></span> Langkah Kerja Sistematis:
+                            </h4>
+                            <ol class="space-y-2 text-xs text-slate-700">
+                                ${proj.steps.map((step, sIdx) => `
+                                    <li class="flex items-start gap-2.5 bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
+                                        <span class="w-5 h-5 rounded-md bg-emeraldDark text-amber-300 font-extrabold text-[11px] flex items-center justify-center shrink-0">${sIdx + 1}</span>
+                                        <span class="leading-relaxed">${step}</span>
+                                    </li>
+                                `).join("")}
+                            </ol>
+                        </div>
+
+                        <div class="bg-emeraldSoft/80 border border-emerald-200 rounded-2xl p-3.5 text-xs">
+                            <span class="font-extrabold text-emeraldDark block mb-0.5">
+                                <span data-icon="file-export" class="text-goldWarm mr-1"></span> Contoh Luaran yang Dikumpulkan:
+                            </span>
+                            <p class="text-slate-700 leading-relaxed">${proj.outputExample}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================
+        // 9. TAB 3: CHECKLIST PERSIAPAN
+        // ==========================================
+        function renderChecklist() {
+            document.getElementById("teamNameInput").value = appState.teamName || "";
+            document.getElementById("teamTopicSelect").value = appState.teamTopic || "Klasifikasi pesan & deteksi hoaks";
+            document.getElementById("teamFormatSelect").value = appState.teamFormat || "Opsi A: Kode + laporan singkat";
+
+            const grid = document.getElementById("checklistCategoriesGrid");
+            grid.innerHTML = checklistCategories.map(cat => `
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
+                    <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark mb-3 pb-2 border-b border-slate-100 flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-emeraldSoft text-emeraldMid flex items-center justify-center">
+                            <span data-icon="${cat.icon}"></span>
+                        </span>
+                        <span>${cat.catTitle}</span>
+                    </h3>
+                    <div class="space-y-2.5">
+                        ${cat.items.map(item => {
+                            const checked = !!appState.checkedChecklist[item.id];
+                            return `
+                                <label for="${item.id}" class="flex items-start gap-2.5 p-2 rounded-xl transition cursor-pointer ${checked ? 'bg-emeraldSoft/60 text-emeraldDark' : 'hover:bg-slate-50 text-slate-700'}">
+                                    <input id="${item.id}" type="checkbox" ${checked ? 'checked' : ''} onchange="toggleChecklistItem('${item.id}')" class="accent-emeraldMid mt-0.5 w-4 h-4 rounded border-2 border-slate-300 text-emeraldMid focus:ring-emeraldMid cursor-pointer shrink-0">
+                                    <span class="text-xs leading-snug ${checked ? 'line-through opacity-75 font-medium' : 'font-medium'}">${item.label}</span>
+                                </label>
+                            `;
+                        }).join("")}
+                    </div>
+                </div>
+            `).join("");
+
+            updateChecklistProgress();
+        }
+
+        function toggleChecklistItem(itemId) {
+            appState.checkedChecklist[itemId] = !appState.checkedChecklist[itemId];
+            saveState();
+            renderChecklist();
+        }
+
+        function saveTeamMeta() {
+            appState.teamName = document.getElementById("teamNameInput").value;
+            appState.teamTopic = document.getElementById("teamTopicSelect").value;
+            appState.teamFormat = document.getElementById("teamFormatSelect").value;
+            saveState();
+        }
+
+        function updateChecklistProgress() {
+            let totalItems = 0;
+            let checkedItems = 0;
+
+            checklistCategories.forEach(cat => {
+                cat.items.forEach(it => {
+                    totalItems++;
+                    if (appState.checkedChecklist[it.id]) checkedItems++;
+                });
+            });
+
+            const pct = totalItems > 0 ? Math.round((checkedItems / totalItems) * 100) : 0;
+
+            document.getElementById("checklistPctText").textContent = `${pct}% (${checkedItems}/${totalItems} Item)`;
+            document.getElementById("checklistProgressBar").style.width = `${pct}%`;
+            document.getElementById("headerReadinessPct").textContent = `${pct}%`;
+            document.getElementById("headerReadinessBar").style.width = `${pct}%`;
+        }
+
+        function copyReadinessSummary() {
+            const team = appState.teamName.trim() || "Kelompok KKA Kelas X";
+            const topic = appState.teamTopic;
+            const format = appState.teamFormat;
+            const pctText = document.getElementById("checklistPctText").textContent;
+            const pactCount = integrityRules.filter(r => appState.checkedIntegrity[r.id]).length;
+
+            const summaryText = [
+                "*LAPORAN KESIAPAN PRAKTIKUM KKA KELAS X*",
+                `• Kelompok/Kelas: ${team}`,
+                `• Fokus Proyek: ${topic}`,
+                `• Format Luaran: ${format}`,
+                `• Pakta Integritas: ${pactCount}/5 Disetujui`,
+                `• Kesiapan Perangkat & Data: ${pctText}`,
+                "Status: Siap melaksanakan pembangunan model & presentasi!"
+            ].join("\n");
+
+            const tampilAlert = () => {
+                const alertEl = document.getElementById("copyAlertBanner");
+                alertEl.classList.remove("hidden");
+                setTimeout(() => alertEl.classList.add("hidden"), 4500);
+            };
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(summaryText).then(tampilAlert).catch(() => fallbackSalin(summaryText, tampilAlert));
+            } else {
+                fallbackSalin(summaryText, tampilAlert);
+            }
+        }
+
+        function fallbackSalin(teks, callback) {
+            const input = document.createElement("textarea");
+            input.value = teks;
+            input.style.position = "fixed";
+            input.style.opacity = "0";
+            document.body.appendChild(input);
+            input.select();
+            try { document.execCommand("copy"); } catch (e) { /* abaikan */ }
+            document.body.removeChild(input);
+            callback();
+        }
+
+        function resetChecklist() {
+            appState.checkedChecklist = {};
+            saveState();
+            renderChecklist();
+        }
+
+        // ==========================================
+        // 10. KALKULATOR RUBRIK
+        // ==========================================
+        function calculateRubricScore() {
+            const s1 = parseFloat(document.getElementById("slider-s1").value) || 0;
+            const s2 = parseFloat(document.getElementById("slider-s2").value) || 0;
+            const s3 = parseFloat(document.getElementById("slider-s3").value) || 0;
+            const s4 = parseFloat(document.getElementById("slider-s4").value) || 0;
+
+            document.getElementById("val-s1").textContent = s1;
+            document.getElementById("val-s2").textContent = s2;
+            document.getElementById("val-s3").textContent = s3;
+            document.getElementById("val-s4").textContent = s4;
+
+            // Bobot: 25% + 30% + 25% + 20% = 100%
+            const weightedScore = (s1 * 0.25) + (s2 * 0.30) + (s3 * 0.25) + (s4 * 0.20);
+
+            document.getElementById("finalCalculatedScore").textContent = weightedScore.toFixed(1);
+
+            const predEl = document.getElementById("finalGradePredicate");
+            const advEl = document.getElementById("finalGradeAdvice");
+
+            if (weightedScore >= 86) {
+                predEl.textContent = "Predikat: A (Sangat Baik)";
+                predEl.className = "inline-block px-3.5 py-1 rounded-xl bg-emerald-500 text-white font-extrabold text-xs mb-3";
+                advEl.textContent = "Luar biasa! Proyek kelompokmu memenuhi kriteria unggul. Pastikan model card dan log percobaan tetap disertakan saat dikumpulkan.";
+            } else if (weightedScore >= 71) {
+                predEl.textContent = "Predikat: B (Baik)";
+                predEl.className = "inline-block px-3.5 py-1 rounded-xl bg-goldWarm text-white font-extrabold text-xs mb-3";
+                advEl.textContent = "Karya kelompokmu sudah berada di kategori Baik. Tingkatkan fungsionalitas kode dan uji model dengan data yang lebih beragam untuk meraih predikat Sangat Baik.";
+            } else {
+                predEl.textContent = "Predikat: C (Perlu Perbaikan)";
+                predEl.className = "inline-block px-3.5 py-1 rounded-xl bg-red-500 text-white font-extrabold text-xs mb-3";
+                advEl.textContent = "Proyek masih perlu penyempurnaan. Perbaiki kualitas dan keberagaman data, pastikan kode berjalan, lalu lengkapi dokumentasi etikanya.";
+            }
+        }
+
+        // ==========================================
+        // 11. INISIALISASI
+        // ==========================================
+        window.onload = function () {
+            loadState();
+            switchTab(appState.activeTab || 0);
+            selectStage(appState.activeStage || 0);
+            renderIntegrityRules();
+            selectProject(appState.activeProject || 0);
+            renderChecklist();
+            calculateRubricScore();
+        };
+    </script>
+</body>
+</html>
