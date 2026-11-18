@@ -10,31 +10,20 @@ function inisialisasiHalamanUtama() {
     // Header & footer diisi oleh components.js, jadi tidak perlu diset di sini.
     document.getElementById('heroSekolah').textContent = DATA_SEKOLAH.nama;
 
-    // Identitas guru
+    // Identitas guru (fallback inisial hanya dipakai jika foto gagal dimuat)
     const img = document.getElementById('fotoGuru');
-    img.src = DATA_GURU.foto;
-    img.alt = `Foto guru ${DATA_GURU.nama}`;
-    document.getElementById('fallbackFoto').textContent = DATA_GURU.inisial || DATA_GURU.nama.charAt(0);
+    const fallback = document.getElementById('fallbackFoto');
+    if (fallback) fallback.textContent = DATA_GURU.inisial || DATA_GURU.nama.charAt(0);
+    if (img) {
+        img.src = DATA_GURU.foto;
+        img.alt = `Foto guru ${DATA_GURU.nama}`;
+    }
     document.getElementById('namaGuru').textContent = DATA_GURU.nama;
     document.getElementById('peranGuru').textContent = `${DATA_GURU.peran} · Kelas ${DATA_SEKOLAH.kelasDilayani.join(', ')}`;
     document.getElementById('sambutanGuru').textContent = DATA_GURU.sambutan;
     document.getElementById('chipsMapelGuru').innerHTML = DATA_GURU.mapelDiampu.map(kode => {
         const m = ambilMapel(kode);
         return `<span class="px-3 py-1.5 rounded-lg text-[11px] font-extrabold border" style="background:${m.lembut};color:${m.teks};border-color:${m.warna}33">${escapeHtml(kode)}</span>`;
-    }).join('');
-
-    // Informasi sekolah
-    document.getElementById('sekolahNama').textContent = DATA_SEKOLAH.nama;
-    document.getElementById('sekolahJenjang').textContent = DATA_SEKOLAH.jenjang;
-    document.getElementById('sekolahAlamat').textContent = DATA_SEKOLAH.alamat;
-    document.getElementById('sekolahKelas').textContent = DATA_SEKOLAH.kelasDilayani.map(k => `Kelas ${k}`).join(', ');
-
-    document.getElementById('ringkasanMapel').innerHTML = DAFTAR_PELAJARAN.map(m => {
-        const jumlah = DAFTAR_MODUL.filter(d => d.pelajaran === m.kode).length;
-        return `<div class="flex items-center justify-between gap-3 bg-white/10 border border-white/15 rounded-xl px-3.5 py-2.5">
-            <span class="text-xs font-bold">${escapeHtml(m.kode)} <span class="text-emerald-100/70 font-normal">· ${escapeHtml(m.nama)}</span></span>
-            <span class="text-[11px] font-extrabold text-goldBright">${jumlah} modul</span>
-        </div>`;
     }).join('');
 
     // Statistik
@@ -55,7 +44,8 @@ function inisialisasiHalamanUtama() {
 
 function tampilkanInisialFoto(gambar) {
     gambar.style.display = 'none';
-    document.getElementById('fallbackFoto').classList.remove('hidden');
+    const fallback = document.getElementById('fallbackFoto');
+    if (fallback) fallback.classList.remove('hidden');
 }
 
 function ikonMapel(kode) {

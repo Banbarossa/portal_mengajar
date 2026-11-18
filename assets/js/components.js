@@ -12,10 +12,8 @@ function escapeHtml(teks) {
 }
 
 function headerMarkup(base, active) {
-    const sekolah = escapeHtml(DATA_SEKOLAH.nama);
     const guru = escapeHtml(DATA_GURU.nama);
     const beranda = `${base}index.html#beranda`;
-    const informasi = `${base}index.html#informasi-sekolah`;
     const modul = `${base}index.html#modul-ajar`;
     const link = (href, label, kunci, mobile) => {
         const aktif = active === kunci;
@@ -32,14 +30,13 @@ function headerMarkup(base, active) {
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
                 </span>
                 <span class="block">
-                    <span class="block text-[10px] font-extrabold uppercase tracking-[0.18em] text-amber-200 leading-none">${sekolah}</span>
-                    <span class="block font-bold text-sm sm:text-base leading-tight mt-1">Portal Mengajar</span>
+                    <span class="block text-[10px] font-extrabold uppercase tracking-[0.18em] text-amber-200 leading-none">Merdeka Belajar</span>
+                    <span class="block font-bold text-sm sm:text-base leading-tight mt-1">Portal Belajar</span>
                 </span>
             </a>
 
             <nav class="hidden md:flex items-center gap-1 text-sm text-emerald-50/90" aria-label="Menu utama">
                 ${link(beranda, 'Beranda', 'beranda', false)}
-                ${link(informasi, 'Informasi Sekolah', 'informasi-sekolah', false)}
                 ${link(modul, 'Modul Ajar', 'modul-ajar', false)}
             </nav>
 
@@ -50,7 +47,6 @@ function headerMarkup(base, active) {
 
         <nav class="md:hidden px-4 pb-2.5 flex gap-2 overflow-x-auto" aria-label="Menu utama mobile">
             ${link(beranda, 'Beranda', 'beranda', true)}
-            ${link(informasi, 'Informasi Sekolah', 'informasi-sekolah', true)}
             ${link(modul, 'Modul Ajar', 'modul-ajar', true)}
         </nav>
     </header>`;
@@ -62,8 +58,7 @@ function footerMarkup(base) {
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg bg-goldWarm text-emeraldDark flex items-center justify-center font-extrabold text-sm">MI</div>
                 <div>
-                    <p class="font-bold text-sm">${escapeHtml(DATA_SEKOLAH.nama)}</p>
-                    <p class="text-[11px] text-emerald-200/80">Portal Mengajar &middot; ${escapeHtml(DATA_GURU.nama)}</p>
+                    <p class="text-[11px] text-emerald-200/80">Portal Belajar &middot; ${escapeHtml(DATA_GURU.nama)}</p>
                 </div>
             </div>
             <a href="${base}index.html#beranda" class="text-xs font-bold text-amber-200 hover:text-white transition">Kembali ke atas &uarr;</a>

@@ -94,7 +94,7 @@
     </footer>
 
     <!-- MODAL DAFTAR ISI (TABLE OF CONTENTS) -->
-    <div id="tocModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+    <div id="tocModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-creamPaper rounded-2xl max-w-lg w-full p-6 shadow-2xl border-2 border-goldWarm animate-page">
             <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-4">
                 <h2 class="text-lg font-bold text-emeraldDeep flex items-center gap-2">
@@ -111,7 +111,7 @@
     </div>
 
     <!-- MODAL PANDUAN EMBED GOOGLE SITES -->
-    <div id="embedModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+    <div id="embedModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border-2 border-emeraldDeep animate-page">
             <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-4">
                 <h2 class="text-lg font-bold text-emeraldDeep flex items-center gap-2">
@@ -177,7 +177,7 @@
 
                         <!-- Header Badge -->
                         <div class="relative z-10 flex items-center justify-between">
-                            <span class="px-3 py-1 rounded-full bg-white/15 backdrop-blur-xs border border-white/25 text-xs font-semibold tracking-wider uppercase text-amber-200">
+                            <span class="px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-xs font-semibold tracking-wider uppercase text-amber-200">
                                 Kurikulum Merdeka • Fase E
                             </span>
                             <span class="font-serif text-xl text-amber-300">السيرة النبوية</span>
@@ -196,7 +196,7 @@
                             </p>
 
                             <!-- Ilustrasi Vektor SVG Siluet Masjid Nabawi -->
-                            <div class="w-full max-w-xs mx-auto sm:mx-0 mb-6 bg-white/10 backdrop-blur-xs rounded-2xl p-4 border border-white/15">
+                            <div class="w-full max-w-xs mx-auto sm:mx-0 mb-6 bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15">
                                 <svg viewBox="0 0 320 110" class="w-full h-auto drop-shadow">
                                     <!-- Bulan Sabit -->
                                     <path d="M275 18 A12 12 0 1 0 288 32 A10 10 0 1 1 275 18 Z" fill="#f59e0b"/>
@@ -262,23 +262,23 @@
 
                             <!-- Diagram Alur Interaktif -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-                                <button onclick="showConceptDetail(0)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                <button onclick="showConceptDetail(0)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-sm cursor-pointer">
                                     <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
                                     <span class="text-xs font-bold text-emeraldDeep">Kondisi Yatsrib Pra-Islam</span>
                                 </button>
-                                <button onclick="showConceptDetail(1)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                <button onclick="showConceptDetail(1)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-sm cursor-pointer">
                                     <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
                                     <span class="text-xs font-bold text-emeraldDeep">Peristiwa Hijrah (622 M)</span>
                                 </button>
-                                <button onclick="showConceptDetail(2)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                <button onclick="showConceptDetail(2)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-sm cursor-pointer">
                                     <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
                                     <span class="text-xs font-bold text-emeraldDeep">3 Pilar Masyarakat Madani</span>
                                 </button>
-                                <button onclick="showConceptDetail(3)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                <button onclick="showConceptDetail(3)" class="concept-btn text-left p-2.5 rounded-xl border border-emerald-200 bg-white hover:bg-emeraldLight transition flex items-center gap-2.5 shadow-sm cursor-pointer">
                                     <span class="w-6 h-6 rounded-full bg-emeraldDeep text-white text-xs font-bold flex items-center justify-center shrink-0">4</span>
                                     <span class="text-xs font-bold text-emeraldDeep">Strategi Pertahanan</span>
                                 </button>
-                                <button onclick="showConceptDetail(4)" class="concept-btn sm:col-span-2 text-left p-2.5 rounded-xl border border-amber-300 bg-amber-50/70 hover:bg-amber-100 transition flex items-center gap-2.5 shadow-2xs cursor-pointer">
+                                <button onclick="showConceptDetail(4)" class="concept-btn sm:col-span-2 text-left p-2.5 rounded-xl border border-amber-300 bg-amber-50/70 hover:bg-amber-100 transition flex items-center gap-2.5 shadow-sm cursor-pointer">
                                     <span class="w-6 h-6 rounded-full bg-goldWarm text-white text-xs font-bold flex items-center justify-center shrink-0">5</span>
                                     <span class="text-xs font-bold text-amber-900">Puncak Kemenangan: Fathu Makkah (8 H)</span>
                                 </button>
@@ -318,11 +318,11 @@
 
                             <!-- Kartu Komposisi Penduduk -->
                             <div class="grid grid-cols-2 gap-2.5 mb-4">
-                                <div class="bg-white p-3 rounded-xl border border-stone-200 shadow-2xs">
+                                <div class="bg-white p-3 rounded-xl border border-stone-200 shadow-sm">
                                     <div class="text-emeraldDeep font-bold text-xs sm:text-sm mb-1"><span data-icon="users" class="inline-flex items-center justify-center shrink-0 text-goldWarm mr-1"></span> Suku Arab</div>
                                     <p class="text-xs text-slate-600"><strong>Suku Aus & Khazraj</strong>: Dua suku besar asal Yaman yang terlibat perang saudara (Perang Bu'ats) selama puluhan tahun.</p>
                                 </div>
-                                <div class="bg-white p-3 rounded-xl border border-stone-200 shadow-2xs">
+                                <div class="bg-white p-3 rounded-xl border border-stone-200 shadow-sm">
                                     <div class="text-emeraldDeep font-bold text-xs sm:text-sm mb-1"><span data-icon="landmark" class="inline-flex items-center justify-center shrink-0 text-goldWarm mr-1"></span> Kabilah Yahudi</div>
                                     <p class="text-xs text-slate-600"><strong>Bani Qainuqa, Bani Nadhir, & Bani Quraizhah</strong>: Menguasai sektor ekonomi, perdagangan, dan pertanian.</p>
                                 </div>
@@ -382,7 +382,7 @@
                                         <div id="pin-0" class="w-10 h-10 rounded-full bg-goldWarm text-white flex items-center justify-center shadow-md ring-4 ring-amber-200 transition">
                                             <span data-icon="house" class="inline-flex items-center justify-center shrink-0 "></span>
                                         </div>
-                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-2xs">1. Rumah Nabi</span>
+                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-sm">1. Rumah Nabi</span>
                                     </button>
 
                                     <!-- Titik 2 -->
@@ -390,7 +390,7 @@
                                         <div id="pin-1" class="w-10 h-10 rounded-full bg-emeraldDeep text-white flex items-center justify-center shadow-md transition">
                                             <span data-icon="mountain" class="inline-flex items-center justify-center shrink-0 "></span>
                                         </div>
-                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-2xs">2. Gua Tsur</span>
+                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-sm">2. Gua Tsur</span>
                                     </button>
 
                                     <!-- Titik 3 -->
@@ -398,7 +398,7 @@
                                         <div id="pin-2" class="w-10 h-10 rounded-full bg-emeraldDeep text-white flex items-center justify-center shadow-md transition">
                                             <span data-icon="mosque" class="inline-flex items-center justify-center shrink-0 "></span>
                                         </div>
-                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-2xs">3. Quba</span>
+                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-sm">3. Quba</span>
                                     </button>
 
                                     <!-- Titik 4 -->
@@ -406,7 +406,7 @@
                                         <div id="pin-3" class="w-10 h-10 rounded-full bg-emeraldDeep text-white flex items-center justify-center shadow-md transition">
                                             <span data-icon="star-and-crescent" class="inline-flex items-center justify-center shrink-0 "></span>
                                         </div>
-                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-2xs">4. Madinah</span>
+                                        <span class="text-[11px] font-bold text-slate-800 mt-1.5 bg-white px-2 py-0.5 rounded shadow-sm">4. Madinah</span>
                                     </button>
                                 </div>
                             </div>
@@ -571,7 +571,7 @@
                             <!-- Tabel / Kartu Perbandingan Perang -->
                             <div id="warTableContainer" class="space-y-2.5">
                                 <!-- Badar -->
-                                <div class="war-row bg-white border border-stone-200 rounded-xl p-3 shadow-2xs" data-war="badar">
+                                <div class="war-row bg-white border border-stone-200 rounded-xl p-3 shadow-sm" data-war="badar">
                                     <div class="flex justify-between items-center mb-1">
                                         <span class="font-bold text-emeraldDeep text-xs sm:text-sm">1. Perang Badar Kubra</span>
                                         <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">17 Ramadan 2 H</span>
@@ -581,7 +581,7 @@
                                 </div>
 
                                 <!-- Uhud -->
-                                <div class="war-row bg-white border border-stone-200 rounded-xl p-3 shadow-2xs" data-war="uhud">
+                                <div class="war-row bg-white border border-stone-200 rounded-xl p-3 shadow-sm" data-war="uhud">
                                     <div class="flex justify-between items-center mb-1">
                                         <span class="font-bold text-emeraldDeep text-xs sm:text-sm">2. Perang Uhud</span>
                                         <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">Syawal 3 H</span>
@@ -591,7 +591,7 @@
                                 </div>
 
                                 <!-- Khandaq -->
-                                <div class="war-row bg-white border border-stone-200 rounded-xl p-3 shadow-2xs" data-war="khandaq">
+                                <div class="war-row bg-white border border-stone-200 rounded-xl p-3 shadow-sm" data-war="khandaq">
                                     <div class="flex justify-between items-center mb-1">
                                         <span class="font-bold text-emeraldDeep text-xs sm:text-sm">3. Perang Khandaq (Ahzab)</span>
                                         <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Syawal 5 H</span>
@@ -708,7 +708,7 @@
 
                             <!-- 2 Pilihan Proyek -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3">
-                                <div class="bg-white border-2 border-emerald-200 rounded-xl p-3 shadow-2xs">
+                                <div class="bg-white border-2 border-emerald-200 rounded-xl p-3 shadow-sm">
                                     <div class="flex items-center gap-2 text-emeraldDeep font-bold text-xs sm:text-sm mb-1">
                                         <span data-icon="palette" class="inline-flex items-center justify-center shrink-0 text-goldWarm"></span> Opsi A: Infografis Digital
                                     </div>
@@ -716,7 +716,7 @@
                                         Buat poster infografis (via Canva) tentang <strong>"Relevansi Piagam Madinah dengan Kebinekaan Indonesia"</strong>.
                                     </p>
                                 </div>
-                                <div class="bg-white border-2 border-amber-200 rounded-xl p-3 shadow-2xs">
+                                <div class="bg-white border-2 border-amber-200 rounded-xl p-3 shadow-sm">
                                     <div class="flex items-center gap-2 text-amber-800 font-bold text-xs sm:text-sm mb-1">
                                         <span data-icon="microphone-lines" class="inline-flex items-center justify-center shrink-0 text-emeraldDeep"></span> Opsi B: Mini Podcast
                                     </div>
@@ -730,15 +730,15 @@
                             <div class="bg-stone-100 rounded-xl p-3 mb-4 border border-stone-200">
                                 <h3 class="text-xs font-bold text-slate-800 mb-1.5"><span data-icon="clipboard-check" class="inline-flex items-center justify-center shrink-0 text-emeraldDeep mr-1"></span> Rubrik Penilaian Singkat:</h3>
                                 <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
-                                    <div class="bg-white p-2 rounded-lg shadow-2xs">
+                                    <div class="bg-white p-2 rounded-lg shadow-sm">
                                         <span class="block font-extrabold text-emeraldDeep text-sm">40%</span>
                                         <span class="text-slate-600">Akurasi Data Sejarah</span>
                                     </div>
-                                    <div class="bg-white p-2 rounded-lg shadow-2xs">
+                                    <div class="bg-white p-2 rounded-lg shadow-sm">
                                         <span class="block font-extrabold text-goldWarm text-sm">30%</span>
                                         <span class="text-slate-600">Kreativitas Penyajian</span>
                                     </div>
-                                    <div class="bg-white p-2 rounded-lg shadow-2xs">
+                                    <div class="bg-white p-2 rounded-lg shadow-sm">
                                         <span class="block font-extrabold text-emeraldDeep text-sm">30%</span>
                                         <span class="text-slate-600">Relevansi Nilai Moral</span>
                                     </div>
@@ -1086,7 +1086,7 @@
             quizQuestions.forEach((item, qIdx) => {
                 const answered = userAnswers[qIdx] !== undefined;
                 html += `
-                    <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-2xs">
+                    <div class="bg-white border border-stone-200 rounded-xl p-3 shadow-sm">
                         <p class="text-xs font-bold text-slate-800 mb-2">${item.q}</p>
                         <div class="space-y-1.5">
                             ${item.options.map((opt, oIdx) => {

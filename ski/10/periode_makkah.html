@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seri 1: Modul Interaktif SKI Kelas 10 - Dakwah Rasulullah SAW Periode Makkah</title>
+    <!-- Tailwind CSS hasil build (terpusat) -->
+    <link rel="stylesheet" href="../../assets/css/output.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col antialiased portal-bg">
+
+    <!-- Header bersama untuk semua halaman -->
+    <div data-site-header data-base="../../" data-active="modul-ajar"></div>
+
+    <!-- TOP NAVIGATION HUB -->
+    <header class="z-40 bg-emeraldDeep/95 backdrop-blur-md text-white border-b-2 border-goldBright shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <!-- Identitas Modul -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-goldBright to-goldWarm flex items-center justify-center text-emeraldDeep shadow-sm shrink-0">
+                    <span data-icon="kaaba" class="text-lg"></span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider bg-goldWarm text-white rounded-md">Seri 1</span>
+                        <span class="text-xs font-semibold text-emerald-200">SKI Kelas X • Fase E</span>
+                    </div>
+                    <h1 class="font-extrabold text-sm sm:text-base md:text-lg tracking-tight leading-snug">
+                        Dakwah Rasulullah SAW Periode Makkah
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Navigasi Tahap Belajar (Pill Stepper) -->
+            <nav class="flex items-center gap-1.5 sm:gap-2 bg-emerald-950/50 p-1.5 rounded-xl border border-emerald-700/60 overflow-x-auto thin-scroll max-w-full">
+                <a href="#section-pretest" class="px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-emeraldMid transition flex items-center gap-1.5 whitespace-nowrap">
+                    <span class="w-4 h-4 rounded-full bg-goldBright text-emeraldDeep text-[10px] flex items-center justify-center font-extrabold">1</span>
+                    <span>Pretest</span>
+                </a>
+                <a href="#section-learning" class="px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-emeraldMid transition flex items-center gap-1.5 whitespace-nowrap">
+                    <span class="w-4 h-4 rounded-full bg-emerald-400 text-emeraldDeep text-[10px] flex items-center justify-center font-extrabold">2</span>
+                    <span>Video & Materi</span>
+                </a>
+                <a href="#section-posttest" class="px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-emeraldMid transition flex items-center gap-1.5 whitespace-nowrap">
+                    <span class="w-4 h-4 rounded-full bg-goldBright text-emeraldDeep text-[10px] flex items-center justify-center font-extrabold">3</span>
+                    <span>Post-test</span>
+                </a>
+            </nav>
+
+            <!-- Ringkasan Skor Real-time -->
+            <div class="hidden xl:flex items-center gap-3 bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/15 text-xs">
+                <div>
+                    <span class="text-emerald-200 block text-[10px]">Skor Pretest</span>
+                    <span id="navPreScore" class="font-extrabold text-goldBright">Belum Dikerjakan</span>
+                </div>
+                <div class="h-6 w-px bg-white/20"></div>
+                <div>
+                    <span class="text-emerald-200 block text-[10px]">Skor Post-test</span>
+                    <span id="navPostScore" class="font-extrabold text-emerald-300">Belum Dikerjakan</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-8">
+
+        <!-- HERO BANNER RINGKAS -->
+        <section class="bg-gradient-to-r from-emeraldDeep via-emeraldMid to-teal-800 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden hero-pattern">
+            <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-amber-200 text-xs font-bold mb-3">
+                        <span data-icon="sparkles" class="text-goldBright"></span>
+                        <span>Substansi & Strategi Dakwah • Kurikulum Merdeka</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight mb-2.5">
+                        Cahaya Tauhid di Tengah <span class="text-goldBright">Masyarakat Jahiliyah Makkah</span>
+                    </h2>
+                    <p class="text-sm sm:text-base text-emerald-100 leading-relaxed">
+                        Pelajari bagaimana Rasulullah SAW membangun fondasi akidah dan akhlak selama 13 tahun di Makkah melalui tahapan dakwah yang penuh hikmah, kesabaran, dan keteladanan.
+                    </p>
+                </div>
+
+                <!-- Kartu Alur 3 Langkah -->
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 shrink-0 lg:w-80">
+                    <p class="text-xs font-extrabold uppercase tracking-wider text-amber-300 mb-2.5">Alur Belajar Mandiri:</p>
+                    <ul class="space-y-2 text-xs text-emerald-50">
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-goldBright text-emeraldDeep font-extrabold flex items-center justify-center shrink-0">1</span>
+                            <span>Kerjakan <strong>Pretest Diagnostik</strong> (5 soal)</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-emerald-300 text-emeraldDeep font-extrabold flex items-center justify-center shrink-0">2</span>
+                            <span>Simak <strong>Video (±14 mnt)</strong> & eksplorasi 4 pilar materi</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-goldBright text-emeraldDeep font-extrabold flex items-center justify-center shrink-0">3</span>
+                            <span>Ukur peningkatan lewat <strong>Post-test Akhir</strong></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- BAGIAN 1: PRETEST INTERAKTIF (DIAGNOSTIK AWAL)             -->
+        <!-- ========================================================== -->
+        <section id="section-pretest" class="scroll-mt-24 bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden">
+            <!-- Header Section Pretest -->
+            <div class="bg-creamSoft border-b border-amber-200/70 px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-goldWarm text-white flex items-center justify-center font-extrabold shadow-sm">
+                        <span data-icon="clipboard-question"></span>
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">Tahap 1 • Diagnostik Awal</span>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-emeraldDeep">Pretest: Seberapa Jauh Pemahaman Awalmu?</h3>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="#section-learning" class="px-3.5 py-2 rounded-xl bg-white hover:bg-emeraldSoft text-emeraldDeep border border-emerald-200 text-xs font-bold transition flex items-center gap-1.5">
+                        <span>Langsung ke Video & Materi</span>
+                        <span data-icon="arrow-down"></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Body Pretest -->
+            <div class="p-6">
+                <p class="text-xs sm:text-sm text-slate-600 mb-5">
+                    Jawablah <strong>5 soal singkat</strong> berikut sebelum menonton video dan membaca materi. Tidak perlu khawatir jika belum tahu jawabannya—hasil ini akan dibandingkan dengan nilai Post-test di akhir pembelajaran!
+                </p>
+
+                <!-- Container Soal Pretest -->
+                <div id="pretestQuestionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <!-- Dirender via JS -->
+                </div>
+
+                <!-- Tombol Submit & Hasil Pretest -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <button id="submitPretestBtn" onclick="submitPretest()" class="px-6 py-3 rounded-xl bg-emeraldDeep hover:bg-emeraldMid text-white font-bold text-sm shadow transition flex items-center gap-2 cursor-pointer">
+                            <span data-icon="check-double"></span>
+                            <span>Periksa Skor Pretest</span>
+                        </button>
+                        <button id="resetPretestBtn" onclick="resetPretest()" class="hidden px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition cursor-pointer">
+                            Ulangi
+                        </button>
+                    </div>
+
+                    <!-- Kotak Umpan Balik Skor Pretest -->
+                    <div id="pretestResultBanner" class="hidden w-full sm:w-auto flex-1 bg-emeraldSoft border border-emerald-200 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 animate-fade-up">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-extrabold uppercase text-emeraldMid">Skor Awal Kamu:</span>
+                                <span id="pretestScoreValue" class="px-2.5 py-0.5 rounded-lg bg-emeraldDeep text-goldBright font-extrabold text-sm">0 / 100</span>
+                            </div>
+                            <p id="pretestFeedbackText" class="text-xs text-slate-700 mt-1"></p>
+                        </div>
+                        <a href="#section-learning" class="px-4 py-2 rounded-xl bg-goldWarm hover:bg-amber-600 text-white font-bold text-xs shrink-0 shadow-sm transition flex items-center gap-1.5">
+                            <span>Mulai Pelajari Materi</span>
+                            <span data-icon="arrow-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- BAGIAN 2: VIDEO PEMBELAJARAN & MODUL MATERI TERPADU        -->
+        <!-- ========================================================== -->
+        <section id="section-learning" class="scroll-mt-24 space-y-6">
+            <div class="flex flex-wrap items-end justify-between gap-2">
+                <div>
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-goldWarm">Tahap 2 • Eksplorasi Multimedia & Bahan Ajar</span>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-emeraldDeep">Video Pembelajaran & Modul Materi Interaktif</h3>
+                </div>
+                <p class="text-xs text-slate-500">Simak video di sisi kiri, lalu eksplorasi 4 pilar materi di sisi kanan.</p>
+            </div>
+
+            <!-- SPLIT-VIEW DASHBOARD (12 Kolom: 5 Kolom Video + 7 Kolom Modul Materi) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                <!-- KOLOM KIRI: PEMUTAR VIDEO YOUTUBE & CATATAN TIMESTAMP (5 Kolom) -->
+                <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden flex flex-col">
+                    <div class="bg-emeraldDeep text-white px-5 py-3.5 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span data-icon="youtube" class="text-red-400 text-lg"></span>
+                            <span class="font-bold text-xs sm:text-sm">Video Pembelajaran SKI</span>
+                        </div>
+                        <span class="text-[11px] font-semibold bg-white/15 px-2.5 py-0.5 rounded-full text-amber-200">
+                            <span data-icon="clock" class="mr-1"></span> ±14 Menit
+                        </span>
+                    </div>
+
+                    <!-- Responsive 16:9 YouTube Embed -->
+                    <div class="relative w-full aspect-video bg-slate-900">
+                        <iframe 
+                            id="youtubePlayer"
+                            class="absolute inset-0 w-full h-full"
+                            src="https://www.youtube.com/embed/y8KanLh6Q7w?rel=0" 
+                            title="Materi Dakwah Rasulullah SAW di Makkah" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <!-- Poin Penting & Alur Waktu Video -->
+                    <div class="p-5 space-y-3 bg-creamSoft/60 flex-1">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-extrabold uppercase tracking-wider text-emeraldDeep">
+                                <span data-icon="bookmark" class="text-goldWarm mr-1.5"></span> Poin Penting Isi Video:
+                            </h4>
+                            <a href="https://www.youtube.com/watch?v=y8KanLh6Q7w" target="_blank" rel="noopener noreferrer" class="text-[11px] font-semibold text-emeraldMid hover:underline">
+                                Buka di YouTube <span data-icon="external-link" class="text-[10px]"></span>
+                            </a>
+                        </div>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-white p-2.5 rounded-xl border border-amber-200/80 flex items-start gap-2.5">
+                                <span class="px-2 py-0.5 rounded bg-emeraldSoft text-emeraldDeep font-mono font-bold text-[11px] shrink-0">00:00</span>
+                                <div>
+                                    <p class="font-bold text-slate-800">Kondisi Makkah Pra-Islam</p>
+                                    <p class="text-slate-600 text-[11px]">Kepercayaan penyembahan berhala, sistem kesukuan, dan keruntuhan moral Jahiliyah.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-amber-200/80 flex items-start gap-2.5">
+                                <span class="px-2 py-0.5 rounded bg-emeraldSoft text-emeraldDeep font-mono font-bold text-[11px] shrink-0">03:45</span>
+                                <div>
+                                    <p class="font-bold text-slate-800">Wahyu Pertama & Dakwah Sirriyah</p>
+                                    <p class="text-slate-600 text-[11px]">Turunnya QS. Al-Alaq 1–5 di Gua Hira hingga dakwah sembunyi-sembunyi selama 3 tahun.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-amber-200/80 flex items-start gap-2.5">
+                                <span class="px-2 py-0.5 rounded bg-emeraldSoft text-emeraldDeep font-mono font-bold text-[11px] shrink-0">07:30</span>
+                                <div>
+                                    <p class="font-bold text-slate-800">Dakwah Jahriyah & Reaksi Quraisy</p>
+                                    <p class="text-slate-600 text-[11px]">Seruan terbuka di Bukit Shafa, penolakan Abu Lahab, hingga intimidasi fisik.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-amber-200/80 flex items-start gap-2.5">
+                                <span class="px-2 py-0.5 rounded bg-emeraldSoft text-emeraldDeep font-mono font-bold text-[11px] shrink-0">11:10</span>
+                                <div>
+                                    <p class="font-bold text-slate-800">Hijrah Habasyah, Boikot & Tahun Kesedihan</p>
+                                    <p class="text-slate-600 text-[11px]">Perlindungan Raja Najasyi, pemboikotan Bani Hasyim 3 tahun, dan <em>Amul Huzni</em>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KOLOM KANAN: MODUL MATERI INTERAKTIF 4 PILAR (7 Kolom) -->
+                <div class="lg:col-span-7 bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden flex flex-col">
+                    <!-- Header & Progress Baca Materi -->
+                    <div class="bg-creamSoft border-b border-amber-200/70 px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span data-icon="book-open" class="text-goldWarm text-base"></span>
+                            <span class="font-extrabold text-sm text-emeraldDeep">Eksplorasi 4 Pilar Materi Utama</span>
+                        </div>
+                        <span id="materialReadProgress" class="text-[11px] font-bold bg-emeraldSoft text-emeraldDeep px-3 py-1 rounded-full border border-emerald-200">
+                            Topik 1 dari 4
+                        </span>
+                    </div>
+
+                    <!-- Navigasi Tab 4 Topik -->
+                    <div class="p-3 bg-slate-50 border-b border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <button onclick="switchTopicTab(0)" id="topic-btn-0" class="topic-tab-btn px-3 py-2.5 rounded-xl text-xs font-bold bg-emeraldDeep text-white shadow-sm transition text-left flex items-center gap-2 cursor-pointer">
+                            <span class="w-5 h-5 rounded-lg bg-goldBright text-emeraldDeep flex items-center justify-center font-extrabold shrink-0">A</span>
+                            <span class="leading-tight">Masyarakat Jahiliyah</span>
+                        </button>
+                        <button onclick="switchTopicTab(1)" id="topic-btn-1" class="topic-tab-btn px-3 py-2.5 rounded-xl text-xs font-bold bg-white hover:bg-emeraldSoft text-slate-700 border border-slate-200 transition text-left flex items-center gap-2 cursor-pointer">
+                            <span class="w-5 h-5 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center font-extrabold shrink-0">B</span>
+                            <span class="leading-tight">Dakwah Sirriyah</span>
+                        </button>
+                        <button onclick="switchTopicTab(2)" id="topic-btn-2" class="topic-tab-btn px-3 py-2.5 rounded-xl text-xs font-bold bg-white hover:bg-emeraldSoft text-slate-700 border border-slate-200 transition text-left flex items-center gap-2 cursor-pointer">
+                            <span class="w-5 h-5 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center font-extrabold shrink-0">C</span>
+                            <span class="leading-tight">Dakwah Jahriyah</span>
+                        </button>
+                        <button onclick="switchTopicTab(3)" id="topic-btn-3" class="topic-tab-btn px-3 py-2.5 rounded-xl text-xs font-bold bg-white hover:bg-emeraldSoft text-slate-700 border border-slate-200 transition text-left flex items-center gap-2 cursor-pointer">
+                            <span class="w-5 h-5 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center font-extrabold shrink-0">D</span>
+                            <span class="leading-tight">Teladan Kesabaran</span>
+                        </button>
+                    </div>
+
+                    <!-- Area Konten Dinamis Topik -->
+                    <div id="topicContentArea" class="p-5 sm:p-6 flex-1 animate-fade-up">
+                        <!-- Dirender dinamis oleh JS -->
+                    </div>
+
+                    <!-- Footer Navigasi Antar Topik -->
+                    <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-200/80 flex items-center justify-between">
+                        <button id="prevTopicBtn" onclick="prevTopic()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 disabled:opacity-40 disabled:pointer-events-none text-xs font-bold flex items-center gap-1.5 transition cursor-pointer">
+                            <span data-icon="chevron-left"></span>
+                            <span>Topik Sebelumnya</span>
+                        </button>
+                        <button id="nextTopicBtn" onclick="nextTopic()" class="px-4 py-2 rounded-xl bg-emeraldDeep hover:bg-emeraldMid text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition cursor-pointer">
+                            <span>Topik Berikutnya</span>
+                            <span data-icon="chevron-right"></span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================== -->
+        <!-- BAGIAN 3: EVALUASI AKHIR (POST-TEST & PERBANDINGAN SKOR)   -->
+        <!-- ========================================================== -->
+        <section id="section-posttest" class="scroll-mt-24 bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden">
+            <div class="bg-gradient-to-r from-emeraldDeep to-emeraldMid text-white px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-goldBright text-emeraldDeep flex items-center justify-center font-extrabold shadow-sm">
+                        <span data-icon="award" class="text-lg"></span>
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-300">Tahap 3 • Evaluasi Akhir</span>
+                        <h3 class="text-lg sm:text-xl font-extrabold">Post-test: Ukur Peningkatan Pemahamanmu</h3>
+                    </div>
+                </div>
+                <span class="text-xs font-semibold bg-white/15 px-3 py-1 rounded-full text-emerald-100">
+                    5 Soal Evaluasi Komprehensif
+                </span>
+            </div>
+
+            <div class="p-6">
+                <p class="text-xs sm:text-sm text-slate-600 mb-5">
+                    Setelah menyimak video dan mempelajari keempat pilar materi di atas, kerjakan soal <strong>Post-test</strong> berikut untuk melihat peningkatan pemahamanmu dibandingkan skor Pretest awal!
+                </p>
+
+                <!-- Container Soal Post-test -->
+                <div id="posttestQuestionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <!-- Dirender via JS -->
+                </div>
+
+                <!-- Tombol Submit Post-test -->
+                <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100">
+                    <button id="submitPosttestBtn" onclick="submitPosttest()" class="px-6 py-3 rounded-xl bg-goldWarm hover:bg-amber-600 text-white font-extrabold text-sm shadow transition flex items-center gap-2 cursor-pointer">
+                        <span data-icon="trophy"></span>
+                        <span>Selesaikan & Bandingkan Skor</span>
+                    </button>
+                    <button id="resetPosttestBtn" onclick="resetPosttest()" class="hidden px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition cursor-pointer">
+                        Kerjakan Ulang Post-test
+                    </button>
+                </div>
+
+                <!-- Dashboard Perbandingan Skor Pretest vs Post-test -->
+                <div id="comparisonDashboard" class="hidden mt-6 bg-gradient-to-br from-creamSoft to-emeraldSoft/70 border-2 border-emerald-200 rounded-2xl p-5 sm:p-6 animate-fade-up">
+                    <h4 class="text-base sm:text-lg font-extrabold text-emeraldDeep mb-4 flex items-center gap-2">
+                        <span data-icon="chart-line" class="text-goldWarm"></span> Laporan Perkembangan Belajar Kamu
+                    </h4>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                        <!-- Kartu Pretest -->
+                        <div class="bg-white rounded-2xl p-4 border border-slate-200 text-center shadow-sm">
+                            <span class="text-xs font-bold text-slate-500 uppercase">Skor Awal (Pretest)</span>
+                            <div id="comparePreScore" class="text-2xl sm:text-3xl font-extrabold text-slate-700 my-1">-</div>
+                            <span class="text-[11px] text-slate-400">Sebelum mempelajari materi</span>
+                        </div>
+
+                        <!-- Kartu Post-test -->
+                        <div class="bg-white rounded-2xl p-4 border-2 border-emeraldMid text-center shadow-sm">
+                            <span class="text-xs font-bold text-emeraldMid uppercase">Skor Akhir (Post-test)</span>
+                            <div id="comparePostScore" class="text-2xl sm:text-3xl font-extrabold text-emeraldDeep my-1">-</div>
+                            <span class="text-[11px] text-emerald-600 font-semibold">Setelah menyimak video & materi</span>
+                        </div>
+
+                        <!-- Kartu Peningkatan -->
+                        <div class="bg-emeraldDeep text-white rounded-2xl p-4 text-center shadow-sm">
+                            <span class="text-xs font-bold text-amber-300 uppercase">Selisih Peningkatan</span>
+                            <div id="compareDeltaScore" class="text-2xl sm:text-3xl font-extrabold text-goldBright my-1">+0 Poin</div>
+                            <span id="compareStatusBadge" class="inline-block px-2.5 py-0.5 rounded-full bg-white/15 text-[11px] font-semibold">Evaluasi Selesai</span>
+                        </div>
+                    </div>
+
+                    <p id="comparisonSummaryMessage" class="text-xs sm:text-sm text-slate-700 bg-white/80 p-3.5 rounded-xl border border-emerald-100 leading-relaxed"></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER RINGKAS -->
+    <footer class="bg-white border-t border-slate-200 py-4 px-4 text-center text-xs text-slate-500">
+        <p>Modul Pembelajaran Interaktif Sejarah Kebudayaan Islam (SKI) Kelas X • Seri 1: Periode Makkah</p>
+    </footer>
+
+    <!-- ========================================================== -->
+    <!-- JAVASCRIPT DATA & INTERACTIVE ENGINE                       -->
+    <!-- ========================================================== -->
+    <script src="../../assets/js/data.js"></script>
+    <script src="../../assets/js/icons.js"></script>
+    <script src="../../assets/js/components.js"></script>
+
+    <script>
+        // 1. DATA SOAL PRETEST (5 SOAL DIAGNOSTIK)
+        const pretestData = [
+            {
+                q: "1. Sebelum Islam datang, masyarakat Arab di Makkah dikenal dengan sebutan 'Jahiliyah' yang artinya...",
+                options: [
+                    "Tidak bisa membaca dan menulis sama sekali",
+                    "Ketidaktahuan terhadap kebenaran tauhid dan krisis moral",
+                    "Miskin dan tertinggal dalam bidang perdagangan",
+                    "Tidak memiliki tradisi sastra dan syair"
+                ],
+                answer: 1,
+                note: "Jahiliyah merujuk pada kebodohan spiritual (menyembah berhala) dan dekadensi moral meski mereka unggul dalam sastra dan dagang."
+            },
+            {
+                q: "2. Wahyu pertama yang diterima Nabi Muhammad SAW di Gua Hira yang menandai pengangkatan beliau sebagai Rasul adalah...",
+                options: [
+                    "QS. Al-Muddatstsir ayat 1–7",
+                    "QS. Al-Fatihah ayat 1–7",
+                    "QS. Al-Alaq ayat 1–5",
+                    "QS. Al-Maidah ayat 3"
+                ],
+                answer: 2,
+                note: "QS. Al-Alaq ayat 1–5 diturunkan melalui Malaikat Jibril pada 17 Ramadan di Gua Hira."
+            },
+            {
+                q: "3. Pada tahap awal (3 tahun pertama), Rasulullah SAW menjalankan dakwah secara...",
+                options: [
+                    "Terang-terangan di depan Ka'bah",
+                    "Sirriyah (sembunyi-sembunyi) kepada kerabat dekat",
+                    "Mengirim surat kepada raja-raja Romawi dan Persia",
+                    "Melakukan hijrah massal ke Madinah"
+                ],
+                answer: 1,
+                note: "Dakwah Sirriyah dilakukan selama ±3 tahun untuk membentuk kader inti yang kokoh akidahnya."
+            },
+            {
+                q: "4. Golongan orang-orang yang pertama kali memeluk Islam pada masa dakwah sembunyi-sembunyi disebut...",
+                options: [
+                    "Kaum Anshar",
+                    "Assabiqunal Awwalun",
+                    "Ahlul Bait",
+                    "Khulafaur Rasyidin"
+                ],
+                answer: 1,
+                note: "Assabiqunal Awwalun berarti orang-orang yang terdahulu dan pertama masuk Islam, seperti Khadijah, Ali, Abu Bakar, dan Zaid bin Haritsah."
+            },
+            {
+                q: "5. Substansi utama dakwah Rasulullah SAW selama 13 tahun di Makkah difokuskan pada...",
+                options: [
+                    "Pembangunan sistem militer dan perpajakan",
+                    "Penanaman akidah tauhid dan pembinaan akhlak mulia",
+                    "Penyusunan undang-undang tata negara",
+                    "Perluasan wilayah kekuasaan ke luar Jazirah Arab"
+                ],
+                answer: 1,
+                note: "Di Makkah, dakwah berfokus pada pemurnian tauhid (mengesakan Allah) dan revolusi akhlak manusia."
+            }
+        ];
+
+        // 2. DATA 4 PILAR MATERI INTERAKTIF
+        const topicModules = [
+            {
+                code: "A",
+                badge: "Pilar Materi 01",
+                title: "Kondisi Masyarakat Jahiliyah Makkah",
+                subtitle: "Memahami latar belakang sosial, budaya, dan kepercayaan penduduk Makkah sebelum diutusnya Rasulullah SAW.",
+                html: `
+                    <div class="space-y-4">
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Masyarakat Arab pra-Islam sebenarnya memiliki peradaban sastra yang tinggi dan jaringan perdagangan lintas negeri (<em>Rihlah Syita' wash-Shaif</em>). Namun, mereka mengalami krisis akidah dan kemanusiaan yang parah:
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="bg-creamSoft border border-amber-200 rounded-2xl p-3.5">
+                                <div class="flex items-center gap-2 text-emeraldDeep font-extrabold text-xs sm:text-sm mb-1.5">
+                                    <span data-icon="statue" class="text-goldWarm"></span> Aspek Kepercayaan
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Menyimpang dari ajaran tauhid Nabi Ibrahim AS dengan meletakkan sekitar <strong>360 berhala</strong> di sekitar Ka'bah (seperti Hubal, Latta, Uzza, dan Manat).
+                                </p>
+                            </div>
+
+                            <div class="bg-emeraldSoft/70 border border-emerald-200 rounded-2xl p-3.5">
+                                <div class="flex items-center gap-2 text-emeraldDeep font-extrabold text-xs sm:text-sm mb-1.5">
+                                    <span data-icon="users" class="text-goldWarm"></span> Aspek Sosial & Moral
+                                </div>
+                                <p class="text-xs text-slate-600 leading-relaxed">
+                                    Fanatisme kesukuan (<em>Ashabiyah</em>) memicu perang antarsuku, praktik riba, perbudakan, serta merendahkan martabat perempuan.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5">
+                            <h5 class="text-xs font-extrabold text-emeraldDeep mb-1"><span data-icon="lightbulb" class="text-goldWarm mr-1"></span> Mengapa Makkah Dipilih sebagai Titik Awal?</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Makkah merupakan pusat spiritual (keberadaan Ka'bah) sekaligus pusat pertemuan para pedagang dan peziarah dari seluruh Jazirah Arab, sehingga risalah Islam mudah tersebar luas.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                code: "B",
+                badge: "Pilar Materi 02",
+                title: "Dakwah Sirriyah & Assabiqunal Awwalun",
+                subtitle: "Strategi dakwah sembunyi-sembunyi selama 3 tahun pertama melalui pendekatan personal (QS. Al-Muddatstsir: 1–7).",
+                html: `
+                    <div class="space-y-4">
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Setelah menerima wahyu kedua (QS. Al-Muddatstsir: 1–7), Rasulullah SAW mulai berdakwah secara diam-diam kepada keluarga dan sahabat terdekat. Rumah <strong>Arqam bin Abil Arqam</strong> dijadikan pusat pembinaan (<em>Darul Arqam</em>).
+                        </p>
+
+                        <div>
+                            <p class="text-xs font-extrabold text-emeraldDeep mb-2">Tokoh Utama Assabiqunal Awwalun (Klik kartu untuk peran):</p>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2.5">
+                                <button onclick="showCompanionNote(0)" class="p-2.5 rounded-xl bg-emeraldSoft hover:bg-emerald-100 border border-emerald-200 text-left transition cursor-pointer">
+                                    <span class="block text-[10px] font-bold text-goldWarm">Golongan Wanita</span>
+                                    <span class="text-xs font-extrabold text-emeraldDeep">Khadijah r.a.</span>
+                                </button>
+                                <button onclick="showCompanionNote(1)" class="p-2.5 rounded-xl bg-creamSoft hover:bg-amber-100 border border-amber-200 text-left transition cursor-pointer">
+                                    <span class="block text-[10px] font-bold text-goldWarm">Golongan Anak</span>
+                                    <span class="text-xs font-extrabold text-emeraldDeep">Ali bin Abi Thalib</span>
+                                </button>
+                                <button onclick="showCompanionNote(2)" class="p-2.5 rounded-xl bg-emeraldSoft hover:bg-emerald-100 border border-emerald-200 text-left transition cursor-pointer">
+                                    <span class="block text-[10px] font-bold text-goldWarm">Sahabat Dewasa</span>
+                                    <span class="text-xs font-extrabold text-emeraldDeep">Abu Bakar r.a.</span>
+                                </button>
+                                <button onclick="showCompanionNote(3)" class="p-2.5 rounded-xl bg-creamSoft hover:bg-amber-100 border border-amber-200 text-left transition cursor-pointer">
+                                    <span class="block text-[10px] font-bold text-goldWarm">Hamba Sahaya</span>
+                                    <span class="text-xs font-extrabold text-emeraldDeep">Zaid bin Haritsah</span>
+                                </button>
+                            </div>
+                            <div id="companionNoteBox" class="bg-white border border-slate-200 rounded-xl p-3 text-xs text-slate-700 shadow-sm">
+                                <strong>Khadijah binti Khuwailid:</strong> Istri tercinta Rasulullah SAW yang pertama kali beriman, menenangkan hati beliau pasca wahyu pertama, dan mengorbankan seluruh hartanya untuk dakwah.
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                code: "C",
+                badge: "Pilar Materi 03",
+                title: "Dakwah Jahriyah & Boikot Bani Hasyim",
+                subtitle: "Seruan terbuka setelah turunnya QS. Al-Hijr: 94 dan gelombang perlawanan keras kaum kafir Quraisy.",
+                html: `
+                    <div class="space-y-3.5">
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            Perintah dakwah terang-terangan dimulai dengan mengundang kerabat Bani Hasyim (QS. Asy-Syu'ara: 214) dan berpidato di atas <strong>Bukit Shafa</strong>. Dakwah ini mengguncang kepentingan ekonomi dan status sosial elite Quraisy.
+                        </p>
+
+                        <!-- Akordeon Bentuk Tekanan Quraisy -->
+                        <div class="space-y-2">
+                            <details class="group bg-creamSoft border border-amber-200 rounded-xl p-3" open>
+                                <summary class="text-xs font-extrabold text-emeraldDeep cursor-pointer flex items-center justify-between">
+                                    <span>1. Penyiksaan Fisik & Hijrah ke Habasyah (615 M)</span>
+                                    <span data-icon="chevron-down" class="text-[10px] text-goldWarm group-open:rotate-180 transition"></span>
+                                </summary>
+                                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                    Sahabat dari kalangan lemah seperti <strong>Bilal bin Rabah</strong> dan keluarga <strong>Yasir-Sumayyah</strong> disiksa kejam. Untuk menyelamatkan akidah umat, Nabi mengarahkan sebagian sahabat hijrah ke <strong>Habasyah (Ethiopia)</strong> yang dipimpin Raja Najasyi yang adil.
+                                </p>
+                            </details>
+
+                            <details class="group bg-white border border-slate-200 rounded-xl p-3">
+                                <summary class="text-xs font-extrabold text-emeraldDeep cursor-pointer flex items-center justify-between">
+                                    <span>2. Pemboikotan Bani Hasyim & Bani Muthalib (3 Tahun)</span>
+                                    <span data-icon="chevron-down" class="text-[10px] text-goldWarm group-open:rotate-180 transition"></span>
+                                </summary>
+                                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                    Kaum Quraisy menggantung piagam pemboikotan di Ka'bah: melarang transaksi jual-beli, pernikahan, dan komunikasi dengan Bani Hasyim di lembah Syi'ib Abi Thalib selama 3 tahun (7–10 Kenabian) hingga mereka kelaparan.
+                                </p>
+                            </details>
+
+                            <details class="group bg-white border border-slate-200 rounded-xl p-3">
+                                <summary class="text-xs font-extrabold text-emeraldDeep cursor-pointer flex items-center justify-between">
+                                    <span>3. Amul Huzni (Tahun Kesedihan) & Peristiwa Thaif</span>
+                                    <span data-icon="chevron-down" class="text-[10px] text-goldWarm group-open:rotate-180 transition"></span>
+                                </summary>
+                                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                    Pada tahun ke-10 kenabian, dua pelindung utama Nabi wafat berturut-turut: paman beliau <strong>Abu Thalib</strong> dan istri tercinta <strong>Siti Khadijah</strong>. Ketika mencari perlindungan ke <strong>Thaif</strong>, beliau justru dilempari batu hingga berdarah.
+                                </p>
+                            </details>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                code: "D",
+                badge: "Pilar Materi 04",
+                title: "Keteladanan Kesabaran & Kunci Sukses Dakwah",
+                subtitle: "Nilai-nilai karakter Rasulullah SAW yang mengantarkan perubahan peradaban tanpa membalas kebencian dengan dendam.",
+                html: `
+                    <div class="space-y-4">
+                        <div class="bg-gradient-to-r from-emeraldDeep to-emeraldMid text-white rounded-2xl p-4 shadow-sm">
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-1">Doa Agung di Thaif (Teladan Pemaaf)</p>
+                            <p class="text-xs sm:text-sm italic leading-relaxed">
+                                Ketika Malaikat Penjaga Gunung menawarkan untuk menimpakan gunung kepada penduduk Thaif yang melukai beliau, Rasulullah SAW menolak dan berdoa: <strong>"Ya Allah, berilah petunjuk kepada kaumku, sesungguhnya mereka tidak mengetahui."</strong>
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <div class="bg-white border border-slate-200 rounded-xl p-3">
+                                <span class="w-7 h-7 rounded-lg bg-emeraldSoft text-emeraldDeep flex items-center justify-center font-bold text-xs mb-2">
+                                    <span data-icon="shield-heart"></span>
+                                </span>
+                                <h5 class="text-xs font-extrabold text-emeraldDeep mb-1">Teguh Prinsip</h5>
+                                <p class="text-[11px] text-slate-600">Menolak tawaran harta, takhta, dan wanita dari Quraisy demi menjaga kemurnian tauhid.</p>
+                            </div>
+                            <div class="bg-white border border-slate-200 rounded-xl p-3">
+                                <span class="w-7 h-7 rounded-lg bg-creamSoft text-goldWarm flex items-center justify-center font-bold text-xs mb-2">
+                                    <span data-icon="scale-balanced"></span>
+                                </span>
+                                <h5 class="text-xs font-extrabold text-emeraldDeep mb-1">Kesetaraan Manusia</h5>
+                                <p class="text-[11px] text-slate-600">Mengangkat derajat kaum tertindas dan budak (seperti Bilal) setara dengan bangsawan.</p>
+                            </div>
+                            <div class="bg-white border border-slate-200 rounded-xl p-3">
+                                <span class="w-7 h-7 rounded-lg bg-emeraldSoft text-emeraldDeep flex items-center justify-center font-bold text-xs mb-2">
+                                    <span data-icon="compass"></span>
+                                </span>
+                                <h5 class="text-xs font-extrabold text-emeraldDeep mb-1">Strategis & Bertahap</h5>
+                                <p class="text-[11px] text-slate-600">Memulai dari pembinaan kader (Sirriyah), dakwah terbuka, hingga diplomasi hijrah.</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        const companionNotes = [
+            "<strong>Khadijah binti Khuwailid:</strong> Istri tercinta Rasulullah SAW yang pertama kali beriman, menenangkan hati beliau pasca wahyu pertama, dan mengorbankan seluruh hartanya untuk dakwah.",
+            "<strong>Ali bin Abi Thalib:</strong> Sepupu Rasulullah SAW yang masuk Islam pada usia sekitar 10 tahun, menjadi teladan keberanian dan kecerdasan generasi muda.",
+            "<strong>Abu Bakar Ash-Shiddiq:</strong> Sahabat dewasa pertama yang masuk Islam tanpa keraguan sedikit pun dan berhasil mengajak banyak tokoh terkemuka Makkah memeluk Islam.",
+            "<strong>Zaid bin Haritsah:</strong> Mantan budak yang dimerdekakan dan diangkat anak oleh Rasulullah SAW, membuktikan bahwa Islam memuliakan manusia berdasarkan ketakwaan."
+        ];
+
+        // 3. DATA SOAL POST-TEST (5 SOAL EVALUASI AKHIR)
+        const posttestData = [
+            {
+                q: "1. Mengapa Rasulullah SAW memilih rumah Arqam bin Abil Arqam (Darul Arqam) sebagai markas pembinaan pada masa dakwah Sirriyah?",
+                options: [
+                    "Karena letaknya strategis namun tersembunyi dari pengawasan elite Quraisy",
+                    "Karena berada tepat di tengah pasar Ukaz yang ramai",
+                    "Karena milik pemimpin suku Quraisy yang paling ditakuti",
+                    "Karena memiliki benteng pertahanan militer yang kuat"
+                ],
+                answer: 0,
+                note: "Darul Arqam terletak di lereng Bukit Shafa yang strategis namun tidak mencurigakan bagi pemuka Quraisy sehingga pembinaan akidah berjalan aman."
+            },
+            {
+                q: "2. Melalui dakwah Abu Bakar Ash-Shiddiq pada masa awal, sejumlah sahabat terkemuka ikut masuk Islam. Berikut ini yang termasuk sahabat hasil dakwah Abu Bakar adalah...",
+                options: [
+                    "Abu Lahab dan Abu Jahal",
+                    "Utsman bin Affan, Zubair bin Awwam, dan Abdurrahman bin Auf",
+                    "Salman Al-Farisi dan Abu Hurairah",
+                    "Musailamah Al-Kadzab dan Thulaihah"
+                ],
+                answer: 1,
+                note: "Abu Bakar berhasil mengajak Utsman bin Affan, Zubair bin Awwam, Abdurrahman bin Auf, Sa'ad bin Abi Waqqash, dan Thalhah bin Ubaidillah."
+            },
+            {
+                q: "3. Apa tujuan utama Rasulullah SAW memerintahkan sebagian sahabat hijrah ke Habasyah (Ethiopia) pada tahun ke-5 kenabian?",
+                options: [
+                    "Menaklukkan kerajaan Habasyah secara militer",
+                    "Menyelamatkan akidah dan jiwa umat Islam dari penyiksaan kejam Quraisy",
+                    "Membuka jalur perdagangan rempah-rempah baru",
+                    "Meninggalkan Kota Makkah untuk selamanya"
+                ],
+                answer: 1,
+                note: "Habasyah dipimpin oleh Raja Najasyi (Negus) yang dikenal adil dan tidak menzalimi siapa pun di negerinya."
+            },
+            {
+                q: "4. Peristiwa wafatnya Siti Khadijah dan paman Nabi, Abu Thalib, pada tahun ke-10 kenabian dikenal dalam sejarah Islam sebagai...",
+                options: [
+                    "Fathu Makkah",
+                    "Amul Huzni (Tahun Kesedihan)",
+                    "Amul Jama'ah",
+                    "Bai'atul Aqabah"
+                ],
+                answer: 1,
+                note: "Wafatnya dua pelindung utama dakwah dalam waktu berdekatan membuat Rasulullah SAW sangat berduka sehingga disebut Amul Huzni."
+            },
+            {
+                q: "5. Pelajaran karakter paling menonjol yang dapat diteladani siswa dari peristiwa dakwah Rasulullah SAW ke Thaif adalah...",
+                options: [
+                    "Membalas perlakuan buruk orang lain dengan balasan setimpal",
+                    "Menghindari tanggung jawab saat menghadapi rintangan berat",
+                    "Kesabaran luar biasa, tidak pendendam, dan tetap mendoakan kebaikan",
+                    "Mengutamakan kekuasaan politik di atas pembinaan moral"
+                ],
+                answer: 2,
+                note: "Meski dilempari batu hingga terluka, Rasulullah SAW menolak tawaran malaikat untuk menghancurkan penduduk Thaif dan justru mendoakan hidayah bagi mereka."
+            }
+        ];
+
+        // ==========================================================
+        // STATE & LOGIC HANDLERS
+        // ==========================================================
+        let pretestAnswers = {};
+        let pretestSubmitted = false;
+        let pretestScore = null;
+
+        let posttestAnswers = {};
+        let posttestSubmitted = false;
+        let posttestScore = null;
+
+        let currentTopicIndex = 0;
+
+        // Render Soal (Digunakan untuk Pretest maupun Post-test)
+        function renderAssessment(questions, containerId, answersObj, isSubmitted, prefix) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = questions.map((item, qIdx) => {
+                const selected = answersObj[qIdx];
+                return `
+                    <div class="bg-slate-50/80 border border-slate-200/90 rounded-2xl p-4 flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs sm:text-sm font-bold text-slate-800 mb-3 leading-snug">${item.q}</p>
+                            <div class="space-y-2">
+                                ${item.options.map((opt, oIdx) => {
+                                    let optionClass = "bg-white hover:bg-emeraldSoft/70 border-slate-200 text-slate-700";
+                                    let iconHtml = `<span class="w-5 h-5 rounded-md bg-slate-100 text-slate-600 text-[11px] font-bold flex items-center justify-center shrink-0">${String.fromCharCode(65 + oIdx)}</span>`;
+
+                                    if (!isSubmitted && selected === oIdx) {
+                                        optionClass = "bg-emeraldSoft border-emeraldMid text-emeraldDeep font-bold ring-1 ring-emeraldMid";
+                                        iconHtml = `<span class="w-5 h-5 rounded-md bg-emeraldDeep text-white text-[11px] font-bold flex items-center justify-center shrink-0">${String.fromCharCode(65 + oIdx)}</span>`;
+                                    } else if (isSubmitted) {
+                                        if (oIdx === item.answer) {
+                                            optionClass = "bg-emerald-100 border-emerald-500 text-emerald-950 font-bold";
+                                            iconHtml = `<span data-icon="circle-check" class="text-emerald-600 text-base shrink-0"></span>`;
+                                        } else if (selected === oIdx && oIdx !== item.answer) {
+                                            optionClass = "bg-red-50 border-red-400 text-red-900";
+                                            iconHtml = `<span data-icon="circle-xmark" class="text-red-500 text-base shrink-0"></span>`;
+                                        } else {
+                                            optionClass = "bg-white/60 border-slate-200 text-slate-400";
+                                        }
+                                    }
+
+                                    return `
+                                        <button type="button" ${isSubmitted ? 'disabled' : ''} onclick="selectAnswer('${prefix}', ${qIdx}, ${oIdx})" class="w-full text-left text-xs p-2.5 rounded-xl border transition flex items-center gap-2.5 ${isSubmitted ? 'cursor-default' : 'cursor-pointer'} ${optionClass}">
+                                            ${iconHtml}
+                                            <span>${opt}</span>
+                                        </button>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+
+                        ${isSubmitted ? `
+                            <div class="mt-3 pt-2.5 border-t border-slate-200/80 text-[11px] ${selected === item.answer ? 'text-emeraldDeep' : 'text-amber-900'}">
+                                <strong>${selected === item.answer ? 'Tepat!' : 'Pembahasan:'}</strong> ${item.note}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectAnswer(type, qIdx, oIdx) {
+            if (type === 'pre' && !pretestSubmitted) {
+                pretestAnswers[qIdx] = oIdx;
+                renderAssessment(pretestData, 'pretestQuestionsContainer', pretestAnswers, false, 'pre');
+            } else if (type === 'post' && !posttestSubmitted) {
+                posttestAnswers[qIdx] = oIdx;
+                renderAssessment(posttestData, 'posttestQuestionsContainer', posttestAnswers, false, 'post');
+            }
+        }
+
+        // Submit Pretest
+        function submitPretest() {
+            const answeredCount = Object.keys(pretestAnswers).length;
+            if (answeredCount < pretestData.length) {
+                showInlineToast('pretestResultBanner', `Silakan jawab semua soal (${answeredCount}/${pretestData.length} terjawab) sebelum memeriksa skor.`);
+                return;
+            }
+
+            pretestSubmitted = true;
+            let correct = 0;
+            pretestData.forEach((item, idx) => {
+                if (pretestAnswers[idx] === item.answer) correct++;
+            });
+
+            pretestScore = correct * 20;
+            renderAssessment(pretestData, 'pretestQuestionsContainer', pretestAnswers, true, 'pre');
+
+            // Update UI Skor & Umpan Balik
+            const banner = document.getElementById('pretestResultBanner');
+            const scoreVal = document.getElementById('pretestScoreValue');
+            const feedbackTxt = document.getElementById('pretestFeedbackText');
+            const navPre = document.getElementById('navPreScore');
+
+            banner.classList.remove('hidden');
+            scoreVal.textContent = `${pretestScore} / 100`;
+            navPre.textContent = `${pretestScore} / 100`;
+
+            if (pretestScore >= 80) {
+                feedbackTxt.textContent = "Bekal awalmu sudah sangat baik! Mari perdalam detail sejarahnya lewat video dan modul materi di bawah.";
+            } else if (pretestScore >= 40) {
+                feedbackTxt.textContent = "Cukup baik sebagai langkah awal! Simak video pembelajaran dan 4 pilar materi untuk melengkapi pemahamanmu.";
+            } else {
+                feedbackTxt.textContent = "Tidak masalah! Justru di sinilah serunya belajar. Yuk simak video dan modul materi di bawah untuk menguasainya.";
+            }
+
+            document.getElementById('submitPretestBtn').classList.add('hidden');
+            document.getElementById('resetPretestBtn').classList.remove('hidden');
+
+            if (posttestSubmitted) updateComparisonDashboard();
+        }
+
+        function resetPretest() {
+            pretestAnswers = {};
+            pretestSubmitted = false;
+            pretestScore = null;
+            document.getElementById('pretestResultBanner').classList.add('hidden');
+            document.getElementById('submitPretestBtn').classList.remove('hidden');
+            document.getElementById('resetPretestBtn').classList.add('hidden');
+            document.getElementById('navPreScore').textContent = 'Belum Dikerjakan';
+            renderAssessment(pretestData, 'pretestQuestionsContainer', pretestAnswers, false, 'pre');
+        }
+
+        // Submit Post-test & Bandingkan Skor
+        function submitPosttest() {
+            const answeredCount = Object.keys(posttestAnswers).length;
+            if (answeredCount < posttestData.length) {
+                const dash = document.getElementById('comparisonDashboard');
+                dash.classList.remove('hidden');
+                document.getElementById('comparisonSummaryMessage').innerHTML = `<span class="text-amber-800 font-bold">Mohon lengkapi semua jawaban Post-test (${answeredCount}/${posttestData.length} soal terjawab) terlebih dahulu.</span>`;
+                return;
+            }
+
+            posttestSubmitted = true;
+            let correct = 0;
+            posttestData.forEach((item, idx) => {
+                if (posttestAnswers[idx] === item.answer) correct++;
+            });
+
+            posttestScore = correct * 20;
+            renderAssessment(posttestData, 'posttestQuestionsContainer', posttestAnswers, true, 'post');
+
+            document.getElementById('navPostScore').textContent = `${posttestScore} / 100`;
+            document.getElementById('submitPosttestBtn').classList.add('hidden');
+            document.getElementById('resetPosttestBtn').classList.remove('hidden');
+
+            updateComparisonDashboard();
+        }
+
+        function updateComparisonDashboard() {
+            const dash = document.getElementById('comparisonDashboard');
+            const preEl = document.getElementById('comparePreScore');
+            const postEl = document.getElementById('comparePostScore');
+            const deltaEl = document.getElementById('compareDeltaScore');
+            const badgeEl = document.getElementById('compareStatusBadge');
+            const msgEl = document.getElementById('comparisonSummaryMessage');
+
+            dash.classList.remove('hidden');
+            postEl.textContent = `${posttestScore} / 100`;
+
+            if (pretestScore !== null) {
+                preEl.textContent = `${pretestScore} / 100`;
+                const diff = posttestScore - pretestScore;
+                if (diff > 0) {
+                    deltaEl.textContent = `+${diff} Poin`;
+                    badgeEl.textContent = "Meningkat Signifikan!";
+                    msgEl.innerHTML = `<strong>Luar Biasa!</strong> Terjadi peningkatan skor sebesar <strong>+${diff} poin</strong> dari Pretest (${pretestScore}) ke Post-test (${posttestScore}). Pemahamanmu terhadap strategi dakwah periode Makkah berkembang sangat baik.`;
+                } else if (diff === 0) {
+                    deltaEl.textContent = `0 Poin (Stabil)`;
+                    badgeEl.textContent = "Konsisten";
+                    msgEl.innerHTML = `Skor Post-test kamu stabil di angka <strong>${posttestScore} / 100</strong>. ${posttestScore === 100 ? 'Sempurna! Kamu berhasil mempertahankan nilai maksimal.' : 'Coba tinjau kembali pembahasan soal dan materi untuk meraih skor 100.'}`;
+                } else {
+                    deltaEl.textContent = `${diff} Poin`;
+                    badgeEl.textContent = "Perlu Review";
+                    msgEl.innerHTML = `Skor Post-test kamu adalah <strong>${posttestScore}</strong> (Pretest: ${pretestScore}). Yuk baca kembali ringkasan 4 pilar materi di atas lalu coba kerjakan ulang Post-test untuk hasil lebih optimal!`;
+                }
+            } else {
+                preEl.textContent = "Tidak Diisi";
+                deltaEl.textContent = `${posttestScore} Poin`;
+                badgeEl.textContent = "Post-test Selesai";
+                msgEl.innerHTML = `Kamu memperoleh skor akhir <strong>${posttestScore} / 100</strong> pada Post-test. Kerjakan bagian Pretest di atas jika ingin melihat perbandingan skor sebelum dan sesudah belajar.`;
+            }
+        }
+
+        function resetPosttest() {
+            posttestAnswers = {};
+            posttestSubmitted = false;
+            posttestScore = null;
+            document.getElementById('comparisonDashboard').classList.add('hidden');
+            document.getElementById('submitPosttestBtn').classList.remove('hidden');
+            document.getElementById('resetPosttestBtn').classList.add('hidden');
+            document.getElementById('navPostScore').textContent = 'Belum Dikerjakan';
+            renderAssessment(posttestData, 'posttestQuestionsContainer', posttestAnswers, false, 'post');
+        }
+
+        function showInlineToast(bannerId, message) {
+            const banner = document.getElementById(bannerId);
+            if (!banner) return;
+            banner.classList.remove('hidden');
+            document.getElementById('pretestScoreValue').textContent = "Belum Lengkap";
+            document.getElementById('pretestFeedbackText').textContent = message;
+        }
+
+        // ==========================================================
+        // NAVIGASI TAB MODUL MATERI INTERAKTIF
+        // ==========================================================
+        function switchTopicTab(idx) {
+            currentTopicIndex = idx;
+            const mod = topicModules[idx];
+            const area = document.getElementById('topicContentArea');
+            const progress = document.getElementById('materialReadProgress');
+
+            // Update styling tombol tab
+            topicModules.forEach((_, i) => {
+                const btn = document.getElementById(`topic-btn-${i}`);
+                const badge = btn.querySelector('span:first-child');
+                if (i === idx) {
+                    btn.className = "topic-tab-btn px-3 py-2.5 rounded-xl text-xs font-bold bg-emeraldDeep text-white shadow-sm transition text-left flex items-center gap-2 cursor-pointer";
+                    badge.className = "w-5 h-5 rounded-lg bg-goldBright text-emeraldDeep flex items-center justify-center font-extrabold shrink-0";
+                } else {
+                    btn.className = "topic-tab-btn px-3 py-2.5 rounded-xl text-xs font-bold bg-white hover:bg-emeraldSoft text-slate-700 border border-slate-200 transition text-left flex items-center gap-2 cursor-pointer";
+                    badge.className = "w-5 h-5 rounded-lg bg-slate-200 text-slate-700 flex items-center justify-center font-extrabold shrink-0";
+                }
+            });
+
+            // Render konten modul
+            area.classList.remove('animate-fade-up');
+            void area.offsetWidth;
+            area.classList.add('animate-fade-up');
+
+            area.innerHTML = `
+                <div class="mb-4 pb-3 border-b border-slate-100">
+                    <span class="inline-block px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[11px] font-extrabold uppercase tracking-wider mb-1">
+                        ${mod.badge}
+                    </span>
+                    <h4 class="text-lg sm:text-xl font-extrabold text-emeraldDeep">${mod.title}</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">${mod.subtitle}</p>
+                </div>
+                ${mod.html}
+            `;
+
+            progress.textContent = `Topik ${idx + 1} dari ${topicModules.length}`;
+            document.getElementById('prevTopicBtn').disabled = idx === 0;
+            document.getElementById('nextTopicBtn').disabled = idx === topicModules.length - 1;
+        }
+
+        function prevTopic() {
+            if (currentTopicIndex > 0) switchTopicTab(currentTopicIndex - 1);
+        }
+
+        function nextTopic() {
+            if (currentTopicIndex < topicModules.length - 1) switchTopicTab(currentTopicIndex + 1);
+        }
+
+        function showCompanionNote(idx) {
+            const box = document.getElementById('companionNoteBox');
+            if (box && companionNotes[idx]) {
+                box.innerHTML = companionNotes[idx];
+            }
+        }
+
+        // Inisialisasi Halaman
+        window.onload = function () {
+            renderAssessment(pretestData, 'pretestQuestionsContainer', pretestAnswers, false, 'pre');
+            renderAssessment(posttestData, 'posttestQuestionsContainer', posttestAnswers, false, 'post');
+            switchTopicTab(0);
+        };
+    </script>
+
+    <!-- Footer bersama untuk semua halaman -->
+    <div data-site-footer data-base="../../"></div>
+</body>
+</html>

@@ -19,7 +19,7 @@ const DATA_SEKOLAH = {
 const DATA_GURU = {
     nama: "Khairuddin, S.Pd.I",
     peran: "Guru Pengampu",
-    foto: "assets/khairuddin.jpeg",
+    foto: "assets/Khairuddin.jpeg",
     inisial: "K",
     mapelDiampu: ["SKI", "TIK", "KKA"],
     sambutan: "Belajar bukan sekadar membaca, melainkan memahami dan mengamalkan. Selamat belajar, sahabat siswa!"
@@ -58,6 +58,36 @@ const DAFTAR_MODUL = [
         kelas: "10",
         file: "ski/10/jejak-cahaya-yastrib.html",
         deskripsi: "Modul flip book interaktif tentang strategi dakwah di Madinah, Piagam Madinah, dan nilai toleransi dalam masyarakat madani.",
+        topik: "Fase E",
+        status: "aktif"
+    },
+    {
+        kode: "SKI-10-03",
+        judul: "Dakwah Rasulullah SAW Periode Makkah",
+        pelajaran: "SKI",
+        kelas: "10",
+        file: "ski/10/periode_makkah.html",
+        deskripsi: "Modul interaktif pretest, video, dan materi dakwah periode Makkah lengkap dengan post-test untuk mengukur pemahaman siswa.",
+        topik: "Fase E",
+        status: "aktif"
+    },
+    {
+        kode: "SKI-10-04",
+        judul: "Ekspedisi Jejak Peradaban Islam (Game Edukasi)",
+        pelajaran: "SKI",
+        kelas: "10",
+        file: "ski/10/game-ekspedisi-jejak-peradaban-islam.html",
+        deskripsi: "Game edukasi berbasis misi dengan kuis cepat, susun kronologi, dan detektif tokoh untuk mengulang materi peradaban Islam.",
+        topik: "Fase E",
+        status: "aktif"
+    },
+    {
+        kode: "SKI-10-05",
+        judul: "Pedoman Praktikum & Proyek Sejarah",
+        pelajaran: "SKI",
+        kelas: "10",
+        file: "ski/10/pedoman-praktikum.html",
+        deskripsi: "Panduan praktikum dan proyek sejarah: alur kerja, pilihan proyek, checklist kesiapan, serta rubrik dan kalkulator penilaian.",
         topik: "Fase E",
         status: "aktif"
     },

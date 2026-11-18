@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekspedisi Jejak Peradaban Islam • Game Edukasi SKI Kelas 10</title>
+    <!-- Tailwind CSS hasil build (terpusat) -->
+    <link rel="stylesheet" href="../../assets/css/output.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased select-none sm:select-auto overflow-x-hidden portal-bg">
+
+    <!-- Header bersama untuk semua halaman -->
+    <div data-site-header data-base="../../" data-active="modul-ajar"></div>
+
+    <!-- TOP BAR HEADER -->
+    <header class="bg-emeraldDark text-white border-b-2 border-goldBright shadow-md z-30">
+        <div class="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-goldBright to-goldWarm text-emeraldDark flex items-center justify-center shadow-inner shrink-0">
+                    <span data-icon="compass" class="text-lg"></span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="px-2 py-0.5 rounded bg-goldWarm text-[10px] font-extrabold uppercase tracking-wider text-white">Game SKI X</span>
+                        <span class="font-serif text-sm text-goldBright hidden sm:inline">رحلة الحضارة الإسلامية</span>
+                    </div>
+                    <h1 class="font-serif font-bold text-sm sm:text-base md:text-lg tracking-tight leading-tight">
+                        Ekspedisi Jejak Peradaban Islam
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Tombol Kembali ke Lobby (Muncul saat bermain) -->
+            <button id="headerHomeBtn" onclick="confirmReturnLobby()" class="hidden px-3 py-1.5 rounded-xl bg-emeraldMid hover:bg-emerald-600 text-xs font-bold border border-emerald-400/30 transition flex items-center gap-1.5 cursor-pointer">
+                <span data-icon="map"></span>
+                <span>Ganti Misi</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN VIEWPORT -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 py-5 sm:py-7 flex flex-col justify-center">
+
+        <!-- ============================================================== -->
+        <!-- SCREEN 1: LOBBY / PILIH MISI & PROFIL PEMAIN                   -->
+        <!-- ============================================================== -->
+        <section id="lobbyScreen" class="animate-pop space-y-6">
+            <!-- Hero Card Lobby -->
+            <div class="bg-gradient-to-br from-emeraldDark via-emeraldMid to-emerald-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden islamic-pattern">
+                <div class="relative z-10 max-w-3xl">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-goldBright text-xs font-bold mb-3">
+                        <span data-icon="scroll"></span> Gamifikasi Sejarah Kebudayaan Islam • Kelas X
+                    </span>
+                    <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight mb-2.5">
+                        Jelajahi 8 Pos Peradaban, Kumpulkan Poin & Raih Gelar <span class="text-goldBright">Cendekiawan Muda!</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-emerald-100 leading-relaxed mb-5">
+                        Uji ketangkasan berpikirmu melalui 3 variasi tantangan interaktif: <strong>Kuis Cepat Berwaktu</strong>, <strong>Susun Kronologi Sejarah</strong>, dan <strong>Detektif Tokoh & Peristiwa</strong>.
+                    </p>
+
+                    <!-- Input Profil Pemain -->
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-4 max-w-md">
+                        <label for="playerNameInput" class="block text-xs font-bold text-amber-200 uppercase tracking-wider mb-1.5">
+                            <span data-icon="user" class="mr-1"></span> Nama Penjelajah (Opsional):
+                        </label>
+                        <div class="flex items-center gap-2">
+                            <input id="playerNameInput" type="text" maxlength="28" placeholder="Contoh: Ahmad / Aisyah (Default: Penjelajah Sejarah)" class="w-full px-3.5 py-2.5 rounded-xl bg-creamPaper text-slate-800 placeholder-slate-400 text-xs sm:text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-goldBright">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pilihan 4 Mode Misi -->
+            <div>
+                <div class="flex items-center justify-between mb-3 px-1">
+                    <h3 class="text-base sm:text-lg font-extrabold text-emeraldDark flex items-center gap-2">
+                        <span data-icon="flag-checkered" class="text-goldWarm"></span> Pilih Rute Misi Ekspedisi (8 Pos / Misi):
+                    </h3>
+                    <span class="text-xs text-slate-500 hidden sm:inline">Klik kartu misi untuk langsung memulai</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Misi 1 -->
+                    <button onclick="startMission('makkah')" class="group text-left bg-creamPaper hover:bg-white rounded-2xl p-5 border-2 border-amber-900/10 hover:border-goldWarm shadow-sm hover:shadow-lg transition flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-2xl bg-emeraldSoft group-hover:bg-emeraldDark text-emeraldDark group-hover:text-goldBright flex items-center justify-center text-lg transition">
+                                    <span data-icon="kaaba"></span>
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-extrabold">Misi 01</span>
+                            </div>
+                            <h4 class="font-extrabold text-base text-emeraldDark mb-1.5 group-hover:text-goldWarm transition">Cahaya di Tanah Makkah</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Masyarakat Jahiliyah, Assabiqunal Awwalun, Dakwah Sirriyah & Jahriyah, Hijrah Habasyah, hingga Amul Huzni.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-creamSand flex items-center justify-between text-xs font-bold text-emeraldMid">
+                            <span>8 Pos Tantangan</span>
+                            <span class="group-hover:translate-x-1 transition">Mulai <span data-icon="arrow-right" class="ml-1"></span></span>
+                        </div>
+                    </button>
+
+                    <!-- Misi 2 -->
+                    <button onclick="startMission('madinah')" class="group text-left bg-creamPaper hover:bg-white rounded-2xl p-5 border-2 border-amber-900/10 hover:border-goldWarm shadow-sm hover:shadow-lg transition flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-2xl bg-emeraldSoft group-hover:bg-emeraldDark text-emeraldDark group-hover:text-goldBright flex items-center justify-center text-lg transition">
+                                    <span data-icon="mosque"></span>
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emeraldDark text-[11px] font-extrabold">Misi 02</span>
+                            </div>
+                            <h4 class="font-extrabold text-base text-emeraldDark mb-1.5 group-hover:text-goldWarm transition">Membangun Madinah</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Strategi Hijrah, Masjid Nabawi, Piagam Madinah, Perang Badar, Uhud, Khandaq, hingga Fathu Makkah.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-creamSand flex items-center justify-between text-xs font-bold text-emeraldMid">
+                            <span>8 Pos Tantangan</span>
+                            <span class="group-hover:translate-x-1 transition">Mulai <span data-icon="arrow-right" class="ml-1"></span></span>
+                        </div>
+                    </button>
+
+                    <!-- Misi 3 -->
+                    <button onclick="startMission('khulafa')" class="group text-left bg-creamPaper hover:bg-white rounded-2xl p-5 border-2 border-amber-900/10 hover:border-goldWarm shadow-sm hover:shadow-lg transition flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-2xl bg-emeraldSoft group-hover:bg-emeraldDark text-emeraldDark group-hover:text-goldBright flex items-center justify-center text-lg transition">
+                                    <span data-icon="landmark"></span>
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[11px] font-extrabold">Misi 03</span>
+                            </div>
+                            <h4 class="font-extrabold text-base text-emeraldDark mb-1.5 group-hover:text-goldWarm transition">Era Khulafaur Rasyidin</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Kepemimpinan Abu Bakar, reformasi Umar bin Khattab, kodifikasi Utsman bin Affan, hingga Ali bin Abi Thalib.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-creamSand flex items-center justify-between text-xs font-bold text-emeraldMid">
+                            <span>8 Pos Tantangan</span>
+                            <span class="group-hover:translate-x-1 transition">Mulai <span data-icon="arrow-right" class="ml-1"></span></span>
+                        </div>
+                    </button>
+
+                    <!-- Mode Tantangan Gabungan -->
+                    <button onclick="startMission('gabungan')" class="group text-left bg-gradient-to-b from-amber-50 to-creamPaper hover:from-amber-100/70 hover:to-white rounded-2xl p-5 border-2 border-goldWarm/60 hover:border-goldWarm shadow-sm hover:shadow-lg transition flex flex-col justify-between cursor-pointer">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="w-11 h-11 rounded-2xl bg-goldWarm text-white flex items-center justify-center text-lg shadow-sm">
+                                    <span data-icon="crown"></span>
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded-full bg-emeraldDark text-goldBright text-[11px] font-extrabold">Semua Bab</span>
+                            </div>
+                            <h4 class="font-extrabold text-base text-emeraldDark mb-1.5 group-hover:text-goldWarm transition">Tantangan Lintas Era</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                Ujian akhir penjelajah sejati! Tantangan acak gabungan dari Periode Makkah, Madinah, dan Khulafaur Rasyidin.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-amber-200/70 flex items-center justify-between text-xs font-extrabold text-goldWarm">
+                            <span>8 Pos Lintas Bab</span>
+                            <span class="group-hover:translate-x-1 transition">Tantang! <span data-icon="bolt" class="ml-1"></span></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- SCREEN 2: ARENA PERMAINAN EKSPEDISI (8 POS PETUALANGAN)          -->
+        <!-- ============================================================== -->
+        <section id="gameScreen" class="hidden space-y-4 sm:space-y-5 animate-pop">
+
+            <!-- HUD / STATUS BAR PEMAIN -->
+            <div class="bg-creamPaper rounded-2xl border border-amber-900/15 p-3.5 sm:p-4 shadow-sm flex flex-wrap items-center justify-between gap-3">
+                <!-- Profil & Misi Aktif -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emeraldDark text-goldBright flex items-center justify-center font-extrabold text-sm shrink-0">
+                        <span data-icon="user-shield"></span>
+                    </div>
+                    <div>
+                        <p id="hudPlayerName" class="text-xs sm:text-sm font-extrabold text-emeraldDark leading-tight">Penjelajah Sejarah</p>
+                        <p id="hudMissionTitle" class="text-[11px] font-semibold text-goldWarm">Misi 1: Cahaya di Tanah Makkah</p>
+                    </div>
+                </div>
+
+                <!-- Indikator Nyawa, Streak & Skor -->
+                <div class="flex items-center gap-2.5 sm:gap-4 ml-auto sm:ml-0">
+                    <!-- Energi / Hati (3) -->
+                    <div class="bg-creamSand px-3 py-1.5 rounded-xl flex items-center gap-1.5 border border-amber-900/10" title="Energi Ekspedisi">
+                        <span class="text-[10px] font-bold text-slate-500 uppercase hidden md:inline">Energi:</span>
+                        <div id="hudHearts" class="flex items-center gap-1 text-red-500 text-xs sm:text-sm">
+                            <span data-icon="heart"></span>
+                            <span data-icon="heart"></span>
+                            <span data-icon="heart"></span>
+                        </div>
+                    </div>
+
+                    <!-- Streak Multiplier -->
+                    <div class="bg-amber-50 px-3 py-1.5 rounded-xl flex items-center gap-1.5 border border-amber-200" title="Jawaban Benar Beruntun">
+                        <span data-icon="fire" class="text-goldWarm text-xs sm:text-sm"></span>
+                        <span id="hudStreak" class="text-xs sm:text-sm font-extrabold text-amber-900">0x</span>
+                    </div>
+
+                    <!-- Skor Poin -->
+                    <div class="bg-emeraldDark text-white px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
+                        <span data-icon="coins" class="text-goldBright text-xs sm:text-sm"></span>
+                        <span id="hudScore" class="text-xs sm:text-sm font-extrabold text-goldBright">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PETA JALUR EKSPEDISI (POS 1 - POS 8) -->
+            <div class="bg-creamPaper rounded-2xl border border-amber-900/15 px-4 py-3 shadow-sm overflow-x-auto">
+                <div class="min-w-[500px] flex items-center justify-between relative px-2">
+                    <!-- Garis Jalur Latar -->
+                    <div class="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1.5 bg-creamSand rounded-full z-0"></div>
+                    <!-- Garis Progres Aktif -->
+                    <div id="mapProgressLine" class="absolute left-6 top-1/2 -translate-y-1/2 h-1.5 bg-gradient-to-r from-emeraldDark to-goldWarm rounded-full z-0 transition-all duration-500" style="width: 0%;"></div>
+                    
+                    <!-- Node Pos 1..8 dirender via JS -->
+                    <div id="mapNodesContainer" class="relative z-10 w-full flex items-center justify-between"></div>
+                </div>
+            </div>
+
+            <!-- KARTU TANTANGAN UTAMA & LIFELINES -->
+            <div class="bg-creamPaper rounded-3xl border-2 border-amber-900/15 shadow-md overflow-hidden">
+                <!-- Header Pos & Bantuan (Lifelines) -->
+                <div class="bg-emeraldDark text-white px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+                    <div class="flex items-center gap-2.5">
+                        <span id="stageBadge" class="px-2.5 py-1 rounded-lg bg-goldBright text-emeraldDark font-extrabold text-xs">
+                            POS 1 / 8
+                        </span>
+                        <span id="challengeTypeBadge" class="text-xs font-bold text-emerald-100">
+                            Kuis Cepat Berwaktu
+                        </span>
+                    </div>
+
+                    <!-- 2 Tombol Lifeline Strategis -->
+                    <div class="flex items-center gap-2">
+                        <button id="lifeline5050Btn" onclick="useLifeline5050()" class="px-2.5 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 disabled:opacity-35 disabled:pointer-events-none text-xs font-bold border border-white/20 flex items-center gap-1.5 transition cursor-pointer" title="Hapus 2 pilihan salah (Khusus Kuis Cepat)">
+                            <span data-icon="scissors" class="text-goldBright"></span>
+                            <span>50:50</span>
+                        </button>
+                        <button id="lifelineHintBtn" onclick="useLifelineHint()" class="px-2.5 py-1.5 rounded-xl bg-goldWarm hover:bg-amber-600 disabled:opacity-35 disabled:pointer-events-none text-xs font-bold text-white flex items-center gap-1.5 shadow-sm transition cursor-pointer" title="Buka petunjuk dari kitab sejarah">
+                            <span data-icon="book-sparkles"></span>
+                            <span>Petunjuk Kitab</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Timer Bar Halus (Khusus Tipe A: Kuis Cepat 15 Detik) -->
+                <div id="timerWrapper" class="bg-creamSand px-5 py-2 border-b border-amber-900/10 flex items-center gap-3">
+                    <div class="flex items-center gap-1.5 text-xs font-extrabold text-emeraldDark shrink-0">
+                        <span data-icon="clock" class="text-goldWarm"></span>
+                        <span id="timerText">15 dtk</span>
+                    </div>
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                        <div id="timerBarFill" class="bg-gradient-to-r from-emeraldBright via-goldBright to-goldWarm h-full rounded-full transition-all duration-200" style="width: 100%;"></div>
+                    </div>
+                    <span class="text-[10px] font-bold text-slate-500 hidden sm:inline shrink-0">+Bonus Cepat</span>
+                </div>
+
+                <!-- Kotak Petunjuk Kitab (Tersembunyi sampai tombol Petunjuk Kitab diklik) -->
+                <div id="hintBanner" class="hidden bg-amber-50 border-b border-amber-200 px-5 py-3 text-xs sm:text-sm text-amber-950 flex items-start gap-2.5 animate-pop">
+                    <span data-icon="lightbulb" class="text-goldWarm mt-0.5 text-base shrink-0"></span>
+                    <div>
+                        <span class="font-extrabold uppercase text-[11px] text-goldWarm block">Petunjuk Kitab Sejarah:</span>
+                        <p id="hintBannerText" class="leading-relaxed"></p>
+                    </div>
+                </div>
+
+                <!-- AREA KONTEN INTERAKTIF TANTANGAN (Tipe A / B / C) -->
+                <div id="challengeBody" class="p-5 sm:p-7">
+                    <!-- Dirender dinamis berdasarkan tipe tantangan -->
+                </div>
+
+                <!-- KARTU UMPAN BALIK 'CATATAN SEJARAH' (Muncul setelah menjawab pos) -->
+                <div id="feedbackCard" class="hidden border-t-2 border-amber-900/10 p-5 sm:p-6 animate-pop">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="space-y-1.5 max-w-3xl">
+                            <div class="flex items-center gap-2">
+                                <span id="feedbackStatusBadge" class="px-3 py-1 rounded-full text-xs font-extrabold"></span>
+                                <span id="feedbackPointsEarned" class="text-xs font-extrabold text-goldWarm"></span>
+                            </div>
+                            <h4 class="text-xs font-extrabold uppercase tracking-wider text-emeraldDark pt-1">
+                                <span data-icon="feather" class="text-goldWarm mr-1"></span> Catatan Sejarah:
+                            </h4>
+                            <p id="feedbackHistoryNote" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+                        </div>
+
+                        <button id="nextStageBtn" onclick="advanceToNextStage()" class="px-6 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white font-extrabold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 shrink-0 cursor-pointer">
+                            <span>Lanjut Pos Berikutnya</span>
+                            <span data-icon="arrow-right"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- SCREEN 3: LAYAR AKHIR (SERTIFIKAT & EVALUASI PENCAPAIAN)        -->
+        <!-- ============================================================== -->
+        <section id="resultScreen" class="hidden animate-pop space-y-6">
+            <!-- Kartu Sertifikat Klasik-Modern -->
+            <div class="bg-creamPaper rounded-3xl p-6 sm:p-9 shadow-xl cert-border relative overflow-hidden">
+                <!-- Ornamen Sudut -->
+                <div class="text-center max-w-2xl mx-auto space-y-3">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-goldBright to-goldWarm text-emeraldDark text-3xl shadow-md mb-1">
+                        <span data-icon="award" id="resultTrophyIcon"></span>
+                    </div>
+                    <p class="text-xs font-extrabold uppercase tracking-widest text-goldWarm">Sertifikat Pencapaian Ekspedisi SKI</p>
+                    <h2 id="resultRankTitle" class="font-serif text-2xl sm:text-3xl md:text-4xl font-extrabold text-emeraldDark">
+                        Cendekiawan Muda Peradaban
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-600">
+                        Diberikan kepada <strong id="certPlayerName" class="text-emeraldDark underline decoration-goldWarm decoration-2">Penjelajah Sejarah</strong> atas keberhasilannya menuntaskan rute <strong id="certMissionName">Misi 1</strong>.
+                    </p>
+
+                    <!-- Statistik 3 Kolom -->
+                    <div class="grid grid-cols-3 gap-3 pt-4 pb-2">
+                        <div class="bg-emeraldDark text-white rounded-2xl p-3.5 shadow-sm">
+                            <span class="block text-[10px] sm:text-xs font-bold text-emerald-200 uppercase">Total Skor</span>
+                            <span id="certFinalScore" class="text-xl sm:text-2xl font-extrabold text-goldBright">0</span>
+                        </div>
+                        <div class="bg-white border border-amber-900/15 rounded-2xl p-3.5 shadow-sm">
+                            <span class="block text-[10px] sm:text-xs font-bold text-slate-500 uppercase">Akurasi</span>
+                            <span id="certAccuracy" class="text-xl sm:text-2xl font-extrabold text-emeraldDark">0%</span>
+                        </div>
+                        <div class="bg-white border border-amber-900/15 rounded-2xl p-3.5 shadow-sm">
+                            <span class="block text-[10px] sm:text-xs font-bold text-slate-500 uppercase">Pos Tuntas</span>
+                            <span id="certClearedCount" class="text-xl sm:text-2xl font-extrabold text-goldWarm">0 / 8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rincian Evaluasi Per Pos -->
+                <div class="mt-6 pt-5 border-t border-amber-900/15">
+                    <h3 class="text-xs sm:text-sm font-extrabold text-emeraldDark uppercase tracking-wider mb-3">
+                        <span data-icon="list-check" class="text-goldWarm mr-1.5"></span> Rincian Evaluasi Per Pos Petualangan:
+                    </h3>
+                    <div id="stageReviewList" class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                        <!-- Dirender via JS -->
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi Akhir -->
+                <div class="mt-7 pt-5 border-t border-amber-900/15 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button onclick="replayCurrentMission()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white font-extrabold text-xs sm:text-sm shadow transition flex items-center justify-center gap-2 cursor-pointer">
+                        <span data-icon="rotate-right"></span>
+                        <span>Main Ulang Misi Ini</span>
+                    </button>
+                    <button onclick="returnToLobby()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-goldWarm hover:bg-amber-600 text-white font-extrabold text-xs sm:text-sm shadow transition flex items-center justify-center gap-2 cursor-pointer">
+                        <span data-icon="compass"></span>
+                        <span>Pilih Misi Lain</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL KONFIRMASI KELUAR MISI (Tanpa alert/confirm bawaan browser) -->
+    <div id="exitConfirmModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-creamPaper rounded-2xl max-w-sm w-full p-6 shadow-2xl border-2 border-goldWarm animate-pop text-center">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-goldWarm mx-auto flex items-center justify-center text-xl mb-3">
+                <span data-icon="triangle-exclamation"></span>
+            </div>
+            <h3 class="text-base font-extrabold text-emeraldDark mb-1">Kembali ke Pemilihan Misi?</h3>
+            <p class="text-xs text-slate-600 mb-5">Progres ekspedisi pada misi yang sedang berjalan akan direset.</p>
+            <div class="flex gap-2.5">
+                <button onclick="closeExitModal()" class="flex-1 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs cursor-pointer">
+                    Lanjut Main
+                </button>
+                <button onclick="returnToLobby()" class="flex-1 py-2.5 rounded-xl bg-emeraldDark hover:bg-emeraldMid text-white font-bold text-xs cursor-pointer">
+                    Ya, Ganti Misi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-creamPaper/90 border-t border-amber-900/10 py-3 px-4 text-center text-[11px] text-slate-500">
+        Ekspedisi Jejak Peradaban Islam • Media Pembelajaran Interaktif SKI Kelas X
+    </footer>
+
+    <!-- ============================================================== -->
+    <!-- JAVASCRIPT GAME ENGINE & BANK TANTANGAN                        -->
+    <!-- ============================================================== -->
+    <script src="../../assets/js/data.js"></script>
+    <script src="../../assets/js/icons.js"></script>
+    <script src="../../assets/js/components.js"></script>
+
+    <script>
+        // ==========================================
+        // 1. BANK TANTANGAN PER MISI (8 POS / MISI)
+        // Tipe: 'quiz' (Tipe A), 'chrono' (Tipe B), 'match' (Tipe C)
+        // ==========================================
+        const missionsBank = {
+            makkah: {
+                title: "Misi 1: Cahaya di Tanah Makkah",
+                stages: [
+                    // POS 1 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Masyarakat Jahiliyah Makkah",
+                        question: "Sebelum Islam datang, masyarakat Makkah dikenal memiliki keunggulan dalam bidang sastra dan perdagangan, namun disebut 'Jahiliyah' karena...",
+                        options: [
+                            "Tidak mengenal sistem mata uang sama sekali",
+                            "Menyimpang dari tauhid dengan menyembah berhala dan krisis moral",
+                            "Tidak memiliki hukum adat antarsuku",
+                            "Menolak seluruh pedagang asing yang datang ke Makkah"
+                        ],
+                        answer: 1,
+                        hint: "Istilah Jahiliyah berkaitan dengan kebodohan spiritual (kemusyrikan) dan merendahkan martabat kemanusiaan.",
+                        note: "Masyarakat Makkah meletakkan sekitar 360 berhala di sekitar Ka'bah dan mempraktikkan fanatisme kesukuan (Ashabiyah) serta riba."
+                    },
+                    // POS 2 - Tipe B (Susun Kronologi)
+                    {
+                        type: "chrono",
+                        topic: "Kronologi Awal Kenabian",
+                        instruction: "Urutkan peristiwa awal kenabian Rasulullah SAW dari yang paling pertama terjadi hingga berikutnya:",
+                        items: [
+                            "Menyendiri (tahannuts) di Gua Hira menjelang usia 40 tahun",
+                            "Menerima wahyu pertama QS. Al-Alaq ayat 1–5 melalui Malaikat Jibril",
+                            "Ditenangkan oleh Siti Khadijah dan dipertemukan dengan Waraqah bin Naufal",
+                            "Menerima wahyu kedua QS. Al-Muddatstsir 1–7 sebagai perintah mulai berdakwah"
+                        ],
+                        hint: "Peristiwa dimulai dari kebiasaan menyepi di Gua Hira sebelum wahyu turun.",
+                        note: "Setelah menerima QS. Al-Alaq 1–5 pada 17 Ramadan, Rasulullah ditenangkan Khadijah dan Waraqah bin Naufal menegaskan bahwa itu adalah tanda kenabian."
+                    },
+                    // POS 3 - Tipe C (Detektif Tokoh & Peran)
+                    {
+                        type: "match",
+                        topic: "Detektif Assabiqunal Awwalun",
+                        instruction: "Cocokkan tokoh Assabiqunal Awwalun di kolom kiri dengan peran atau kategorinya di kolom kanan:",
+                        pairs: [
+                            { left: "Khadijah binti Khuwailid", right: "Wanita pertama beriman & pendukung utama harta dakwah" },
+                            { left: "Ali bin Abi Thalib", right: "Golongan anak-anak pertama yang memeluk Islam" },
+                            { left: "Arqam bin Abil Arqam", right: "Pemilik rumah pusat pembinaan dakwah Sirriyah" }
+                        ],
+                        hint: "Darul Arqam adalah nama rumah yang dijadikan markas pembinaan kader awal Islam.",
+                        note: "Dakwah Sirriyah berlangsung selama ±3 tahun secara personal dan terpusat di rumah Arqam bin Abil Arqam (Darul Arqam)."
+                    },
+                    // POS 4 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Dakwah Terang-Terangan (Jahriyah)",
+                        question: "Ketika Rasulullah SAW menyerukan dakwah secara terbuka di atas Bukit Shafa, paman beliau yang langsung mencela dan menentang keras adalah...",
+                        options: [
+                            "Abu Thalib",
+                            "Hamzah bin Abdul Muthalib",
+                            "Abu Lahab (Abdul Uzza)",
+                            "Abbas bin Abdul Muthalib"
+                        ],
+                        answer: 2,
+                        hint: "Namanya diabadikan dalam salah satu surah pendek di Juz Amma.",
+                        note: "Abu Lahab menentang seruan Nabi di Bukit Shafa hingga turun QS. Al-Lahab, sedangkan Abu Thalib tetap melindungi keponakannya."
+                    },
+                    // POS 5 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Hijrah Pertama ke Habasyah",
+                        question: "Alasan utama Rasulullah SAW mengarahkan sebagian sahabat untuk berhijrah ke negeri Habasyah (Ethiopia) pada tahun ke-5 kenabian adalah...",
+                        options: [
+                            "Habasyah dipimpin Raja Najasyi yang adil dan melindungi kaum tertindas",
+                            "Mencari bantuan pasukan militer untuk menyerang Makkah",
+                            "Membuka jalur perdagangan laut menuju Eropa",
+                            "Menghindari wabah penyakit yang melanda Jazirah Arab"
+                        ],
+                        answer: 0,
+                        hint: "Raja negeri ini beragama Nasrani namun terkenal sangat adil dan tidak menzalimi siapa pun.",
+                        note: "Raja Najasyi (Negus) memberikan suaka politik dan perlindungan penuh kepada kaum muslimin setelah mendengar lantunan ayat Al-Qur'an dari Ja'far bin Abi Thalib."
+                    },
+                    // POS 6 - Tipe B (Susun Kronologi)
+                    {
+                        type: "chrono",
+                        topic: "Ujian Berat Periode Makkah",
+                        instruction: "Susunlah rangkaian ujian dakwah di Makkah berikut secara kronologis dari awal hingga akhir:",
+                        items: [
+                            "Pemboikotan total Bani Hasyim dan Bani Muthalib di Syi'ib Abi Thalib selama 3 tahun",
+                            "Wafatnya Abu Thalib dan Siti Khadijah (Amul Huzni / Tahun Kesedihan)",
+                            "Perjalanan dakwah ke Thaif yang disambut lemparan batu penduduk setempat",
+                            "Peristiwa Isra Mi'raj sebagai hiburan spiritual dan turunnya perintah salat 5 waktu"
+                        ],
+                        hint: "Amul Huzni terjadi tepat setelah pemboikotan 3 tahun berakhir.",
+                        note: "Setelah melewati pemboikotan dan Amul Huzni serta ujian di Thaif, Allah memuliakan Rasulullah SAW dengan perjalanan Isra Mi'raj."
+                    },
+                    // POS 7 - Tipe C (Detektif Tokoh & Peristiwa)
+                    {
+                        type: "match",
+                        topic: "Detektif Perjuangan Sahabat Makkah",
+                        instruction: "Pasangkan nama sahabat berikut dengan kisah keteguhan imannya di Makkah:",
+                        pairs: [
+                            { left: "Bilal bin Rabah", right: "Ditindih batu besar di terik matahari sambil mengucap 'Ahad'" },
+                            { left: "Sumayyah binti Khayyat", right: "Syahidah pertama dalam sejarah Islam" },
+                            { left: "Abu Bakar Ash-Shiddiq", right: "Membebaskan banyak budak muslim yang disiksa Quraisy" }
+                        ],
+                        hint: "Sumayyah adalah ibunda dari Ammar bin Yasir.",
+                        note: "Keteguhan Bilal dan keluarga Yasir menunjukkan bahwa ajaran tauhid membebaskan manusia dari perbudakan dan penindasan."
+                    },
+                    // POS 8 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Keteladanan Akhlak di Thaif",
+                        question: "Saat Malaikat Penjaga Gunung menawarkan untuk menimpakan dua gunung kepada penduduk Thaif yang melukai Rasulullah SAW, sikap beliau adalah...",
+                        options: [
+                            "Menyetujuinya agar penduduk Thaif jera",
+                            "Menolak dan mendoakan agar kelak keturunan mereka menyembah Allah",
+                            "Meminta malaikat menghancurkan harta benda mereka saja",
+                            "Mengutuk negeri Thaif agar mengalami kekeringan"
+                        ],
+                        answer: 1,
+                        hint: "Rasulullah SAW diutus sebagai rahmat bagi semesta alam (Rahmatan lil 'Alamin).",
+                        note: "Kesabaran dan sifat pemaaf Rasulullah SAW di Thaif menjadi puncak keteladanan akhlak dalam berdakwah tanpa kebencian."
+                    }
+                ]
+            },
+
+            madinah: {
+                title: "Misi 2: Membangun Madinah",
+                stages: [
+                    // POS 1 - Tipe B (Susun Kronologi)
+                    {
+                        type: "chrono",
+                        topic: "Rute Strategis Hijrah (622 M)",
+                        instruction: "Urutkan titik persinggahan perjalanan Hijrah Rasulullah SAW dari Makkah hingga tiba di Madinah:",
+                        items: [
+                            "Meninggalkan rumah di Makkah yang dikepung pemuda Quraisy (digantikan Ali bin Abi Thalib)",
+                            "Bersembunyi selama 3 hari di Gua Tsur arah selatan Makkah",
+                            "Singgah di Quba dan mendirikan Masjid Quba sebagai masjid pertama",
+                            "Tiba di Yatsrib dan disambut lantunan Thala'al Badru 'Alayna"
+                        ],
+                        hint: "Rasulullah menuju ke arah selatan (Gua Tsur) terlebih dahulu untuk mengecoh pengejar Quraisy.",
+                        note: "Hijrah merupakan strategi terencana yang melibatkan Ali bin Abi Thalib, Abu Bakar, Asma, Abdullah, serta penunjuk jalan Abdullah bin Uraiqith."
+                    },
+                    // POS 2 - Tipe C (Detektif Tokoh Hijrah)
+                    {
+                        type: "match",
+                        topic: "Detektif Tim Sukses Hijrah",
+                        instruction: "Cocokkan tokoh di balik peristiwa Hijrah dengan tugas spesifiknya:",
+                        pairs: [
+                            { left: "Asma binti Abu Bakar", right: "Mengantar logistik makanan ke Gua Tsur setiap malam" },
+                            { left: "Abdullah bin Abu Bakar", right: "Memantau informasi rencana Quraisy di Makkah" },
+                            { left: "Abdullah bin Uraiqith", right: "Penunjuk jalan profesional menyusuri jalur pesisir" }
+                        ],
+                        hint: "Asma dijuluki Dzatin Nithaqain (pemilik dua ikat pinggang) karena membelah ikat pinggangnya untuk membungkus bekal.",
+                        note: "Keberhasilan Hijrah menunjukkan pentingnya kolaborasi lintas generasi—termasuk peran strategis perempuan dan pemuda."
+                    },
+                    // POS 3 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "3 Pilar Membangun Madinah",
+                        question: "Pada masa Rasulullah SAW, teras Masjid Nabawi yang disebut 'Ash-Shuffah' difungsikan sebagai...",
+                        options: [
+                            "Gudang penyimpanan senjata dan perisai perang",
+                            "Tempat tinggal sekaligus pusat pendidikan bagi sahabat fakir miskin",
+                            "Pasar utama transaksi perdagangan kaum Muhajirin",
+                            "Kandang unta milik utusan kabilah luar kota"
+                        ],
+                        answer: 1,
+                        hint: "Dari tempat inilah lahir banyak sahabat penghafal hadis seperti Abu Hurairah.",
+                        note: "Masjid Nabawi bukan sekadar tempat ibadah ritual, melainkan pusat pendidikan (Ash-Shuffah), musyawarah pemerintahan, dan layanan sosial."
+                    },
+                    // POS 4 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Piagam Madinah (Shahifah)",
+                        question: "Salah satu prinsip revolusioner dalam Piagam Madinah (konstitusi tertulis pertama di dunia) yang relevan dengan kehidupan berbangsa saat ini adalah...",
+                        options: [
+                            "Mewajibkan seluruh penduduk Madinah memeluk agama Islam",
+                            "Menjamin kebebasan beragama & kewajiban bersama membela negara dari serangan luar",
+                            "Memberikan hak politik hanya kepada kaum Muhajirin",
+                            "Melarang kabilah Yahudi melakukan aktivitas perdagangan"
+                        ],
+                        answer: 1,
+                        hint: "Pasal 25 Piagam Madinah menegaskan: 'Bagi kaum Yahudi agama mereka, dan bagi kaum muslimin agama mereka.'",
+                        note: "Piagam Madinah berisi 47 pasal yang menyatukan masyarakat majemuk di bawah nilai keadilan, toleransi, dan bela negara bersama."
+                    },
+                    // POS 5 - Tipe C (Detektif Strategi Pertahanan)
+                    {
+                        type: "match",
+                        topic: "Detektif Strategi Perang Pertahanan",
+                        instruction: "Pasangkan nama peristiwa perang dengan kunci strategi atau hikmah utamanya:",
+                        pairs: [
+                            { left: "Perang Badar (2 H)", right: "Menguasai sumber mata air; 313 pasukan mengalahkan 1.000 musuh" },
+                            { left: "Perang Uhud (3 H)", right: "Pemanah di Bukit Rumat turun karena tergiur ghanimah" },
+                            { left: "Perang Khandaq (5 H)", right: "Ide Salman Al-Farisi menggali parit di utara Madinah" }
+                        ],
+                        hint: "Kata 'Khandaq' dalam bahasa Arab berarti parit pertahanan.",
+                        note: "Peperangan pada masa Rasulullah SAW bersifat defensif untuk mempertahankan kedaulatan Madinah dari agresi koalisi Quraisy."
+                    },
+                    // POS 6 - Tipe B (Susun Kronologi)
+                    {
+                        type: "chrono",
+                        topic: "Menuju Fathu Makkah",
+                        instruction: "Urutkan peristiwa diplomatik berikut dari yang paling awal hingga pembebasan Kota Makkah:",
+                        items: [
+                            "Penandatanganan Perjanjian Hudaibiyah (gencatan senjata 10 tahun)",
+                            "Kaum Quraisy melanggar perjanjian dengan membantu serangan terhadap Bani Khuza'ah",
+                            "Rasulullah SAW memobilisasi 10.000 pasukan dan menyalakan obor di sekitar Makkah",
+                            "Fathu Makkah (8 H): Masuknya umat Islam ke Makkah secara damai dan pembersihan berhala"
+                        ],
+                        hint: "Perjanjian Hudaibiyah terjadi pada tahun 6 H, dua tahun sebelum Fathu Makkah (8 H).",
+                        note: "Perjanjian Hudaibiyah membuka ruang dakwah damai sehingga jumlah umat Islam melonjak drastis hanya dalam waktu 2 tahun."
+                    },
+                    // POS 7 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Amnesti Umum Fathu Makkah",
+                        question: "Saat memasuki Kota Makkah dengan kemenangan mutlak pada peristiwa Fathu Makkah (8 H), Rasulullah SAW bersabda 'Idzhabu fa antumut thulaqa' yang artinya...",
+                        options: [
+                            "Serahkan seluruh harta kalian sebagai tebusan",
+                            "Pergilah kalian, sesungguhnya kalian semua bebas!",
+                            "Tinggalkan Kota Makkah sebelum matahari terbenam",
+                            "Kalian semua wajib menjadi tawanan perang di Madinah"
+                        ],
+                        answer: 1,
+                        hint: "Sabda ini menunjukkan pengampunan massal (amnesti umum) kepada penduduk Makkah.",
+                        note: "Ketiadaan balas dendam pada Fathu Makkah meluluhkan hati penduduk Makkah sehingga mereka berbondong-bondong memeluk Islam."
+                    },
+                    // POS 8 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Persaudaraan Muhajirin & Anshar",
+                        question: "Ketika dipersaudarakan dengan Sa'ad bin Rabi' (Anshar) yang menawarkan separuh hartanya, sikap Abdurrahman bin Auf (Muhajirin) mencerminkan etos kemandirian berupa...",
+                        options: [
+                            "Menerima seluruh harta Sa'ad bin Rabi' tanpa syarat",
+                            "Meminta ditunjukkan jalan menuju pasar untuk berdagang secara mandiri",
+                            "Memilih kembali pulang ke Kota Makkah",
+                            "Meminta tunjangan tetap dari kas Baitul Mal"
+                        ],
+                        answer: 1,
+                        hint: "Abdurrahman bin Auf dikenal sebagai sahabat yang sangat sukses dalam berniaga.",
+                        note: "Sinergi solidaritas kaum Anshar dan kemandirian kaum Muhajirin mempercepat kebangkitan ekonomi masyarakat Madinah."
+                    }
+                ]
+            },
+
+            khulafa: {
+                title: "Misi 3: Era Khulafaur Rasyidin",
+                stages: [
+                    // POS 1 - Tipe B (Susun Kronologi)
+                    {
+                        type: "chrono",
+                        topic: "Urutan Kepemimpinan Khulafaur Rasyidin",
+                        instruction: "Urutkan keempat Khulafaur Rasyidin sesuai masa kepemimpinannya dari tahun 11 H hingga 40 H:",
+                        items: [
+                            "Abu Bakar Ash-Shiddiq r.a. (11–13 H)",
+                            "Umar bin Khattab r.a. (13–23 H)",
+                            "Utsman bin Affan r.a. (23–35 H)",
+                            "Ali bin Abi Thalib r.a. (35–40 H)"
+                        ],
+                        hint: "Dimulai dari sahabat terdekat Nabi yang dipilih di Saqifah Bani Sa'idah.",
+                        note: "Keempat Khulafaur Rasyidin memimpin selama kurang lebih 29 tahun (632–661 M) dan meletakkan fondasi negara Islam yang kuat."
+                    },
+                    // POS 2 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Kebijakan Abu Bakar Ash-Shiddiq",
+                        question: "Latar belakang utama Khalifah Abu Bakar Ash-Shiddiq menyetujui usulan Umar bin Khattab untuk menghimpun lembaran Al-Qur'an menjadi satu mushaf adalah...",
+                        options: [
+                            "Banyak penghafal Al-Qur'an (Huffazh) yang gugur dalam Perang Yamamah",
+                            "Kertas perkamen di Madinah mulai langka",
+                            "Adanya perintah dari Kaisar Romawi",
+                            "Ingin mengganti bahasa Al-Qur'an ke bahasa Persia"
+                        ],
+                        answer: 0,
+                        hint: "Perang Yamamah melawan nabi palsu Musailamah Al-Kadzab menyebabkan sekitar 70 penghafal Al-Qur'an syahid.",
+                        note: "Zaid bin Tsabit ditunjuk memimpin tim kodifikasi Al-Qur'an pertama agar kemurnian wahyu tetap terjaga."
+                    },
+                    // POS 3 - Tipe C (Detektif Inovasi Umar bin Khattab)
+                    {
+                        type: "match",
+                        topic: "Detektif Reformasi Umar bin Khattab",
+                        instruction: "Pasangkan kebijakan reformasi Khalifah Umar bin Khattab berikut dengan fungsinya:",
+                        pairs: [
+                            { left: "Kalender Hijriah", right: "Menetapkan tahun Hijrah Nabi sebagai awal penanggalan arsip negara" },
+                            { left: "Lembaga Baitul Mal", right: "Mengelola kas keuangan negara & tunjangan kesejahteraan rakyat" },
+                            { left: "Sistem Diwan & 8 Provinsi", right: "Menata administrasi pemerintahan, militer, dan hakim independen" }
+                        ],
+                        hint: "Umar bin Khattab dijuluki The Great Reformer dan pemimpin pertama bergelar Amirul Mukminin.",
+                        note: "Di masa Umar bin Khattab, wilayah Islam meluas pesat meliputi Syam, Palestina, Persia, Irak, hingga Mesir."
+                    },
+                    // POS 4 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Prestasi Utsman bin Affan",
+                        question: "Atas usulan Gubernur Syam (Muawiyah bin Abi Sufyan), inovasi pertahanan pertama yang berhasil dibangun pada masa Khalifah Utsman bin Affan adalah...",
+                        options: [
+                            "Pasukan gajah di perbatasan Irak",
+                            "Armada Angkatan Laut Islam pertama untuk menjaga pesisir Laut Tengah",
+                            "Tembok raksasa mengelilingi Kota Madinah",
+                            "Pasukan pemanah berkuda di Andalusia"
+                        ],
+                        answer: 1,
+                        hint: "Inovasi ini berkaitan dengan pertahanan wilayah maritim dan pembebasan Pulau Siprus.",
+                        note: "Selain membangun angkatan laut, Utsman bin Affan membakukan Mushaf Al-Imam (Mushaf Utsmani) dan memperluas Masjidil Haram serta Nabawi."
+                    },
+                    // POS 5 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Standarisasi Mushaf Utsmani",
+                        question: "Sahabat yang melaporkan perbedaan dialek bacaan Al-Qur'an di wilayah Armenia dan Azerbaijan sehingga mendorong Khalifah Utsman membakukan Mushaf Utsmani adalah...",
+                        options: [
+                            "Hudzaifah bin Yaman",
+                            "Salman Al-Farisi",
+                            "Abu Dzar Al-Ghifari",
+                            "Sa'ad bin Abi Waqqash"
+                        ],
+                        answer: 0,
+                        hint: "Ia dikenal sebagai pemegang rahasia Rasulullah SAW.",
+                        note: "Panitia kodifikasi kedua yang dipimpin Zaid bin Tsabit menyalin mushaf standar berdasarkan dialek Quraisy untuk mencegah perselisihan umat."
+                    },
+                    // POS 6 - Tipe C (Detektif Kebijakan Ali bin Abi Thalib)
+                    {
+                        type: "match",
+                        topic: "Detektif Era Ali bin Abi Thalib",
+                        instruction: "Cocokkan kebijakan atau tokoh pada masa Khalifah Ali bin Abi Thalib dengan keterangannya:",
+                        pairs: [
+                            { left: "Abu Aswad Ad-Du'ali", right: "Ditugaskan menyusun kaidah dasar ilmu Nahwu (tata bahasa Arab)" },
+                            { left: "Kota Kufah (Irak)", right: "Pusat pemerintahan baru yang menggantikan Madinah" },
+                            { left: "Audit Baitul Mal", right: "Menarik kembali tanah negara yang dibagikan tidak sah" }
+                        ],
+                        hint: "Ilmu Nahwu disusun agar pemeluk Islam non-Arab (Mawali) tidak keliru membaca Al-Qur'an.",
+                        note: "Meski diuji konflik internal (Perang Jamal dan Shiffin), Khalifah Ali tetap memajukan ilmu bahasa dan tata kelola yang bersih."
+                    },
+                    // POS 7 - Tipe B (Susun Kronologi)
+                    {
+                        type: "chrono",
+                        topic: "Jejak Peristiwa Era Khulafaur Rasyidin",
+                        instruction: "Urutkan peristiwa besar berikut dari yang paling awal terjadi hingga yang paling akhir:",
+                        items: [
+                            "Musyawarah Saqifah Bani Sa'idah dan pembaiatan Abu Bakar",
+                            "Pembebasan Baitul Maqdis (Yerusalem) secara damai oleh Umar bin Khattab",
+                            "Pembentukan Armada Angkatan Laut Islam oleh Utsman bin Affan",
+                            "Pemindahan pusat pemerintahan Islam ke Kufah oleh Ali bin Abi Thalib"
+                        ],
+                        hint: "Sesuaikan dengan urutan masa jabatan keempat khalifah.",
+                        note: "Setiap khalifah menghadapi tantangan zaman yang berbeda dan menjawabnya dengan kebijakan strategis."
+                    },
+                    // POS 8 - Tipe A (Kuis Cepat)
+                    {
+                        type: "quiz",
+                        topic: "Nilai Kepemimpinan Khulafaur Rasyidin",
+                        question: "Dalam pidato pelantikannya, Khalifah Abu Bakar berkata: 'Jika aku berbuat baik, bantulah aku; jika aku menyimpang, luruskanlah aku.' Pesan utama dari kutipan tersebut adalah...",
+                        options: [
+                            "Pemimpin tidak boleh dikritik oleh rakyatnya",
+                            "Keterbukaan pemimpin terhadap pengawasan publik dan musyawarah",
+                            "Kekuasaan negara diwariskan secara turun-temurun",
+                            "Rakyat harus tunduk tanpa boleh menyampaikan pendapat"
+                        ],
+                        answer: 1,
+                        hint: "Kutipan ini mencerminkan akuntabilitas dan sikap rendah hati seorang pemimpin.",
+                        note: "Khulafaur Rasyidin meneladankan kepemimpinan yang amanah, sederhana, adil, dan terbuka terhadap nasihat."
+                    }
+                ]
+            },
+
+            gabungan: {
+                title: "Tantangan Lintas Era (Semua Bab)",
+                stages: [
+                    // POS 1 - Tipe A
+                    {
+                        type: "quiz",
+                        topic: "Bab 1 • Periode Makkah",
+                        question: "Pusat pembinaan kader awal Islam pada masa dakwah Sirriyah di Makkah bertempat di rumah...",
+                        options: [
+                            "Abu Ayyub Al-Anshari",
+                            "Arqam bin Abil Arqam",
+                            "Waraqah bin Naufal",
+                            "Sa'ad bin Rabi'"
+                        ],
+                        answer: 1,
+                        hint: "Rumah ini dikenal dengan sebutan Darul Arqam di lereng Bukit Shafa.",
+                        note: "Darul Arqam menjadi lembaga pendidikan Islam pertama tempat para sahabat mempelajari wahyu secara intensif."
+                    },
+                    // POS 2 - Tipe B
+                    {
+                        type: "chrono",
+                        topic: "Lintas Era • Tonggak Sejarah Islam",
+                        instruction: "Urutkan 4 tonggak besar sejarah Islam berikut dari yang paling awal hingga paling akhir:",
+                        items: [
+                            "Turunnya wahyu pertama di Gua Hira (610 M)",
+                            "Peristiwa Hijrah Rasulullah SAW ke Madinah (622 M)",
+                            "Pembebasan Kota Makkah / Fathu Makkah (630 M)",
+                            "Kodifikasi Mushaf Utsmani pada masa Khalifah Utsman bin Affan"
+                        ],
+                        hint: "Periode Makkah berlangsung 13 tahun sebelum Hijrah ke Madinah.",
+                        note: "Rangkaian peristiwa ini memperlihatkan transformasi umat Islam dari komunitas kecil di Makkah menjadi peradaban dunia."
+                    },
+                    // POS 3 - Tipe C
+                    {
+                        type: "match",
+                        topic: "Detektif Strategi & Tokoh Lintas Bab",
+                        instruction: "Cocokkan tokoh penting berikut dengan kontribusi bersejarahnya:",
+                        pairs: [
+                            { left: "Salman Al-Farisi", right: "Mengusulkan strategi parit pada Perang Khandaq" },
+                            { left: "Zaid bin Tsabit", right: "Ketua panitia penghimpunan & penyalinan Mushaf Al-Qur'an" },
+                            { left: "Abu Aswad Ad-Du'ali", right: "Perintis kaidah ilmu Nahwu atas perintah Ali bin Abi Thalib" }
+                        ],
+                        hint: "Zaid bin Tsabit dipercaya baik oleh Abu Bakar maupun Utsman bin Affan.",
+                        note: "Kecerdasan dan keahlian para sahabat menjadi pilar penting kejayaan peradaban Islam."
+                    },
+                    // POS 4 - Tipe A
+                    {
+                        type: "quiz",
+                        topic: "Bab 2 • Periode Madinah",
+                        question: "Dokumen konstitusi tertulis pertama di dunia yang mengatur kerukunan antarsuku dan antarumat beragama di Madinah adalah...",
+                        options: [
+                            "Perjanjian Hudaibiyah",
+                            "Piagam Madinah (Shahifah Madinah)",
+                            "Bai'atul Aqabah",
+                            "Dekrit Baitul Maqdis"
+                        ],
+                        answer: 1,
+                        hint: "Dokumen ini disusun tidak lama setelah Rasulullah SAW membangun Masjid Nabawi.",
+                        note: "Piagam Madinah menjadi landasan negara madani yang menjunjung tinggi keadilan, toleransi, dan persatuan."
+                    },
+                    // POS 5 - Tipe C
+                    {
+                        type: "match",
+                        topic: "Detektif Gelar Mulia Sahabat",
+                        instruction: "Pasangkan gelar mulia berikut dengan tokoh sahabat yang menyandangnya:",
+                        pairs: [
+                            { left: "Ash-Shiddiq", right: "Abu Bakar r.a. (Membenarkan peristiwa Isra Mi'raj tanpa ragu)" },
+                            { left: "Al-Faruq", right: "Umar bin Khattab r.a. (Pembeda tegas antara hak dan batil)" },
+                            { left: "Dzun Nurain", right: "Utsman bin Affan r.a. (Menikahi dua putri Rasulullah SAW)" }
+                        ],
+                        hint: "Gelar ini diberikan langsung oleh Rasulullah SAW sesuai karakter masing-masing.",
+                        note: "Setiap sahabat memiliki keistimewaan karakter yang saling melengkapi dalam membangun umat."
+                    },
+                    // POS 6 - Tipe B
+                    {
+                        type: "chrono",
+                        topic: "Kronologi Peristiwa Madinah",
+                        instruction: "Urutkan peristiwa pada periode Madinah berikut secara kronologis:",
+                        items: [
+                            "Membangun Masjid Nabawi dan mempersaudarakan Muhajirin-Anshar",
+                            "Kemenangan umat Islam pada Perang Badar Kubra (2 H)",
+                            "Strategi parit pada Perang Khandaq (5 H)",
+                            "Perjanjian Hudaibiyah (6 H) yang membuka jalan Fathu Makkah"
+                        ],
+                        hint: "Perang Badar (2 H) terjadi lebih dulu sebelum Perang Khandaq (5 H).",
+                        note: "Kemenangan demi kemenangan diraih melalui kombinasi keimanan, kedisiplinan, dan diplomasi cerdas."
+                    },
+                    // POS 7 - Tipe A
+                    {
+                        type: "quiz",
+                        topic: "Bab 3 • Khulafaur Rasyidin",
+                        question: "Khalifah yang menetapkan peristiwa Hijrah Rasulullah SAW sebagai tahun pertama Kalender Hijriah sekaligus melembagakan Baitul Mal adalah...",
+                        options: [
+                            "Abu Bakar Ash-Shiddiq",
+                            "Umar bin Khattab",
+                            "Utsman bin Affan",
+                            "Ali bin Abi Thalib"
+                        ],
+                        answer: 1,
+                        hint: "Beliau menjabat sebagai khalifah kedua selama 10 tahun (13–23 H).",
+                        note: "Reformasi birokrasi Umar bin Khattab menjadikan administrasi pemerintahan Islam sangat tertib dan modern."
+                    },
+                    // POS 8 - Tipe A
+                    {
+                        type: "quiz",
+                        topic: "Sintesis Nilai Peradaban",
+                        question: "Benang merah keteladanan dari periode Makkah, Madinah, hingga Khulafaur Rasyidin yang paling relevan diterapkan pelajar masa kini adalah...",
+                        options: [
+                            "Mengutamakan kelompok sendiri di atas kepentingan umum",
+                            "Integritas akhlak, semangat menuntut ilmu, musyawarah, dan toleransi",
+                            "Menghindari kerja sama dengan orang yang berbeda latar belakang",
+                            "Menyelesaikan setiap perbedaan pendapat dengan kekerasan"
+                        ],
+                        answer: 1,
+                        hint: "Pilih nilai-nilai universal yang menjadi kunci kemajuan peradaban Islam.",
+                        note: "Selamat! Kamu telah menuntaskan seluruh pos ekspedisi peradaban Islam kelas X."
+                    }
+                ]
+            }
+        };
+
+        // ==========================================
+        // 2. GAME STATE VARIABLES
+        // ==========================================
+        let gameState = {
+            playerName: "Penjelajah Sejarah",
+            missionKey: "makkah",
+            currentStageIdx: 0,
+            score: 0,
+            hearts: 3,
+            streak: 0,
+            stageResults: [], // { topic, correct, pointsEarned }
+            lifeline5050Used: false,
+            lifelineHintUsed: false,
+            stageAnswered: false,
+            timerInterval: null,
+            timeLeft: 15,
+            // State khusus Tipe B (Kronologi)
+            chronoOrder: [],
+            // State khusus Tipe C (Match Pairs)
+            matchLeftSelected: null,
+            matchSolvedLeft: [],
+            matchSolvedRight: [],
+            matchWrongAttempts: 0,
+            shuffledRightItems: []
+        };
+
+        // ==========================================
+        // 3. NAVIGASI LAYAR & INISIALISASI MISI
+        // ==========================================
+        function startMission(missionKey) {
+            const rawName = document.getElementById("playerNameInput").value.trim();
+            gameState.playerName = rawName.length > 0 ? rawName : "Penjelajah Sejarah";
+            gameState.missionKey = missionKey;
+            gameState.currentStageIdx = 0;
+            gameState.score = 0;
+            gameState.hearts = 3;
+            gameState.streak = 0;
+            gameState.stageResults = [];
+            gameState.lifeline5050Used = false;
+            gameState.lifelineHintUsed = false;
+
+            document.getElementById("lobbyScreen").classList.add("hidden");
+            document.getElementById("resultScreen").classList.add("hidden");
+            document.getElementById("gameScreen").classList.remove("hidden");
+            document.getElementById("headerHomeBtn").classList.remove("hidden");
+
+            document.getElementById("hudPlayerName").textContent = gameState.playerName;
+            document.getElementById("hudMissionTitle").textContent = missionsBank[missionKey].title;
+
+            renderStage();
+        }
+
+        function replayCurrentMission() {
+            startMission(gameState.missionKey);
+        }
+
+        function confirmReturnLobby() {
+            const modal = document.getElementById("exitConfirmModal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function closeExitModal() {
+            const modal = document.getElementById("exitConfirmModal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        function returnToLobby() {
+            stopTimer();
+            closeExitModal();
+            document.getElementById("gameScreen").classList.add("hidden");
+            document.getElementById("resultScreen").classList.add("hidden");
+            document.getElementById("headerHomeBtn").classList.add("hidden");
+            document.getElementById("lobbyScreen").classList.remove("hidden");
+        }
+
+        // ==========================================
+        // 4. RENDER HUD, PETA EKSPEDISI & POS TANTANGAN
+        // ==========================================
+        function updateHUD() {
+            // Hati / Energi
+            const heartsEl = document.getElementById("hudHearts");
+            let heartsHtml = "";
+            for (let i = 0; i < 3; i++) {
+                if (i < gameState.hearts) {
+                    heartsHtml += `<span data-icon="heart" class="text-red-500"></span>`;
+                } else {
+                    heartsHtml += `<span data-icon="heart" class="text-slate-300"></span>`;
+                }
+            }
+            heartsEl.innerHTML = heartsHtml;
+
+            // Streak & Skor
+            document.getElementById("hudStreak").textContent = `${gameState.streak}x`;
+            document.getElementById("hudScore").textContent = gameState.score;
+
+            // Peta Jalur Pos 1 - 8
+            const totalStages = 8;
+            const pct = (gameState.currentStageIdx / (totalStages - 1)) * 100;
+            document.getElementById("mapProgressLine").style.width = `calc(${pct}% - 24px)`;
+
+            const nodesContainer = document.getElementById("mapNodesContainer");
+            let nodesHtml = "";
+            for (let i = 0; i < totalStages; i++) {
+                const res = gameState.stageResults[i];
+                let nodeClass = "bg-creamSand text-slate-500 border-2 border-slate-300";
+                let innerContent = `${i + 1}`;
+
+                if (res) {
+                    if (res.correct) {
+                        nodeClass = "bg-emeraldBright text-white border-2 border-emeraldDark shadow-sm";
+                        innerContent = `<span data-icon="check" class="text-xs"></span>`;
+                    } else {
+                        nodeClass = "bg-amber-500 text-white border-2 border-amber-700 shadow-sm";
+                        innerContent = `<span data-icon="exclamation" class="text-xs"></span>`;
+                    }
+                } else if (i === gameState.currentStageIdx) {
+                    nodeClass = "bg-goldBright text-emeraldDark border-2 border-emeraldDark font-extrabold scale-110 animate-pulse-gold";
+                }
+
+                nodesHtml += `
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${nodeClass}">
+                            ${innerContent}
+                        </div>
+                        <span class="text-[10px] font-bold mt-1 ${i === gameState.currentStageIdx ? 'text-emeraldDark' : 'text-slate-400'}">Pos ${i + 1}</span>
+                    </div>
+                `;
+            }
+            nodesContainer.innerHTML = nodesHtml;
+        }
+
+        function renderStage() {
+            stopTimer();
+            gameState.stageAnswered = false;
+
+            const mission = missionsBank[gameState.missionKey];
+            const stage = mission.stages[gameState.currentStageIdx];
+
+            updateHUD();
+
+            // Reset tampilan feedback & hint
+            document.getElementById("feedbackCard").classList.add("hidden");
+            document.getElementById("hintBanner").classList.add("hidden");
+
+            // Update tombol lifelines
+            const btn5050 = document.getElementById("lifeline5050Btn");
+            const btnHint = document.getElementById("lifelineHintBtn");
+            btn5050.disabled = gameState.lifeline5050Used || stage.type !== "quiz";
+            btnHint.disabled = gameState.lifelineHintUsed;
+
+            // Update Badge Pos
+            document.getElementById("stageBadge").textContent = `POS ${gameState.currentStageIdx + 1} / 8`;
+
+            const timerWrapper = document.getElementById("timerWrapper");
+            const bodyEl = document.getElementById("challengeBody");
+            bodyEl.classList.remove("animate-pop");
+            void bodyEl.offsetWidth;
+            bodyEl.classList.add("animate-pop");
+
+            if (stage.type === "quiz") {
+                document.getElementById("challengeTypeBadge").innerHTML = `<span data-icon="bolt" class="text-goldBright mr-1"></span> Kuis Cepat Berwaktu • ${stage.topic}`;
+                timerWrapper.classList.remove("hidden");
+                renderQuizChallenge(stage, bodyEl);
+                startQuizTimer();
+            } else if (stage.type === "chrono") {
+                document.getElementById("challengeTypeBadge").innerHTML = `<span data-icon="arrow-down-1-9" class="text-goldBright mr-1"></span> Susun Kronologi Sejarah • ${stage.topic}`;
+                timerWrapper.classList.add("hidden");
+                renderChronoChallenge(stage, bodyEl);
+            } else if (stage.type === "match") {
+                document.getElementById("challengeTypeBadge").innerHTML = `<span data-icon="puzzle-piece" class="text-goldBright mr-1"></span> Detektif Tokoh & Peristiwa • ${stage.topic}`;
+                timerWrapper.classList.add("hidden");
+                renderMatchChallenge(stage, bodyEl);
+            }
+        }
+
+        // ==========================================
+        // 5. TIPE A: KUIS CEPAT BERWAKTU (15 DETIK)
+        // ==========================================
+        function renderQuizChallenge(stage, container) {
+            container.innerHTML = `
+                <h3 class="text-base sm:text-lg md:text-xl font-extrabold text-emeraldDark leading-snug mb-5">
+                    ${stage.question}
+                </h3>
+                <div id="quizOptionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    ${stage.options.map((opt, idx) => `
+                        <button id="quiz-opt-${idx}" onclick="handleQuizAnswer(${idx})" class="text-left p-4 rounded-2xl bg-white hover:bg-emeraldSoft border-2 border-slate-200 hover:border-emeraldMid transition flex items-start gap-3 shadow-sm cursor-pointer">
+                            <span class="w-7 h-7 rounded-xl bg-creamSand text-emeraldDark font-extrabold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                                ${String.fromCharCode(65 + idx)}
+                            </span>
+                            <span class="text-xs sm:text-sm font-semibold text-slate-800 leading-snug">${opt}</span>
+                        </button>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        function startQuizTimer() {
+            gameState.timeLeft = 15;
+            updateTimerUI();
+            gameState.timerInterval = setInterval(() => {
+                gameState.timeLeft -= 0.2;
+                if (gameState.timeLeft <= 0) {
+                    gameState.timeLeft = 0;
+                    updateTimerUI();
+                    stopTimer();
+                    if (!gameState.stageAnswered) {
+                        handleQuizAnswer(-1); // Waktu habis
+                    }
+                } else {
+                    updateTimerUI();
+                }
+            }, 200);
+        }
+
+        function updateTimerUI() {
+            const pct = Math.max(0, (gameState.timeLeft / 15) * 100);
+            document.getElementById("timerBarFill").style.width = `${pct}%`;
+            document.getElementById("timerText").textContent = `${Math.ceil(gameState.timeLeft)} dtk`;
+        }
+
+        function stopTimer() {
+            if (gameState.timerInterval) {
+                clearInterval(gameState.timerInterval);
+                gameState.timerInterval = null;
+            }
+        }
+
+        function handleQuizAnswer(chosenIdx) {
+            if (gameState.stageAnswered) return;
+            gameState.stageAnswered = true;
+            stopTimer();
+
+            const stage = missionsBank[gameState.missionKey].stages[gameState.currentStageIdx];
+            const isCorrect = chosenIdx === stage.answer;
+
+            // Warnai opsi jawaban
+            stage.options.forEach((_, idx) => {
+                const btn = document.getElementById(`quiz-opt-${idx}`);
+                if (!btn) return;
+                btn.disabled = true;
+                btn.classList.remove("cursor-pointer", "hover:bg-emeraldSoft", "hover:border-emeraldMid");
+                if (idx === stage.answer) {
+                    btn.className = "text-left p-4 rounded-2xl bg-emerald-100 border-2 border-emeraldBright flex items-start gap-3 shadow-sm";
+                } else if (idx === chosenIdx && !isCorrect) {
+                    btn.className = "text-left p-4 rounded-2xl bg-red-50 border-2 border-red-400 flex items-start gap-3 animate-shake";
+                } else {
+                    btn.classList.add("opacity-45");
+                }
+            });
+
+            // Hitung poin (Base 100 + Bonus Kecepatan hingga 50 + Bonus Streak)
+            let earned = 0;
+            if (isCorrect) {
+                const speedBonus = Math.round(gameState.timeLeft * 3);
+                const streakBonus = gameState.streak * 15;
+                earned = 100 + speedBonus + streakBonus;
+            }
+
+            finalizeStage(isCorrect, earned, stage.note, chosenIdx === -1 ? "Waktu Habis!" : null);
+        }
+
+        // ==========================================
+        // 6. TIPE B: SUSUN KRONOLOGI SEJARAH
+        // ==========================================
+        function renderChronoChallenge(stage, container) {
+            // Acak urutan awal (pastikan tidak langsung terurut sempurna)
+            let indexed = stage.items.map((text, originalIdx) => ({ text, originalIdx }));
+            do {
+                indexed.sort(() => Math.random() - 0.5);
+            } while (indexed.every((el, idx) => el.originalIdx === idx));
+
+            gameState.chronoOrder = indexed;
+            drawChronoList(stage, container);
+        }
+
+        function drawChronoList(stage, container) {
+            container.innerHTML = `
+                <p class="text-xs sm:text-sm font-bold text-slate-700 mb-4">
+                    <span data-icon="layer-group" class="text-goldWarm mr-1.5"></span> ${stage.instruction}
+                </p>
+                <div class="space-y-2.5 mb-5" id="chronoCardsWrapper">
+                    ${gameState.chronoOrder.map((item, idx) => `
+                        <div class="bg-white border-2 border-slate-200 rounded-2xl p-3.5 flex items-center justify-between gap-3 shadow-sm transition">
+                            <div class="flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-xl bg-emeraldDark text-goldBright font-extrabold text-xs flex items-center justify-center shrink-0">
+                                    ${idx + 1}
+                                </span>
+                                <span class="text-xs sm:text-sm font-semibold text-slate-800 leading-snug">${item.text}</span>
+                            </div>
+                            <div class="flex items-center gap-1 shrink-0">
+                                <button type="button" onclick="moveChronoItem(${idx}, -1)" ${idx === 0 || gameState.stageAnswered ? 'disabled' : ''} class="w-8 h-8 rounded-xl bg-creamSand hover:bg-amber-200 disabled:opacity-30 text-emeraldDark font-bold flex items-center justify-center transition cursor-pointer" title="Geser ke Atas">
+                                    <span data-icon="chevron-up" class="text-xs"></span>
+                                </button>
+                                <button type="button" onclick="moveChronoItem(${idx}, 1)" ${idx === gameState.chronoOrder.length - 1 || gameState.stageAnswered ? 'disabled' : ''} class="w-8 h-8 rounded-xl bg-creamSand hover:bg-amber-200 disabled:opacity-30 text-emeraldDark font-bold flex items-center justify-center transition cursor-pointer" title="Geser ke Bawah">
+                                    <span data-icon="chevron-down" class="text-xs"></span>
+                                </button>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+                <div class="flex justify-end">
+                    <button id="checkChronoBtn" onclick="submitChronoOrder()" class="px-6 py-3 rounded-xl bg-goldWarm hover:bg-amber-600 text-white font-extrabold text-xs sm:text-sm shadow transition flex items-center gap-2 cursor-pointer">
+                        <span data-icon="check-circle"></span>
+                        <span>Periksa Urutan Kronologi</span>
+                    </button>
+                </div>
+            `;
+        }
+
+        function moveChronoItem(index, direction) {
+            if (gameState.stageAnswered) return;
+            const targetIdx = index + direction;
+            if (targetIdx < 0 || targetIdx >= gameState.chronoOrder.length) return;
+
+            const temp = gameState.chronoOrder[index];
+            gameState.chronoOrder[index] = gameState.chronoOrder[targetIdx];
+            gameState.chronoOrder[targetIdx] = temp;
+
+            const stage = missionsBank[gameState.missionKey].stages[gameState.currentStageIdx];
+            drawChronoList(stage, document.getElementById("challengeBody"));
+        }
+
+        function submitChronoOrder() {
+            if (gameState.stageAnswered) return;
+            gameState.stageAnswered = true;
+
+            const stage = missionsBank[gameState.missionKey].stages[gameState.currentStageIdx];
+            const isCorrect = gameState.chronoOrder.every((item, idx) => item.originalIdx === idx);
+
+            // Jika salah, tampilkan urutan yang benar di papan
+            if (!isCorrect) {
+                gameState.chronoOrder = stage.items.map((text, originalIdx) => ({ text, originalIdx }));
+            }
+            drawChronoList(stage, document.getElementById("challengeBody"));
+
+            const btn = document.getElementById("checkChronoBtn");
+            if (btn) btn.classList.add("hidden");
+
+            const earned = isCorrect ? (130 + gameState.streak * 15) : 0;
+            finalizeStage(isCorrect, earned, stage.note, isCorrect ? null : "Urutan Diperbaiki Otomatis");
+        }
+
+        // ==========================================
+        // 7. TIPE C: DETEKTIF TOKOH & PERISTIWA (MATCHING)
+        // ==========================================
+        function renderMatchChallenge(stage, container) {
+            gameState.matchLeftSelected = null;
+            gameState.matchSolvedLeft = [];
+            gameState.matchSolvedRight = [];
+            gameState.matchWrongAttempts = 0;
+
+            // Acak kolom kanan
+            gameState.shuffledRightItems = stage.pairs
+                .map((p, idx) => ({ text: p.right, pairIdx: idx }))
+                .sort(() => Math.random() - 0.5);
+
+            drawMatchBoard(stage, container);
+        }
+
+        function drawMatchBoard(stage, container) {
+            container.innerHTML = `
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <p class="text-xs sm:text-sm font-bold text-slate-700">
+                        <span data-icon="magnifying-glass" class="text-goldWarm mr-1.5"></span> ${stage.instruction}
+                    </p>
+                    <span class="text-[11px] font-bold bg-emeraldSoft text-emeraldDark px-2.5 py-1 rounded-lg">
+                        Cocok: ${gameState.matchSolvedLeft.length} / ${stage.pairs.length}
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Kolom Kiri (Tokoh / Istilah) -->
+                    <div class="space-y-2.5">
+                        <span class="block text-[11px] font-extrabold uppercase tracking-wider text-emeraldMid">1. Pilih Tokoh / Istilah:</span>
+                        ${stage.pairs.map((p, idx) => {
+                            const isSolved = gameState.matchSolvedLeft.includes(idx);
+                            const isSelected = gameState.matchLeftSelected === idx;
+                            let style = "bg-white hover:bg-emeraldSoft border-slate-200 text-slate-800 cursor-pointer";
+                            if (isSolved) {
+                                style = "bg-emerald-100 border-emeraldBright text-emeraldDark opacity-75 cursor-default";
+                            } else if (isSelected) {
+                                style = "bg-emeraldDark border-goldBright text-white ring-2 ring-goldBright cursor-pointer";
+                            }
+                            return `
+                                <button type="button" ${isSolved || gameState.stageAnswered ? 'disabled' : ''} onclick="selectMatchLeft(${idx})" class="w-full text-left p-3.5 rounded-2xl border-2 font-bold text-xs sm:text-sm transition flex items-center justify-between ${style}">
+                                    <span>${p.left}</span>
+                                    ${isSolved ? '<span data-icon="circle-check" class="text-emeraldMid"></span>' : '<span data-icon="arrow-right" class="text-xs opacity-50"></span>'}
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+
+                    <!-- Kolom Kanan (Peran / Makna) -->
+                    <div class="space-y-2.5">
+                        <span class="block text-[11px] font-extrabold uppercase tracking-wider text-goldWarm">2. Klik Pasangan Perannya:</span>
+                        ${gameState.shuffledRightItems.map((item, rIdx) => {
+                            const isSolved = gameState.matchSolvedRight.includes(rIdx);
+                            let style = "bg-white hover:bg-amber-50 border-slate-200 text-slate-700 cursor-pointer";
+                            if (isSolved) {
+                                style = "bg-emerald-100 border-emeraldBright text-emeraldDark opacity-75 cursor-default";
+                            }
+                            return `
+                                <button id="match-right-${rIdx}" type="button" ${isSolved || gameState.stageAnswered ? 'disabled' : ''} onclick="selectMatchRight(${rIdx})" class="w-full text-left p-3.5 rounded-2xl border-2 text-xs sm:text-sm font-medium transition flex items-center justify-between ${style}">
+                                    <span>${item.text}</span>
+                                    ${isSolved ? '<span data-icon="circle-check" class="text-emeraldMid shrink-0 ml-2"></span>' : ''}
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectMatchLeft(leftIdx) {
+            if (gameState.stageAnswered || gameState.matchSolvedLeft.includes(leftIdx)) return;
+            gameState.matchLeftSelected = leftIdx;
+            const stage = missionsBank[gameState.missionKey].stages[gameState.currentStageIdx];
+            drawMatchBoard(stage, document.getElementById("challengeBody"));
+        }
+
+        function selectMatchRight(rightIdx) {
+            if (gameState.stageAnswered || gameState.matchLeftSelected === null) return;
+            const stage = missionsBank[gameState.missionKey].stages[gameState.currentStageIdx];
+            const rightObj = gameState.shuffledRightItems[rightIdx];
+
+            if (rightObj.pairIdx === gameState.matchLeftSelected) {
+                // Pasangan Tepat!
+                gameState.matchSolvedLeft.push(gameState.matchLeftSelected);
+                gameState.matchSolvedRight.push(rightIdx);
+                gameState.matchLeftSelected = null;
+                drawMatchBoard(stage, document.getElementById("challengeBody"));
+
+                // Cek apakah semua 3 pasangan sudah terjawab
+                if (gameState.matchSolvedLeft.length === stage.pairs.length) {
+                    gameState.stageAnswered = true;
+                    const isPerfect = gameState.matchWrongAttempts === 0;
+                    const earned = isPerfect ? (140 + gameState.streak * 15) : 90;
+                    finalizeStage(true, earned, stage.note, isPerfect ? "Detektif Sempurna!" : "Semua Pasangan Cocok!");
+                }
+            } else {
+                // Pasangan Salah -> Beri efek shake & kurangi percobaan
+                gameState.matchWrongAttempts++;
+                const btn = document.getElementById(`match-right-${rightIdx}`);
+                if (btn) {
+                    btn.classList.add("bg-red-50", "border-red-400", "animate-shake");
+                    setTimeout(() => {
+                        btn.classList.remove("bg-red-50", "border-red-400", "animate-shake");
+                    }, 450);
+                }
+            }
+        }
+
+        // ==========================================
+        // 8. SISTEM BANTUAN (LIFELINES)
+        // ==========================================
+        function useLifeline5050() {
+            const stage = missionsBank[gameState.missionKey].stages[gameState.currentStageIdx];
+            if (gameState.lifeline5050Used || gameState.stageAnswered || stage.type !== "quiz") return;
+
+            gameState.lifeline5050Used = true;
+            document.getElementById("lifeline5050Btn").disabled = true;
+
+            // Cari indeks opsi yang salah lalu eliminasi 2 secara acak
+            const wrongIndices = [0, 1, 2, 3].filter(i => i !== stage.answer).sort(() => Math.random() - 0.5).slice(0, 2);
+            wrongIndices.forEach(idx => {
+                const btn = document.getElementById(`quiz-opt-${idx}`);
+                if (btn) {
+                    btn.disabled = true;
+                    btn.classList.add("opacity-25", "line-through", "pointer-events-none");
+                }
+            });
+        }
+
+        function useLifelineHint() {
+            const stage = missionsBank[gameState.missionKey].stages[gameState.currentStageIdx];
+            if (gameState.lifelineHintUsed || gameState.stageAnswered) return;
+
+            gameState.lifelineHintUsed = true;
+            document.getElementById("lifelineHintBtn").disabled = true;
+
+            document.getElementById("hintBannerText").textContent = stage.hint;
+            document.getElementById("hintBanner").classList.remove("hidden");
+        }
+
+        // ==========================================
+        // 9. PENYELESAIAN POS & KARTU CATATAN SEJARAH
+        // ==========================================
+        function finalizeStage(isCorrect, pointsEarned, historyNote, customStatusLabel) {
+            const stage = missionsBank[gameState.missionKey].stages[gameState.currentStageIdx];
+
+            if (isCorrect) {
+                gameState.score += pointsEarned;
+                gameState.streak += 1;
+            } else {
+                gameState.streak = 0;
+                if (gameState.hearts > 0) {
+                    gameState.hearts -= 1;
+                }
+            }
+
+            gameState.stageResults.push({
+                stageNum: gameState.currentStageIdx + 1,
+                topic: stage.topic,
+                correct: isCorrect,
+                pointsEarned: pointsEarned
+            });
+
+            // Nonaktifkan lifelines saat fase review
+            document.getElementById("lifeline5050Btn").disabled = true;
+            document.getElementById("lifelineHintBtn").disabled = true;
+
+            updateHUD();
+
+            // Tampilkan Kartu Catatan Sejarah
+            const card = document.getElementById("feedbackCard");
+            const statusBadge = document.getElementById("feedbackStatusBadge");
+            const pointsBadge = document.getElementById("feedbackPointsEarned");
+            const noteEl = document.getElementById("feedbackHistoryNote");
+            const nextBtn = document.getElementById("nextStageBtn");
+
+            card.classList.remove("hidden", "bg-emeraldSoft", "bg-amber-50");
+            if (isCorrect) {
+                card.classList.add("bg-emeraldSoft");
+                statusBadge.className = "px-3 py-1 rounded-full text-xs font-extrabold bg-emeraldDark text-goldBright";
+                statusBadge.innerHTML = `<span data-icon="circle-check" class="mr-1"></span> ${customStatusLabel || 'Jawaban Tepat!'}`;
+                pointsBadge.textContent = `+${pointsEarned} Poin`;
+            } else {
+                card.classList.add("bg-amber-50");
+                statusBadge.className = "px-3 py-1 rounded-full text-xs font-extrabold bg-amber-600 text-white";
+                statusBadge.innerHTML = `<span data-icon="circle-info" class="mr-1"></span> ${customStatusLabel || 'Kurang Tepat • Pelajari Catatannya'}`;
+                pointsBadge.textContent = gameState.hearts === 0 ? "Energi Habis!" : "0 Poin (Streak Reset)";
+            }
+
+            noteEl.textContent = historyNote;
+
+            // Cek apakah game berakhir (sudah pos ke-8 atau energi habis)
+            const isLastStage = gameState.currentStageIdx >= 7;
+            const outOfHearts = gameState.hearts === 0;
+
+            if (isLastStage || outOfHearts) {
+                nextBtn.innerHTML = `<span>Lihat Sertifikat Hasil</span> <span data-icon="award"></span>`;
+            } else {
+                nextBtn.innerHTML = `<span>Lanjut Pos ${gameState.currentStageIdx + 2}</span> <span data-icon="arrow-right"></span>`;
+            }
+        }
+
+        function advanceToNextStage() {
+            const isLastStage = gameState.currentStageIdx >= 7;
+            const outOfHearts = gameState.hearts === 0;
+
+            if (isLastStage || outOfHearts) {
+                showFinalCertificate();
+            } else {
+                gameState.currentStageIdx += 1;
+                renderStage();
+            }
+        }
+
+        // ==========================================
+        // 10. LAYAR AKHIR (SERTIFIKAT & EVALUASI)
+        // ==========================================
+        function showFinalCertificate() {
+            stopTimer();
+            document.getElementById("gameScreen").classList.add("hidden");
+            document.getElementById("resultScreen").classList.remove("hidden");
+
+            const mission = missionsBank[gameState.missionKey];
+            const totalAttempted = gameState.stageResults.length;
+            const correctCount = gameState.stageResults.filter(r => r.correct).length;
+            const accuracy = Math.round((correctCount / 8) * 100);
+
+            document.getElementById("certPlayerName").textContent = gameState.playerName;
+            document.getElementById("certMissionName").textContent = mission.title;
+            document.getElementById("certFinalScore").textContent = gameState.score;
+            document.getElementById("certAccuracy").textContent = `${accuracy}%`;
+            document.getElementById("certClearedCount").textContent = `${correctCount} / 8`;
+
+            // Tentukan Gelar Pencapaian
+            const rankEl = document.getElementById("resultRankTitle");
+            const iconEl = document.getElementById("resultTrophyIcon");
+            if (accuracy >= 85 && gameState.hearts > 0) {
+                rankEl.textContent = "Cendekiawan Muda Peradaban";
+                iconEl.dataset.icon = "crown"; iconEl.innerHTML = ""; delete iconEl.dataset.iconReady;
+            } else if (accuracy >= 60) {
+                rankEl.textContent = "Penjelajah Sejarah Ulung";
+                iconEl.dataset.icon = "award"; iconEl.innerHTML = ""; delete iconEl.dataset.iconReady;
+            } else {
+                rankEl.textContent = "Perintis Jejak Ilmu";
+                iconEl.dataset.icon = "compass"; iconEl.innerHTML = ""; delete iconEl.dataset.iconReady;
+            }
+
+            // Rincian evaluasi 8 pos
+            const reviewList = document.getElementById("stageReviewList");
+            let reviewHtml = "";
+            for (let i = 0; i < 8; i++) {
+                const stageMeta = mission.stages[i];
+                const res = gameState.stageResults[i];
+                if (res && res.correct) {
+                    reviewHtml += `
+                        <div class="bg-emeraldSoft/80 border border-emerald-200 rounded-xl p-3 flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-6 h-6 rounded-lg bg-emeraldDark text-white text-xs font-bold flex items-center justify-center shrink-0">${i + 1}</span>
+                                <span class="text-xs font-bold text-emeraldDark">${stageMeta.topic}</span>
+                            </div>
+                            <span class="text-[11px] font-extrabold text-emeraldMid shrink-0"><span data-icon="circle-check" class="mr-1"></span> Dikuasai</span>
+                        </div>
+                    `;
+                } else {
+                    reviewHtml += `
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-6 h-6 rounded-lg bg-goldWarm text-white text-xs font-bold flex items-center justify-center shrink-0">${i + 1}</span>
+                                <span class="text-xs font-bold text-slate-700">${stageMeta.topic}</span>
+                            </div>
+                            <span class="text-[11px] font-extrabold text-goldWarm shrink-0"><span data-icon="book-open" class="mr-1"></span> ${res ? 'Perlu Review' : 'Belum Dilewati'}</span>
+                        </div>
+                    `;
+                }
+            }
+            reviewList.innerHTML = reviewHtml;
+        }
+    </script>
+
+    <!-- Footer bersama untuk semua halaman -->
+    <div data-site-footer data-base="../../"></div>
+</body>
+</html>
